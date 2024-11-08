@@ -23,8 +23,8 @@ namespace Eksamensprojekt.View
         public SummaryWindow()
         {
 
-            SummaryVM svm = new SummaryVM()
-            DataContext = lvm;
+            SummaryVM svm = new SummaryVM();
+            DataContext = svm;
             InitializeComponent();
         }
     }

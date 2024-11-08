@@ -22,8 +22,8 @@ namespace Eksamensprojekt.View
     {
         public LoginWindow()
         {
-            LoginVM lvm = new LoginVM()
-            DataContext = lvm;
+            //LoginVM lvm = new LoginVM()
+            //DataContext = lvm;
             InitializeComponent();
         }
     }
