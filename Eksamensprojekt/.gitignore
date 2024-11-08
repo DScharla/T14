@@ -1,0 +1,23 @@
+﻿# Build- og binære filer
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Visual Studio-specifikke filer
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# IDE-specifikke filer
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+
+# Brugerindstillinger og cache-filer
+*.rsuser
+*.suo
+*.vscode/
