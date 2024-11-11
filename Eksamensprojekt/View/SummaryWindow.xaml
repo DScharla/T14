@@ -72,6 +72,7 @@
             <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
         <Rectangle Grid.Row="0" Fill="Aquamarine"/>
+        <Label Content="Oversigt" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30"/>
         <ListView
         x:Name="lvFacilities"
         Grid.Row="1"
@@ -160,7 +161,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    
+
 
                 </GridView>
             </ListView.View>
