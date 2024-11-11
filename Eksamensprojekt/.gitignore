@@ -22,3 +22,6 @@ obj/
 *.rsuser
 *.suo
 *.vscode/
+
+# ConnectionString
+ConnectionString.txt
