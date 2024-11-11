@@ -5,8 +5,172 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eksamensprojekt.View"
         mc:Ignorable="d"
-        Title="SummaryWindow" Height="450" Width="800">
+        Title="Oversigt" Height="450" Width="800">
+    <Window.Resources>
+
+        <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <!-- <Setter Property="Background" Value="Red"/> -->
+        </Style>
+
+        <Style x:Key="myControlTemplateStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Grid>
+                            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Style="{StaticResource ColumnHeaderTextStyle}" Text="{TemplateBinding Content}" />
+                            </DockPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="0,0,0,0" />
+        </Style>
+
+        <!--  Items i ListView  -->
+        <Style TargetType="ListView">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1,1,1,1" />
+        </Style>
+
+        <!--  Item Groups i ListView  -->
+        <Style x:Key="GroupFormatting" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Expander IsExpanded="True">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        VerticalAlignment="Bottom"
+                                        FontSize="22"
+                                        FontWeight="Bold"
+                                        Foreground="Gray"
+                                        Text="{Binding Name}" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <ItemsPresenter />
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="Aquamarine"/>
+        <ListView
+        x:Name="lvFacilities"
+        Grid.Row="1"
+        Margin="10,0,10,0"
+        ItemsSource="{Binding CurrentAssignments}"
+        SelectedItem="{Binding SelectedAssignment}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
+                    <GridViewColumn Header="Overløbsbygværk"
+								Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StartRegion.DisplayName}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding StartRegion.DisplayName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Krav til hændelser"
+								Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EndRegion.DisplayName}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding EndRegion.DisplayName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Hændelser"
+								Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RegionAssignmentId}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding RegionAssignmentId}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Maks udledning"
+								Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StartAddress}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding StartAddress}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Udledning"
+								Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EndAddress}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding EndAddress}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="UDL"
+								Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="OB-nr"
+								Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="System"
+								Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AssignmentType}"
+									   TextTrimming="CharacterEllipsis"
+									   ToolTip="{Binding AssignmentType}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+
+                </GridView>
+            </ListView.View>
+            <!--<ListView.GroupStyle>
+			<GroupStyle ContainerStyle="{StaticResource GroupFormatting}" />
+		</ListView.GroupStyle>-->
+        </ListView>
+
+
+        <Rectangle Grid.Row="2" Fill="Aquamarine"/>
+
     </Grid>
 </Window>
