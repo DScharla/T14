@@ -90,9 +90,17 @@ namespace Eksamensprojekt.Model
             }
         }
 
-        void Update(T entity)
+        void Update(T entity, string connectionString, string UpdateQuery)
         {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
 
+                SqlCommand command = new SqlCommand(UpdateQuery, connection);
+                //command.Parameters.AddWithValue("@Id", entity.id);
+                connection.Open();
+                command.ExecuteNonQuery();
+
+            }
         }
     }
 }
