@@ -11,25 +11,25 @@ EXEC uspAddSystem
 EXEC uspAddSystem
 	@NewSystem = 'S2';
 
-ALTER PROCEDURE uspAddFacility 
+CREATE PROCEDURE uspAddFacility 
 	@Name NVarChar(50),
-	@NumberOfIncidents Int,
-	@TotalOverflow Int,
-	@UDL Int,
-	@OBNumber Int,
-	@MinimumPoolSize NVarChar(500),
-	@SystemName NVarChar(500)
+	@NumberOfIncidents Int = NULL,
+	@TotalOverflow Int = NULL,
+	@UDL Int = NULL,
+	@OBNumber Int = NULL,
+	@MinimumPoolSize NVarChar(500) = NULL,
+	@SystemName NVarChar(500) = NULL
 AS
 BEGIN
 	IF EXISTS(SELECT SystemID FROM SYSTEM WHERE Name=@SystemName)
 		BEGIN
 			DECLARE @NYVariabel Int;
-			Select @NYVariabel = SystemID
+			SELECT @NYVariabel = SystemID
 			From SYSTEM
-			Where Name=@SystemName;
+			WHERE NAME=@SystemName;
 
 			INSERT INTO FACILITY
-			Values (
+			VALUES (
 				@Name,
 				@NumberOfIncidents,
 				@TotalOverflow,
@@ -49,3 +49,68 @@ EXEC uspAddFacility
 	@OBNumber = 104,
 	@MinimumPoolSize = '500',
 	@SystemName = 'S2'
+
+CREATE PROCEDURE uspAddRestriction
+	@StartDate Date,
+	@EndDate Date = NULL,
+	@AllowedAverageOverflowVolume Int = NULL,
+	@AllowedAverageOverflowPeriod Date = NULL,
+	@AllowedAverageYearlyOverflowVolume Int = NULL,
+	@AllowedAverageIncidents Int = NULL,
+	@AllowedAverageIncidentsPeriod Date = NULL,
+	@AllowedYearlyIncidents Int = NULL,
+	@EquipmentRestriction Int = NULL,
+	@MaintenanceRestriction NVarChar(500) = NULL,
+	@MeasurementRestriction NVarChar(500) = NULL,
+	@AdditionalRestriction NVarChar(500) = NULL,
+	@FacilityName NVarChar(500)
+AS
+BEGIN
+	INSERT INTO RESTRICTION
+	VALUES (
+		@StartDate,
+		@EndDate,
+		@AllowedAverageOverflowVolume,
+		@AllowedAverageOverflowPeriod,
+		@AllowedAverageYearlyOverflowVolume,
+		@AllowedAverageIncidents,
+		@AllowedAverageIncidentsPeriod,
+		@AllowedYearlyIncidents,
+		@EquipmentRestriction,
+		@MaintenanceRestriction,
+		@MeasurementRestriction,
+		@AdditionalRestriction,
+		(SELECT FacilityID FROM FACILITY WHERE Name=@FacilityName)
+		);
+END
+
+EXEC uspAddRestriction 
+	@StartDate = '2023/12/31',
+	@FacilityName='TEst2'
+
+CREATE PROCEDURE uspAddOverflow  
+	@OverflowVolume Int,
+	@StartTime DateTime,
+	@EndTime DateTime,
+	@FacilityID Int
+AS
+BEGIN
+	INSERT INTO OVERFLOW (
+		OverflowVolume,
+		StartTime,
+		EndTime,
+		FacilityID
+		)
+	VALUES (
+		@OverflowVolume,
+		@StartTime,
+		@EndTime,
+		@FacilityID
+	);
+END
+
+EXEC uspAddOverflow
+	@OverflowVolume = 2000,
+	@StartTime = '2024/11/15 10:15:00',
+	@EndTime = '2024/11/15 10:21:00',
+	@FacilityID = 1

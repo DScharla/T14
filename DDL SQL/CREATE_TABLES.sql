@@ -29,7 +29,7 @@ CREATE TABLE RESTRICTION(
 	AllowedAverageOverflowPeriod Date,
 	AllowedYearlyOverflowVolume Int,
 	AllowedAverageIncidents Int,
-	AllowedAverageIncidentsPeriod Int,
+	AllowedAverageIncidentsPeriod Date,
 	AllowedYearlyIncidents Int,
 	EquipmentRestriction NVarChar(500),
 	MaintenanceRestriction NVarChar(500),
@@ -49,7 +49,7 @@ CREATE TABLE INCIDENT(
 	);
 
 CREATE TABLE OVERFLOW(
-	OverflowID INT IDENTITY(1,1) CONSTRAINT PK_Overflow PRIMARY KEY,
+	OverflowID Int IDENTITY(1,1) CONSTRAINT PK_Overflow PRIMARY KEY,
 	OverflowVolume Int NOT NULL,
 	StartTime DateTime NOT NULL,
 	EndTime DateTime NOT NULL,
