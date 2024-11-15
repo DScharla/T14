@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Eksamensprojekt.Model
             throw new NotImplementedException();
         }
 
-        public List<T> FromStringToType()
+        public T FromStringToType(SqlDataReader reader)
         {
             throw new NotImplementedException();
         }

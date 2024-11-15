@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Microsoft.Data.SqlClient;
 
 namespace Eksamensprojekt.Model
 {
@@ -13,7 +14,7 @@ namespace Eksamensprojekt.Model
 
         string GetStringFromDB();
 
-        List<T> FromStringToType();
+        T FromStringToType(SqlDataReader reader);
         
         T GetById(string id);
 

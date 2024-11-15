@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,17 @@ namespace Eksamensprojekt.Model
 {
     public class Facility
     {
+        private int _ID;
+
+        public int ID 
+        { 
+            get { return _ID; }
+            set { _ID = value; }
+        }
+
         private string _name;
         
-      public string Name
+        public string Name
         {
             get { return _name; }
             set {_name = value;}
@@ -30,15 +39,15 @@ namespace Eksamensprojekt.Model
             set { _totalOverflow = value; }
         }
 
-        private string _UDLNumber;
-        public string UDLNumber
+        private int _UDLNumber;
+        public int UDLNumber
         {
             get { return _UDLNumber; }
             set { _UDLNumber = value; }
         }
 
-        private string _OBNumber;
-        public string OBNumber
+        private int _OBNumber;
+        public int OBNumber
         {
             get { return _OBNumber; }
             set { _OBNumber = value; }
@@ -56,6 +65,18 @@ namespace Eksamensprojekt.Model
         {
             get { return _minimumPoolSize; }
             set { _minimumPoolSize = value; }
+        }
+
+        private ObservableCollection<Restriction> _restrictions;
+        public ObservableCollection<Restriction> Restrictions   
+        { 
+            get { return _restrictions; }
+            set { _restrictions = value; }
+        }
+
+        public Facility()
+        {
+            _restrictions = new ObservableCollection<Restriction>();
         }
     }
 }

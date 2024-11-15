@@ -22,21 +22,50 @@ namespace Eksamensprojekt.Model
 			get { return _endDate; }
 			set { _endDate = value; }
 		}
-		private int _allowedOverflowVolume;
+		private int _allowedAverageOverflowVolume;
 
-		public int AllowedOverflowVolume
-		{
-			get { return _allowedOverflowVolume; }
-			set { _allowedOverflowVolume = value; }
+		public int AllowedAverageOverflowVolume
+        {
+			get { return _allowedAverageOverflowVolume; }
+			set { _allowedAverageOverflowVolume = value; }
 		}
-		private int _allowedIncidents;
+        private DateTime _allowedAverageOverflowPeriod;
 
-		public int AllowedIncidents
-		{
-			get { return _allowedIncidents; }
-			set { _allowedIncidents = value; }
+        public DateTime AllowedAverageOverflowPeriod
+        {
+            get { return _allowedAverageOverflowPeriod; }
+            set { _allowedAverageOverflowPeriod = value; }
+        }
+        private int _allowedYearlyOverflowVolume;
+
+        public int AllowedYearlyOverflowVolume
+        {
+            get { return _allowedYearlyOverflowVolume; }
+            set { _allowedYearlyOverflowVolume = value; }
+        }
+        private int _allowedAverageIncidents;
+
+		public int AllowedAverageIncidents
+        {
+			get { return _allowedAverageIncidents; }
+			set { _allowedAverageIncidents = value; }
 		}
-		private string _equipmentRestriction;
+        private DateTime _allowedAverageIncidentsPeriod;
+
+        public DateTime AllowedAverageIncidentsPeriod
+        {
+            get { return _allowedAverageIncidentsPeriod; }
+            set { _allowedAverageIncidentsPeriod = value; }
+        }
+        private int _allowedYearlyIncidents;
+
+        public int AllowedYearlyIncidents
+        {
+            get { return _allowedYearlyIncidents; }
+            set { _allowedYearlyIncidents = value; }
+        }
+
+        private string _equipmentRestriction;
 
 		public string EquipmentRestriction
 		{
@@ -65,7 +94,13 @@ namespace Eksamensprojekt.Model
 			set { _additionalRestriction = value; }
 		}
 
+		private int _facilityID;
 
+		public int FacilityID
+		{
+			get { return _facilityID; }
+			set { _facilityID = value; }
+		}
 
 
 

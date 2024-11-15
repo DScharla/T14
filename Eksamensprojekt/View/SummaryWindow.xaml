@@ -77,7 +77,7 @@
         x:Name="lvFacilities"
         Grid.Row="1"
         Margin="10,0,10,0"
-        ItemsSource="{Binding CurrentAssignments}"
+        ItemsSource="{Binding Facilities}"
         SelectedItem="{Binding SelectedAssignment}">
             <ListView.View>
                 <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
@@ -85,9 +85,19 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding StartRegion.DisplayName}"
+                                <TextBlock Text="{Binding Name}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding StartRegion.DisplayName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Årlig krav til hændelse"
+						Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Restrictions[0].AllowedYearlyIncidents}"
+							   TextTrimming="CharacterEllipsis"
+							   ToolTip="{Binding StartRegion.DisplayName}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -95,7 +105,7 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding EndRegion.DisplayName}"
+                                <TextBlock Text="{Binding }"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding EndRegion.DisplayName}" />
                             </DataTemplate>
@@ -105,7 +115,7 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding RegionAssignmentId}"
+                                <TextBlock Text="{Binding NumberOfIncidents}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding RegionAssignmentId}" />
                             </DataTemplate>
@@ -115,7 +125,7 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding StartAddress}"
+                                <TextBlock Text="{Binding }"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding StartAddress}" />
                             </DataTemplate>
@@ -125,7 +135,7 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding EndAddress}"
+                                <TextBlock Text="{Binding TotalOverflow}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding EndAddress}" />
                             </DataTemplate>
@@ -135,7 +145,7 @@
 								Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}"
+                                <TextBlock Text="{Binding UDLNumber}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" />
                             </DataTemplate>
@@ -145,7 +155,7 @@
 								Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}"
+                                <TextBlock Text="{Binding OBNumber}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}" />
                             </DataTemplate>
@@ -155,7 +165,7 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding AssignmentType}"
+                                <TextBlock Text="{Binding System}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding AssignmentType}" />
                             </DataTemplate>

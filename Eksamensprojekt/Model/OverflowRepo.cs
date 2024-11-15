@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using Microsoft.Data.SqlClient;
 
 namespace Eksamensprojekt.Model
 {
@@ -20,7 +21,7 @@ namespace Eksamensprojekt.Model
             return "1";
         }
 
-        public List<T> FromStringToType()
+        public T FromStringToType(SqlDataReader reader)
         {
             throw new NotImplementedException();
         }

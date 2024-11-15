@@ -27,12 +27,13 @@ namespace Eksamensprojekt.ViewModel
         public SummaryVM()
         {
             _facilityService = new FacilityService();
+            Facilities = ShowFacilities();
         }
 
         //DCD: private
         private ObservableCollection<Facility> ShowFacilities()
         {
-            ObservableCollection<Facility> facilities = new ObservableCollection<Facility>();
+            ObservableCollection<Facility> facilities = _facilityService.GetAllData();
 
             // SD: Rename method
             //facilities = _facilityService.GetAllData();
