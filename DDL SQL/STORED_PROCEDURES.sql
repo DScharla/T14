@@ -86,7 +86,18 @@ END
 
 EXEC uspAddRestriction 
 	@StartDate = '2023/12/31',
-	@FacilityName='TEst2'
+	@FacilityName='TEst2',
+	@EndDate = '2025-12-31',
+	@AllowedAverageOverflowVolume = 7000,
+	@AllowedAverageOverflowPeriod = '2015-12-31',
+	@AllowedYearlyOverflowVolume = 1000,
+	@AllowedAverageIncidents = 5,
+	@AllowedAverageIncidentsPeriod = '2020-12-31',
+	@AllowedYearlyIncidents = 8,
+	@EquipmentRestriction = 'Udstyr',
+	@MaintenanceRestriction = 'Vedligeholdelse',
+	@MeasurementRestriction = 'Måle',
+	@AdditionalRestriction = 'Yderligere'
 
 CREATE PROCEDURE uspAddOverflow  
 	@OverflowVolume Int,
