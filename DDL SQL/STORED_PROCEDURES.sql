@@ -93,6 +93,7 @@ CREATE PROCEDURE uspAddOverflow
 	@StartTime DateTime,
 	@EndTime DateTime,
 	@FacilityID Int
+	-- IncidentID? 
 AS
 BEGIN
 	INSERT INTO OVERFLOW (
@@ -114,3 +115,25 @@ EXEC uspAddOverflow
 	@StartTime = '2024/11/15 10:15:00',
 	@EndTime = '2024/11/15 10:21:00',
 	@FacilityID = 1
+
+
+CREATE PROCEDURE uspAddIncident  
+	@OverflowVolume Int,
+	@StartTime DateTime,
+	@EndTime DateTime,
+	@FacilityID Int
+AS
+BEGIN
+	INSERT INTO INCIDENT (
+		OverflowVolume,
+		StartTime,
+		EndTime,
+		FacilityID
+		)
+	VALUES (
+		@OverflowVolume,
+		@StartTime,
+		@EndTime,
+		@FacilityID
+	);
+END
