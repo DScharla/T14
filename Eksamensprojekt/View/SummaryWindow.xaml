@@ -36,7 +36,7 @@
         </Style>
 
         <Style TargetType="ListViewItem">
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="1,1,1,1" />
         </Style>
@@ -86,26 +86,18 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"
+                                       VerticalAlignment="Center"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding StartRegion.DisplayName}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Årlig krav til hændelse"
-						Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Restrictions[0].AllowedYearlyIncidents}"
-							   TextTrimming="CharacterEllipsis"
-							   ToolTip="{Binding StartRegion.DisplayName}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    
                     <GridViewColumn Header="Krav til hændelser"
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding }"
+                                <TextBlock Text="{Binding Restrictions[0].AllowedYearlyIncidents}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding EndRegion.DisplayName}" />
                             </DataTemplate>
@@ -121,11 +113,11 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Maks udledning"
+                    <GridViewColumn Header="Krav til overløb"
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding }"
+                                <TextBlock Text="{Binding Restrictions[0].AllowedYearlyOverflowVolume}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding StartAddress}" />
                             </DataTemplate>

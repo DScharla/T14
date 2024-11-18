@@ -128,7 +128,7 @@ EXEC uspAddOverflow
 	@FacilityID = 1
 
 
-CREATE PROCEDURE uspAddIncident  
+ALTER PROCEDURE uspAddIncident  
 	@OverflowVolume Int,
 	@StartTime DateTime,
 	@EndTime DateTime,
@@ -147,4 +147,21 @@ BEGIN
 		@EndTime,
 		@FacilityID
 	);
+
+DECLARE @NumberOfIncidents Int;
+
+SELECT @NumberOfIncidents = 
+	Count(*)
+	FROM INCIDENT
+	WHERE FacilityID = @FacilityID
+
+UPDATE FACILITY
+SET NumberOfIncidents = @NumberOfIncidents
+WHERE FacilityID = @FacilityID
 END
+
+EXEC uspAddIncident
+	@OverflowVolume = 999,
+	@StartTime = '2021/11/11 09:00:00',
+	@EndTime = '2021/11/11 10:00:00',
+	@FacilityID = 1
