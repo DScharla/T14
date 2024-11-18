@@ -6,11 +6,6 @@ BEGIN
 	Values (@NewSystem);
 END;
 
-EXEC uspAddSystem
-	@NewSystem = 'Model';
-EXEC uspAddSystem
-	@NewSystem = 'S2';
-
 CREATE PROCEDURE uspAddFacility 
 	@Name NVarChar(50),
 	@NumberOfIncidents Int = NULL,
@@ -41,14 +36,6 @@ BEGIN
 		END;
 END;
 
-EXEC uspAddFacility
-	@Name = 'TEst2',
-	@NumberOfIncidents = 0,
-	@TotalOverflow = 3000,
-	@UDL = 500,
-	@OBNumber = 104,
-	@MinimumPoolSize = '500',
-	@SystemName = 'S2'
 
 CREATE PROCEDURE uspAddRestriction
 	@StartDate Date,
@@ -59,7 +46,7 @@ CREATE PROCEDURE uspAddRestriction
 	@AllowedAverageIncidents Int = NULL,
 	@AllowedAverageIncidentsPeriod Date = NULL,
 	@AllowedYearlyIncidents Int = NULL,
-	@EquipmentRestriction Int = NULL,
+	@EquipmentRestriction NVarChar(500) = NULL,
 	@MaintenanceRestriction NVarChar(500) = NULL,
 	@MeasurementRestriction NVarChar(500) = NULL,
 	@AdditionalRestriction NVarChar(500) = NULL,
@@ -84,20 +71,6 @@ BEGIN
 		);
 END
 
-EXEC uspAddRestriction 
-	@StartDate = '2023/12/31',
-	@FacilityName='TEst2',
-	@EndDate = '2025-12-31',
-	@AllowedAverageOverflowVolume = 7000,
-	@AllowedAverageOverflowPeriod = '2015-12-31',
-	@AllowedYearlyOverflowVolume = 1000,
-	@AllowedAverageIncidents = 5,
-	@AllowedAverageIncidentsPeriod = '2020-12-31',
-	@AllowedYearlyIncidents = 8,
-	@EquipmentRestriction = 'Udstyr',
-	@MaintenanceRestriction = 'Vedligeholdelse',
-	@MeasurementRestriction = 'Måle',
-	@AdditionalRestriction = 'Yderligere'
 
 CREATE PROCEDURE uspAddOverflow  
 	@OverflowVolume Int,
@@ -121,14 +94,8 @@ BEGIN
 	);
 END
 
-EXEC uspAddOverflow
-	@OverflowVolume = 2000,
-	@StartTime = '2024/11/15 10:15:00',
-	@EndTime = '2024/11/15 10:21:00',
-	@FacilityID = 1
 
-
-ALTER PROCEDURE uspAddIncident  
+CREATE PROCEDURE uspAddIncident  
 	@OverflowVolume Int,
 	@StartTime DateTime,
 	@EndTime DateTime,
@@ -160,8 +127,3 @@ SET NumberOfIncidents = @NumberOfIncidents
 WHERE FacilityID = @FacilityID
 END
 
-EXEC uspAddIncident
-	@OverflowVolume = 999,
-	@StartTime = '2021/11/11 09:00:00',
-	@EndTime = '2021/11/11 10:00:00',
-	@FacilityID = 1
