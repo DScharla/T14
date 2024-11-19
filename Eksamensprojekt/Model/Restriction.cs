@@ -15,80 +15,80 @@ namespace Eksamensprojekt.Model
 			get { return _startDate; }
 			set { _startDate = value; }
 		}
-		private DateTime _endDate;
+		private DateTime? _endDate;
 
-		public DateTime EndDate
+		public DateTime? EndDate
 		{
 			get { return _endDate; }
 			set { _endDate = value; }
 		}
-		private int _allowedAverageOverflowVolume;
+		private int? _allowedAverageOverflowVolume;
 
-		public int AllowedAverageOverflowVolume
+		public int? AllowedAverageOverflowVolume
         {
 			get { return _allowedAverageOverflowVolume; }
 			set { _allowedAverageOverflowVolume = value; }
 		}
-        private DateTime _allowedAverageOverflowPeriod;
+        private DateTime? _allowedAverageOverflowPeriod;
 
-        public DateTime AllowedAverageOverflowPeriod
+        public DateTime? AllowedAverageOverflowPeriod
         {
             get { return _allowedAverageOverflowPeriod; }
             set { _allowedAverageOverflowPeriod = value; }
         }
-        private int _allowedYearlyOverflowVolume;
+        private int? _allowedYearlyOverflowVolume;
 
-        public int AllowedYearlyOverflowVolume
+        public int? AllowedYearlyOverflowVolume
         {
             get { return _allowedYearlyOverflowVolume; }
             set { _allowedYearlyOverflowVolume = value; }
         }
-        private int _allowedAverageIncidents;
+        private int? _allowedAverageIncidents;
 
-		public int AllowedAverageIncidents
+		public int? AllowedAverageIncidents
         {
 			get { return _allowedAverageIncidents; }
 			set { _allowedAverageIncidents = value; }
 		}
-        private DateTime _allowedAverageIncidentsPeriod;
+        private DateTime? _allowedAverageIncidentsPeriod;
 
-        public DateTime AllowedAverageIncidentsPeriod
+        public DateTime? AllowedAverageIncidentsPeriod
         {
             get { return _allowedAverageIncidentsPeriod; }
             set { _allowedAverageIncidentsPeriod = value; }
         }
-        private int _allowedYearlyIncidents;
+        private int? _allowedYearlyIncidents;
 
-        public int AllowedYearlyIncidents
+        public int? AllowedYearlyIncidents
         {
             get { return _allowedYearlyIncidents; }
             set { _allowedYearlyIncidents = value; }
         }
 
-        private string _equipmentRestriction;
+        private string? _equipmentRestriction;
 
-		public string EquipmentRestriction
+		public string? EquipmentRestriction
 		{
 			get { return _equipmentRestriction; }
 			set { _equipmentRestriction = value; }
 		}
-		private string _maintenanceRestriction;
+		private string? _maintenanceRestriction;
 
-		public string MaintenanceRestriction
+		public string? MaintenanceRestriction
 		{
 			get { return _maintenanceRestriction; }
 			set { _maintenanceRestriction = value; }
 		}
-		private string _measurementRestriction;
+		private string? _measurementRestriction;
 
-		public string MeasurementRestriction
+		public string? MeasurementRestriction
 		{
 			get { return _measurementRestriction; }
 			set { _measurementRestriction = value; }
 		}
-		private string _additionalRestriction;
+		private string? _additionalRestriction;
 
-		public string AdditionalRestriction
+		public string? AdditionalRestriction
 		{
 			get { return _additionalRestriction; }
 			set { _additionalRestriction = value; }

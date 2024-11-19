@@ -52,7 +52,9 @@ namespace Eksamensprojekt.Model
             entity.TotalOverflow = (int)reader["TotalOverflow"];
             entity.OBNumber = (int)reader["OBNumber"];
             entity.UDLNumber = (int)reader["UDL"];
-            entity.MinimumPoolSize = (string)reader["MinimumPoolSize"];
+            try { entity.MinimumPoolSize = (string)reader["MinimumPoolSize"]; }
+            catch { entity.MinimumPoolSize = null; }
+            
             entity.System = (string)reader["SystemName"];
 
             return (T)entity;

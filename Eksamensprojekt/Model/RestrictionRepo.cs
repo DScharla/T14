@@ -43,17 +43,27 @@ namespace Eksamensprojekt.Model
         {
             Restriction entity = new Restriction();
             entity.StartDate = (DateTime)reader["StartDate"];
-            entity.EndDate = (DateTime)reader["EndDate"];
-            entity.AllowedAverageIncidents = (int)reader["AllowedAverageIncidents"];
-            entity.AllowedAverageIncidentsPeriod = (DateTime)reader["AllowedAverageIncidentsPeriod"];
+            try { entity.EndDate = (DateTime)reader["EndDate"]; }
+            catch { entity.EndDate = null; }
+            try { entity.AllowedAverageIncidents = (int)reader["AllowedAverageIncidents"]; }
+            catch { entity.AllowedAverageIncidents = null; }
+            try { entity.AllowedAverageIncidentsPeriod = (DateTime)reader["AllowedAverageIncidentsPeriod"]; }
+            catch { entity.AllowedAverageIncidentsPeriod = null; }
             entity.AllowedYearlyIncidents = (int)reader["AllowedYearlyIncidents"];
-            entity.AllowedAverageOverflowVolume = (int)reader["AllowedAverageOverflowVolume"];
-            entity.AllowedAverageOverflowPeriod = (DateTime)reader["AllowedAverageOverflowPeriod"];
+            try { entity.AllowedAverageOverflowVolume = (int)reader["AllowedAverageOverflowVolume"]; }
+            catch { entity.AllowedAverageOverflowVolume = null; }
+            try { entity.AllowedAverageOverflowPeriod = (DateTime)reader["AllowedAverageOverflowPeriod"]; }
+            catch { entity.AllowedAverageOverflowPeriod = null; }
             entity.AllowedYearlyOverflowVolume = (int)reader["AllowedYearlyOverflowVolume"];
-            entity.EquipmentRestriction = (string)reader["EquipmentRestriction"];
-            entity.MaintenanceRestriction = (string)reader["MaintenanceRestriction"];
-            entity.MeasurementRestriction = (string)reader["MeasurementRestriction"];
-            entity.AdditionalRestriction = (string)reader["AdditionalRestriction"];
+            try { entity.EquipmentRestriction = (string)reader["EquipmentRestriction"]; }
+            catch { entity.EquipmentRestriction = null; }
+            try { entity.MaintenanceRestriction = (string)reader["MaintenanceRestriction"]; }
+            catch { entity.MaintenanceRestriction = null; }
+            try { entity.MeasurementRestriction = (string)reader["MeasurementRestriction"]; }
+            catch { entity.MeasurementRestriction = null; }
+
+            try { entity.AdditionalRestriction = (string)reader["AdditionalRestriction"]; }
+            catch { entity.AdditionalRestriction = null; }
             entity.FacilityID = (int)reader["FacilityID"];
             return (T)entity;
         }

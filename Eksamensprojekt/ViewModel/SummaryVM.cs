@@ -20,25 +20,37 @@ namespace Eksamensprojekt.ViewModel
                 return _facilities; 
             } 
             set {
-                _facilities = ShowFacilities(); 
+                ShowFacilities(); 
             } 
         }
         //DCD: +1
         public SummaryVM()
         {
             _facilityService = new FacilityService();
-            Facilities = ShowFacilities();
+            _facilities = new ObservableCollection<Facility>();
+            ShowFacilities();
         }
 
         //DCD: private
-        private ObservableCollection<Facility> ShowFacilities()
+        private void ShowFacilities()
         {
-            ObservableCollection<Facility> facilities = _facilityService.GetAllData();
+            ObservableCollection<Facility> tempFacilities = _facilityService.GetAllData();
 
-            // SD: Rename method
-            //facilities = _facilityService.GetAllData();
+            foreach (Facility facility in tempFacilities)
+            {
+                DateTime now = new DateTime();
+                now = DateTime.Now;
+               
+                ObservableCollection<Restriction> tempRestrictions = new ObservableCollection<Restriction>(); 
+                foreach (Restriction restriction in facility.Restrictions)
+                {
+                    if (now > restriction.StartDate) { tempRestrictions.Add(restriction); }
+                }
 
-            return facilities;
+                tempRestrictions.OrderByDescending(tempRestrictions => tempRestrictions.StartDate);
+                facility.Restrictions = tempRestrictions;
+                Facilities.Add(facility);
+            }
         }
     }
 }
