@@ -66,19 +66,19 @@ namespace Eksamensprojekt.Model
         }
 
 
-        public T Add(T entity)
+        public void Add(T entity)
         {
             throw new NotImplementedException();
         }
 
 
-        public T Remove(T entity)
+        public void Remove(T entity)
         {
             throw new NotImplementedException();
         }
 
 
-        public T Update(T entity)
+        public void Update(T entity)
         {
             throw new NotImplementedException();
         }

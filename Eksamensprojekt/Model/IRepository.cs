@@ -18,10 +18,10 @@ namespace Eksamensprojekt.Model
         
         T GetById(string id);
 
-        T Add(T entity);
+        void Add(T entity);
 
-        T Remove(T entity);
+        void Remove(T entity);
 
-        T Update(T entity);
+        void Update(T entity);
     }
 }
