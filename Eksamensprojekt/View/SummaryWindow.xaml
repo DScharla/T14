@@ -163,17 +163,16 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="  "
+                    <GridViewColumn Header="Knap"
 						Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button 
                                     x:Name="btnMore" 
                                     Content="Se mere"
-                                    Width="150" 
+                                    Width="100" 
                                     Height="30"
-                                    Margin="0,0,500,0"
-                                    Grid.Row="2"
+                                    Margin="0,0,0,0"
                                     Command="{Binding Placeholder}"
                                     Background="Aquamarine"/>
                             </DataTemplate>
