@@ -10,6 +10,7 @@ namespace Eksamensprojekt.Model
 {
     public interface IRepository <T> where T : class
     {
+
         ObservableCollection<T> GetAll();
 
         string GetStringFromDB();
