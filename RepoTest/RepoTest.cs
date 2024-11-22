@@ -11,6 +11,7 @@ namespace RepoTest
         OverflowRepo<Overflow> _overflowRepo;
         IncidentRepo<Incident> _incidentRepo;
         RestrictionRepo<Restriction> _restrictionRepo;
+        string connectionString;
         int expectedRowsFacilityRepo;
 
         [TestInitialize]
@@ -18,10 +19,11 @@ namespace RepoTest
         {
             //ARRANGE
             //Instantiering af objektr
-            _facilityRepo = new FacilityRepo<Facility>("ConnectionString");
-            _overflowRepo = new OverflowRepo<Overflow>();
-            _incidentRepo = new IncidentRepo<Incident>();
-            _restrictionRepo = new RestrictionRepo<Restriction>();
+            connectionString = "TestDB";
+            _facilityRepo = new FacilityRepo<Facility>(connectionString);
+            _overflowRepo = new OverflowRepo<Overflow>(connectionString);
+            _incidentRepo = new IncidentRepo<Incident>(connectionString);
+            _restrictionRepo = new RestrictionRepo<Restriction>(connectionString);
 
             //int expectedRowsOverflowRepo = COUNT * IN FACILITY
             //ACT
