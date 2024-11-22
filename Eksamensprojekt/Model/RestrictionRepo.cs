@@ -11,7 +11,12 @@ namespace Eksamensprojekt.Model
     public class RestrictionRepo<T> : IRepository<T> where T : Restriction
     {
         private string getAllQuery = "SELECT * FROM RESTRICTION";
-        private string connectionString = "Server=DESKTOP-TO8KUCB\\SQLEXPRESS;Database=VF;Integrated Security=True;TrustServerCertificate=True;";
+
+        private string connectionString;
+        public RestrictionRepo(string db)
+        {
+            connectionString = new ConnectionStringDataReader(db).connectionString;
+        }
         public ObservableCollection<T> GetAll()
         {
             ObservableCollection<T> all = new ObservableCollection<T>();

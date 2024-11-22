@@ -9,8 +9,8 @@ namespace Eksamensprojekt.Model
 {
     public class FacilityService
     {
-        private FacilityRepo<Facility> repoTest = new FacilityRepo<Facility>();
-        private RestrictionRepo<Restriction> restrictionRepo = new RestrictionRepo<Restriction>();
+        private FacilityRepo<Facility> repoTest = new FacilityRepo<Facility>("ConnectionString");
+        private RestrictionRepo<Restriction> restrictionRepo = new RestrictionRepo<Restriction>("ConnectionString");
 
         public ObservableCollection<Facility> GetAllData()
         {

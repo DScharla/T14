@@ -10,6 +10,11 @@ namespace Eksamensprojekt.Model
 {
     public class IncidentRepo<T> : IRepository<T> where T : Incident
     {
+        private string connectionString;
+        public IncidentRepo(string db)
+        {
+            connectionString = new ConnectionStringDataReader(db).connectionString;
+        }
         public ObservableCollection<T> GetAll()
         {
             throw new NotImplementedException();

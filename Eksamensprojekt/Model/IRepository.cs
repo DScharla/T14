@@ -24,5 +24,6 @@ namespace Eksamensprojekt.Model
         void Remove(T entity);
 
         void Update(T entity);
+
     }
 }

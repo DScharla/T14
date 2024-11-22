@@ -12,7 +12,12 @@ namespace Eksamensprojekt.Model
     public class FacilityRepo<T> : IRepository<T> where T : Facility
     {
         private string getAllQuery = "SELECT * FROM vwFacility";
-        private string connectionString = "Server=DESKTOP-TO8KUCB\\SQLEXPRESS;Database=VF;Integrated Security=True;TrustServerCertificate=True;";
+        private string connectionString;
+
+        public FacilityRepo(string db)
+        {
+            connectionString = new ConnectionStringDataReader(db).connectionString; 
+        }
 
         public ObservableCollection<T> GetAll()
         {

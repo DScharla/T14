@@ -10,6 +10,11 @@ namespace Eksamensprojekt.Model
 {
     public class OverflowRepo<T> : IRepository<T> where T : Overflow
     {
+        private string connectionString;
+        public OverflowRepo(string db)
+        {
+            connectionString = new ConnectionStringDataReader(db).connectionString;
+        }
         public ObservableCollection<T> GetAll()
         {
             ObservableCollection<T> list = new ObservableCollection<T>();

@@ -1,1 +1,1 @@
-Server=DESKTOP-TO8KUCB\\SQLEXPRESS;Database=VF;Integrated Security=True;TrustServerCertificate=True;
+Server=DESKTOP-TO8KUCB\SQLEXPRESS;Database=VF;Integrated Security=True;TrustServerCertificate=True;

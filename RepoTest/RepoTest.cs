@@ -18,12 +18,12 @@ namespace RepoTest
         {
             //ARRANGE
             //Instantiering af objektr
-            _facilityRepo = new FacilityRepo<Facility>();
+            _facilityRepo = new FacilityRepo<Facility>("ConnectionString");
             _overflowRepo = new OverflowRepo<Overflow>();
             _incidentRepo = new IncidentRepo<Incident>();
             _restrictionRepo = new RestrictionRepo<Restriction>();
 
-            int expectedRowsOverflowRepo = COUNT * IN FACILITY
+            //int expectedRowsOverflowRepo = COUNT * IN FACILITY
             //ACT
             //"Manipulering" af objekter
         }
@@ -35,7 +35,7 @@ namespace RepoTest
             //ASSERT
             //Er resultatet lig det vi forventer
             //
-            Assert.AreEqual(expectedRowsFacilityRepo, facilities.Count);
+            Assert.AreEqual(5, facilities.Count);
         }
     }
 }
