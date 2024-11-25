@@ -10,7 +10,7 @@ namespace Eksamensprojekt.Model
 {
     public class PermitRepo<T> : IRepository<T> where T : Permit
     {
-        private string getAllQuery = "SELECT * FROM RESTRICTION";
+        private string getAllQuery = "SELECT * FROM PERMIT";
 
         private string connectionString;
         public PermitRepo(string db)
