@@ -101,11 +101,18 @@ namespace Eksamensprojekt.Model
 			get { return _facilityID; }
 			set { _facilityID = value; }
 		}
+        private int _permitID;
+
+        public int PermitID
+        {
+            get { return _permitID; }
+            set { _permitID = value; }
+        }
 
 
 
 
 
 
-	}
+    }
 }

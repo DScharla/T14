@@ -29,7 +29,13 @@ namespace Eksamensprojekt.Model
 			get { return _overflowVolume; }
 			set { _overflowVolume = value; }
 		}
+        private int _incidentID;
+        public int IncidentID
+        {
+            get { return _incidentID; }
+            set { _incidentID = value; }
+        }
 
 
-	}
+    }
 }
