@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eksamensprojekt.Model
 {
-    public class Restriction
+    public class Permit
     {
 		private DateTime _startDate;
 

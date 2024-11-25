@@ -10,7 +10,7 @@ namespace RepoTest
         FacilityRepo<Facility> _facilityRepo;
         OverflowRepo<Overflow> _overflowRepo;
         IncidentRepo<Incident> _incidentRepo;
-        RestrictionRepo<Restriction> _restrictionRepo;
+        PermitRepo<Permit> _permitRepo;
         Facility _facility1;
         string connectionString;
         int expectedRowsFacilityRepo;
@@ -24,7 +24,7 @@ namespace RepoTest
             _facilityRepo = new FacilityRepo<Facility>(connectionString);
             _overflowRepo = new OverflowRepo<Overflow>(connectionString);
             _incidentRepo = new IncidentRepo<Incident>(connectionString);
-            _restrictionRepo = new RestrictionRepo<Restriction>(connectionString);
+            _permitRepo = new PermitRepo<Permit>(connectionString);
             _facility1 = new Facility();
 
 

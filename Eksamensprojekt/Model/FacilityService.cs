@@ -11,25 +11,25 @@ namespace Eksamensprojekt.Model
     {
         private static string connectionString = "DBName";
         private FacilityRepo<Facility> repoTest = new FacilityRepo<Facility>(connectionString);
-        private RestrictionRepo<Restriction> restrictionRepo = new RestrictionRepo<Restriction>(connectionString);
+        private PermitRepo<Permit> permitRepo = new PermitRepo<Permit>(connectionString);
 
         public ObservableCollection<Facility> GetAllData()
         {
             ObservableCollection<Facility> tempFacilities = repoTest.GetAll();
-            AddRestrictionsToFacility(tempFacilities);    
+            AddPermitsToFacility(tempFacilities);    
             return tempFacilities;
         }
 
-        public ObservableCollection<Restriction> AddRestrictionsToFacility(ObservableCollection<Facility> facilities)
+        public ObservableCollection<Permit> AddPermitsToFacility(ObservableCollection<Facility> facilities)
         {
-            ObservableCollection<Restriction> restrictions = restrictionRepo.GetAll();
-            foreach (Restriction restriction in restrictions)
+            ObservableCollection<Permit> restrictions = permitRepo.GetAll();
+            foreach (Permit restriction in restrictions)
             {
                 foreach (Facility facility in facilities)
                 {
                     if (facility.ID == restriction.FacilityID)
                     {
-                        facility.Restrictions.Add(restriction);
+                        facility.Permits.Add(restriction);
                     }
                 }
             }

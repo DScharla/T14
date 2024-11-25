@@ -67,16 +67,16 @@ namespace Eksamensprojekt.Model
             set { _minimumPoolSize = value; }
         }
 
-        private ObservableCollection<Restriction> _restrictions;
-        public ObservableCollection<Restriction> Restrictions   
+        private ObservableCollection<Permit> _permits;
+        public ObservableCollection<Permit> Permits   
         { 
-            get { return _restrictions; }
-            set { _restrictions = value; }
+            get { return _permits; }
+            set { _permits = value; }
         }
 
         public Facility()
         {
-            _restrictions = new ObservableCollection<Restriction>();
+            _permits = new ObservableCollection<Permit>();
         }
     }
 }

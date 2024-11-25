@@ -97,7 +97,7 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Restrictions[0].AllowedYearlyIncidents}"
+                                <TextBlock Text="{Binding Permits[0].AllowedYearlyIncidents}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding EndRegion.DisplayName}" />
                             </DataTemplate>
@@ -117,7 +117,7 @@
 								Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Restrictions[0].AllowedYearlyOverflowVolume}"
+                                <TextBlock Text="{Binding Permits[0].AllowedYearlyOverflowVolume}"
 									   TextTrimming="CharacterEllipsis"
 									   ToolTip="{Binding StartAddress}" />
                             </DataTemplate>

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Eksamensprojekt.Model
 {
-    public class RestrictionRepo<T> : IRepository<T> where T : Restriction
+    public class PermitRepo<T> : IRepository<T> where T : Permit
     {
         private string getAllQuery = "SELECT * FROM RESTRICTION";
 
         private string connectionString;
-        public RestrictionRepo(string db)
+        public PermitRepo(string db)
         {
             connectionString = new ConnectionStringDataReader(db).connectionString;
         }
@@ -46,7 +46,7 @@ namespace Eksamensprojekt.Model
 
         public T FromStringToType(SqlDataReader reader)
         {
-            Restriction entity = new Restriction();
+            Permit entity = new Permit();
             entity.StartDate = (DateTime)reader["StartDate"];
             try { entity.EndDate = (DateTime)reader["EndDate"]; }
             catch { entity.EndDate = null; }

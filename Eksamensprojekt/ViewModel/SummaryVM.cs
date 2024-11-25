@@ -41,14 +41,14 @@ namespace Eksamensprojekt.ViewModel
                 DateTime now = new DateTime();
                 now = DateTime.Now;
                
-                ObservableCollection<Restriction> tempRestrictions = new ObservableCollection<Restriction>(); 
-                foreach (Restriction restriction in facility.Restrictions)
+                ObservableCollection<Permit> tempRestrictions = new ObservableCollection<Permit>(); 
+                foreach (Permit restriction in facility.Permits)
                 {
                     if (now > restriction.StartDate) { tempRestrictions.Add(restriction); }
                 }
 
                 tempRestrictions.OrderByDescending(tempRestrictions => tempRestrictions.StartDate);
-                facility.Restrictions = tempRestrictions;
+                facility.Permits = tempRestrictions;
                 Facilities.Add(facility);
             }
         }
