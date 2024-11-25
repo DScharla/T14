@@ -30,7 +30,7 @@ namespace Eksamensprojekt.Model
             throw new NotImplementedException();
         }
 
-        public T GetById(string id)
+        public T GetById(int id)
         {
             throw new NotImplementedException();
         }

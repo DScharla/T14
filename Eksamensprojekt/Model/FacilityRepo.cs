@@ -67,7 +67,7 @@ namespace Eksamensprojekt.Model
         }
 
 
-        public T GetById(string id)
+        public T GetById(int id)
         {
             throw new NotImplementedException();
         }

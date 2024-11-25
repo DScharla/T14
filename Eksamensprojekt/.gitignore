@@ -26,4 +26,5 @@ obj/
 # ConnectionString
 ConnectionString.txt
 DBName.txt
+DBTest.txt
 

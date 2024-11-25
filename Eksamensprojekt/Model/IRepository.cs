@@ -17,7 +17,7 @@ namespace Eksamensprojekt.Model
 
         T FromStringToType(SqlDataReader reader);
         
-        T GetById(string id);
+        T GetById(int id);
 
         void Add(T entity);
 

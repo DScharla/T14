@@ -9,7 +9,7 @@ namespace Eksamensprojekt.Model
 {
     public class FacilityService
     {
-        private readonly static string connectionString = "DBName";
+        private static string connectionString = "DBName";
         private FacilityRepo<Facility> repoTest = new FacilityRepo<Facility>(connectionString);
         private RestrictionRepo<Restriction> restrictionRepo = new RestrictionRepo<Restriction>(connectionString);
 
