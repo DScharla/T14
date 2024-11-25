@@ -37,7 +37,7 @@ BEGIN
 END;
 
 
-CREATE PROCEDURE uspAddRestriction
+CREATE PROCEDURE uspAddPermit
 	@StartDate Date,
 	@EndDate Date = NULL,
 	@AllowedAverageOverflowVolume Int = NULL,
@@ -53,7 +53,7 @@ CREATE PROCEDURE uspAddRestriction
 	@FacilityName NVarChar(500)
 AS
 BEGIN
-	INSERT INTO RESTRICTION
+	INSERT INTO PERMIT
 	VALUES (
 		@StartDate,
 		@EndDate,
