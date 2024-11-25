@@ -22,7 +22,7 @@ CREATE TABLE FACILITY(
 	);
 
 CREATE TABLE PERMIT(
-	RestrictionID INT IDENTITY(1,1) CONSTRAINT PK_Restriction PRIMARY KEY,
+	PermitID INT IDENTITY(1,1) CONSTRAINT PK_Permit PRIMARY KEY,
 	StartDate Date NOT NULL,
 	EndDate Date,
 	AllowedAverageOverflowVolume Int,
@@ -36,7 +36,7 @@ CREATE TABLE PERMIT(
 	MeasurementRestriction NVarChar(500),
 	AdditionalRestriction NVarChar(500),
 	FacilityID Int NOT NULL,
-	CONSTRAINT FK_Restriction_Facility FOREIGN KEY (FacilityID) REFERENCES FACILITY(FacilityID)
+	CONSTRAINT FK_Permit_Facility FOREIGN KEY (FacilityID) REFERENCES FACILITY(FacilityID)
 	);
 
 CREATE TABLE INCIDENT(
