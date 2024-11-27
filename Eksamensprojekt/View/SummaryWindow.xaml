@@ -81,6 +81,66 @@
         SelectedItem="{Binding SelectedAssignment}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
+                    <GridViewColumn Header="UDL"
+						Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UDLNumber}"
+							   TextTrimming="CharacterEllipsis"
+							   ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="OB-nr"
+						Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding OBNumber}"
+							   TextTrimming="CharacterEllipsis"
+							   ToolTip="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Krav til hændelser"
+						Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Permits[0].AllowedYearlyIncidents}"
+							   TextTrimming="CharacterEllipsis"
+							   ToolTip="{Binding EndRegion.DisplayName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Krav til overløb"
+						Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Permits[0].AllowedYearlyOverflowVolume}"
+							   TextTrimming="CharacterEllipsis"
+							   ToolTip="{Binding StartAddress}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Hændelser"
+				                    Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding NumberOfIncidents}"
+					                TextTrimming="CharacterEllipsis"
+					                ToolTip="{Binding RegionAssignmentId}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Udledning"
+						Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalOverflow}"
+							   TextTrimming="CharacterEllipsis"
+							   ToolTip="{Binding EndAddress}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>                    
                     <GridViewColumn Header="Overløbsbygværk"
 								Width="200">
                         <GridViewColumn.CellTemplate>
@@ -91,68 +151,9 @@
 									   ToolTip="{Binding StartRegion.DisplayName}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    </GridViewColumn>              
+                  
                     
-                    <GridViewColumn Header="Krav til hændelser"
-								Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Permits[0].AllowedYearlyIncidents}"
-									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding EndRegion.DisplayName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Hændelser"
-								Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding NumberOfIncidents}"
-									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding RegionAssignmentId}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Krav til overløb"
-								Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Permits[0].AllowedYearlyOverflowVolume}"
-									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding StartAddress}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Udledning"
-								Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TotalOverflow}"
-									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding EndAddress}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="UDL"
-								Width="150">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding UDLNumber}"
-									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="OB-nr"
-								Width="150">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding OBNumber}"
-									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                     <GridViewColumn Header="System"
 								Width="200">
                         <GridViewColumn.CellTemplate>
