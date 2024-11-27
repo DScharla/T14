@@ -80,7 +80,7 @@
         ItemsSource="{Binding Facilities}"
         SelectedItem="{Binding SelectedAssignment}">
             <ListView.View>
-                <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
+                <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
                     <GridViewColumn Header="Overløbsbygværk"
 								Width="200">
                         <GridViewColumn.CellTemplate>
