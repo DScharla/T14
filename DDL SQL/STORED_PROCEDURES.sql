@@ -46,10 +46,10 @@ ALTER PROCEDURE uspAddPermit
 	@AllowedAverageIncidents Int = NULL,
 	@AllowedAverageIncidentsPeriod Date = NULL,
 	@AllowedYearlyIncidents Int = NULL,
+	@AdditionalRestriction NVarChar(500) = NULL,
 	@EquipmentRestrictionID Int,
 	@MaintenanceRestrictionID Int,
 	@MeasurementRestrictionID Int,
-	@AdditionalRestriction NVarChar(500) = NULL,
 	@FacilityName NVarChar(500)
 AS
 BEGIN
@@ -63,10 +63,10 @@ BEGIN
 		@AllowedAverageIncidents,
 		@AllowedAverageIncidentsPeriod,
 		@AllowedYearlyIncidents,
+		@AdditionalRestriction,
 		@EquipmentRestrictionID,
 		@MaintenanceRestrictionID,
-		@MeasurementRestrictionID,
-		@AdditionalRestriction,
+		@MeasurementRestrictionID,		
 		(SELECT FacilityID FROM FACILITY WHERE Name=@FacilityName)
 		);
 END
