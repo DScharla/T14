@@ -9,13 +9,35 @@ EXEC uspAddFacility @Name = 'Glejbjerg, Glejbjergvej', @TotalOverflow = 41819, @
 EXEC uspAddFacility @Name = 'Glejbjerg, Borgergade', @TotalOverflow = 15630, @NumberOfIncidents = 4, @UDL = 216, @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = 204, @SystemName = 'Blue North'
 EXEC uspAddFacility @Name = 'Glejbjerg, Grenevej', @TotalOverflow = 44831, @NumberOfIncidents = 66, @UDL = 214, @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = 205, @SystemName = 'Blue North'
 
+-- EQUIPMENTRESTRICTIONS
+EXEC uspAddEquipmentRestriction @NewRestriction = 'Ikke angivet'
+EXEC uspAddEquipmentRestriction @NewRestriction = 'Rist og skumbræt'
+EXEC uspAddEquipmentRestriction @NewRestriction = 'Udstyr til registrering af overløbsmængde og antal overløb, rist, og skumbræt'
+EXEC uspAddEquipmentRestriction @NewRestriction = 'Udstyr til registrering af overløbsmængde og antal overløb'
+
+
+-- MAINTENANCERESTRICTIONS
+EXEC uspAddMaintenanceRestriction @NewRestriction = 'Ikke angivet'
+EXEC uspAddMaintenanceRestriction @NewRestriction = 'Regelmæssig inspektion og vedligeholdelse'
+EXEC uspAddMaintenanceRestriction @NewRestriction = 'Jævnlig tilsyn samt regelmæssig rengøring og vedligeholdelse'
+EXEC uspAddMaintenanceRestriction @NewRestriction = 'Regelmæssig rengøring og vedligeholdelse'
+
+
+-- MEASUREMENTRESTRICTIONS
+EXEC uspAddMeasurementRestriction @NewRestriction = 'Ikke angivet'
+EXEC uspAddMeasurementRestriction @NewRestriction = 'Ja'
+EXEC uspAddMeasurementRestriction @NewRestriction = 'Nej'
+EXEC uspAddMeasurementRestriction @NewRestriction = 'Måske'
+
+
 -- PERMITS
-EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedAverageYearlyOverflowVolume = 3250, @AllowedYearlyIncidents = 7, @MeasurementRestriction = 'Mangler måleudstyr, fast installeret (Det er muligvis installeret)', @FacilityName = 'Stadionvej'
-EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedAverageYearlyOverflowVolume = 7100, @AllowedYearlyIncidents = 45, @EquipmentRestriction = 'Udstyr til registrering af overløbsmængde og antal overløb, rist og skumbræt', @MeasurementRestriction = 'Ja', @MaintenanceRestriction = 'Jævnlig tilsyn samt regelmæssig rengøring og vedligholdelse', @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Glejbjergvej'
-EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedAverageYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 35, @EquipmentRestriction = 'Udstyr til registrering af overløbsmængde og antal overløb, rist og skumbræt', @MeasurementRestriction = 'Ja', @MaintenanceRestriction = 'Jævnlig tilsyn samt regelmæssig rengøring og vedligholdelse', @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Glejbjergvej'
-EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedAverageYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 20, @EquipmentRestriction = 'Udstyr til registrering af overløbsmængde og antal overløb, rist og skumbræt', @MeasurementRestriction = 'Ja', @MaintenanceRestriction = 'Jævnlig tilsyn samt regelmæssig rengøring og vedligholdelse', @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Borgergade'
-EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedAverageYearlyOverflowVolume = 13500, @AllowedYearlyIncidents = 60, @EquipmentRestriction = 'Overløbsbygværket skal være forsynet med rist og skumbræt', @MeasurementRestriction = 'Ja', @MaintenanceRestriction = 'Jævnlig tilsyn samt regelmæssig rengøring og vedligholdelse', @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Grenevej'
-EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedAverageYearlyOverflowVolume = 600, @AllowedYearlyIncidents = 5, @EquipmentRestriction = 'Overløbsbygværket skal være forsynet med rist og skumbræt', @MeasurementRestriction = 'Ja', @MaintenanceRestriction = 'Jævnlig tilsyn samt regelmæssig rengøring og vedligholdelse', @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Grenevej'
+EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedAverageYearlyOverflowVolume = 3250, @AllowedYearlyIncidents = 7, @EquipmentRestrictionID = 1, @MaintenanceRestrictionID = 1, @MeasurementRestrictionID = 4, @FacilityName = 'Stadionvej'
+EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedAverageYearlyOverflowVolume = 7100, @AllowedYearlyIncidents = 45, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Glejbjergvej'
+EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedAverageYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 35, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Glejbjergvej'
+EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedAverageYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 20, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Borgergade'
+EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedAverageYearlyOverflowVolume = 13500, @AllowedYearlyIncidents = 60, @EquipmentRestrictionID = 2, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Grenevej'
+EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedAverageYearlyOverflowVolume = 600, @AllowedYearlyIncidents = 5, @EquipmentRestrictionID = 2, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityName = 'Glejbjerg, Grenevej'
+
 
 -- OVERFLOW
 -- Stadionvej: Volume og antal incidents passer med facility

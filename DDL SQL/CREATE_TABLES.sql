@@ -1,4 +1,8 @@
+
 DROP TABLE OVERFLOW;
+DROP TABLE EQUIPMENTRESTRICTION;
+DROP TABLE MAINTENANCERESTRICTION;
+DROP TABLE MEASUREMENTRESTRICTION;
 DROP TABLE PERMIT;
 DROP TABLE INCIDENT;
 DROP TABLE FACILITY;
@@ -21,6 +25,21 @@ CREATE TABLE FACILITY(
 	CONSTRAINT FK_Facility_System FOREIGN KEY (SystemID) REFERENCES SYSTEM(SystemID)
 	);
 
+CREATE TABLE EQUIPMENTRESTRICTION(
+	EquipmentRestrictionID Int IDENTITY(1,1) CONSTRAINT PK_EquipmentRestriction PRIMARY KEY,
+	Text NVarChar(500)
+	);
+
+CREATE TABLE MAINTENANCERESTRICTION(
+	MaintenanceRestrictionID Int IDENTITY(1,1) CONSTRAINT PK_MaintenanceRestriction PRIMARY KEY,
+	Text NVarChar(500)
+	);
+
+CREATE TABLE MEASUREMENTRESTRICTION(
+	MeasurementRestrictionID Int IDENTITY(1,1) CONSTRAINT PK_MeasurementRestriction PRIMARY KEY,
+	Text NVarChar(500)
+	);
+
 CREATE TABLE PERMIT(
 	PermitID INT IDENTITY(1,1) CONSTRAINT PK_Permit PRIMARY KEY,
 	StartDate Date NOT NULL,
@@ -31,12 +50,15 @@ CREATE TABLE PERMIT(
 	AllowedAverageIncidents Int,
 	AllowedAverageIncidentsPeriod Date,
 	AllowedYearlyIncidents Int,
-	EquipmentRestriction NVarChar(500),
-	MaintenanceRestriction NVarChar(500),
-	MeasurementRestriction NVarChar(500),
 	AdditionalRestriction NVarChar(500),
+	EquipmentRestrictionID Int NOT NULL,
+	MaintenanceRestrictionID Int NOT NULL, 
+	MeasurementRestrictionID Int NOT NULL,
 	FacilityID Int NOT NULL,
-	CONSTRAINT FK_Permit_Facility FOREIGN KEY (FacilityID) REFERENCES FACILITY(FacilityID)
+	CONSTRAINT FK1_Permit_Facility FOREIGN KEY (FacilityID) REFERENCES FACILITY(FacilityID),
+	CONSTRAINT FK2_Permit_EquipmentRestriction FOREIGN KEY (EquipmentRestrictionID) REFERENCES EQUIPMENTRESTRICTION(EquipmentRestrictionID),
+	CONSTRAINT FK3_Permit_MaintenanceRestriction FOREIGN KEY (MaintenanceRestrictionID) REFERENCES MAINTENANCERESTRICTION(MaintenanceRestrictionID),
+	CONSTRAINT FK4_Permit_MeasurementRestriction FOREIGN KEY (MeasurementRestrictionID) REFERENCES MEASUREMENTRESTRICTION(MeasurementRestrictionID)
 	);
 
 CREATE TABLE INCIDENT(

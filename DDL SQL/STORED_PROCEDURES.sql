@@ -37,7 +37,7 @@ BEGIN
 END;
 
 
-CREATE PROCEDURE uspAddPermit
+ALTER PROCEDURE uspAddPermit
 	@StartDate Date,
 	@EndDate Date = NULL,
 	@AllowedAverageOverflowVolume Int = NULL,
@@ -46,9 +46,9 @@ CREATE PROCEDURE uspAddPermit
 	@AllowedAverageIncidents Int = NULL,
 	@AllowedAverageIncidentsPeriod Date = NULL,
 	@AllowedYearlyIncidents Int = NULL,
-	@EquipmentRestriction NVarChar(500) = NULL,
-	@MaintenanceRestriction NVarChar(500) = NULL,
-	@MeasurementRestriction NVarChar(500) = NULL,
+	@EquipmentRestrictionID Int,
+	@MaintenanceRestrictionID Int,
+	@MeasurementRestrictionID Int,
 	@AdditionalRestriction NVarChar(500) = NULL,
 	@FacilityName NVarChar(500)
 AS
@@ -63,14 +63,37 @@ BEGIN
 		@AllowedAverageIncidents,
 		@AllowedAverageIncidentsPeriod,
 		@AllowedYearlyIncidents,
-		@EquipmentRestriction,
-		@MaintenanceRestriction,
-		@MeasurementRestriction,
+		@EquipmentRestrictionID,
+		@MaintenanceRestrictionID,
+		@MeasurementRestrictionID,
 		@AdditionalRestriction,
 		(SELECT FacilityID FROM FACILITY WHERE Name=@FacilityName)
 		);
 END
 
+CREATE PROCEDURE uspAddEquipmentRestriction
+@NewRestriction NVarChar(500)
+AS
+BEGIN
+	INSERT INTO EQUIPMENTRESTRICTION(Text)
+	Values (@NewRestriction);
+END;
+
+CREATE PROCEDURE uspAddMaintenanceRestriction
+@NewRestriction NVarChar(500)
+AS
+BEGIN
+	INSERT INTO MAINTENANCERESTRICTION(Text)
+	Values (@NewRestriction);
+END;
+
+CREATE PROCEDURE uspAddMeasurementRestriction
+@NewRestriction NVarChar(500)
+AS
+BEGIN
+	INSERT INTO MEASUREMENTRESTRICTION(Text)
+	Values (@NewRestriction);
+END;
 
 CREATE PROCEDURE uspAddOverflow  
 	@OverflowVolume Int,
