@@ -8,8 +8,6 @@ END;
 
 CREATE PROCEDURE uspAddFacility 
 	@Name NVarChar(50),
-	@NumberOfIncidents Int = NULL,
-	@TotalOverflow Int = NULL,
 	@UDL Int = NULL,
 	@OBNumber Int = NULL,
 	@MinimumPoolSize NVarChar(500) = NULL,
@@ -23,11 +21,14 @@ BEGIN
 			From SYSTEM
 			WHERE NAME=@SystemName;
 
-			INSERT INTO FACILITY
+			INSERT INTO FACILITY (
+				Name,
+				UDLNumber,
+				OBNumber,
+				MinimumPoolSize,
+				SystemID)
 			VALUES (
 				@Name,
-				@NumberOfIncidents,
-				@TotalOverflow,
 				@UDL,
 				@OBNumber,
 				@MinimumPoolSize,
@@ -42,7 +43,7 @@ ALTER PROCEDURE uspAddPermit
 	@EndDate Date = NULL,
 	@AllowedAverageOverflowVolume Int = NULL,
 	@AllowedAverageOverflowPeriod Date = NULL,
-	@AllowedAverageYearlyOverflowVolume Int = NULL,
+	@AllowedYearlyOverflowVolume Int = NULL,
 	@AllowedAverageIncidents Int = NULL,
 	@AllowedAverageIncidentsPeriod Date = NULL,
 	@AllowedYearlyIncidents Int = NULL,
@@ -59,7 +60,7 @@ BEGIN
 		@EndDate,
 		@AllowedAverageOverflowVolume,
 		@AllowedAverageOverflowPeriod,
-		@AllowedAverageYearlyOverflowVolume,
+		@AllowedYearlyOverflowVolume,
 		@AllowedAverageIncidents,
 		@AllowedAverageIncidentsPeriod,
 		@AllowedYearlyIncidents,

@@ -18,8 +18,8 @@ CREATE TABLE FACILITY(
 	Name NVarChar(50) NOT NULL UNIQUE,
 	NumberOfIncidents Int,
 	TotalOverflow Int,
-	UDL Int,
-	OBNumber Int UNIQUE,
+	UDLNumber NVarChar(20) NOT NULL,
+	OBNumber NVarChar(20) UNIQUE NOT NULL,
 	MinimumPoolSize NVarChar(500),
 	SystemID Int,
 	CONSTRAINT FK_Facility_System FOREIGN KEY (SystemID) REFERENCES SYSTEM(SystemID)
