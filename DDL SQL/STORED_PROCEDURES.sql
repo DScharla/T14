@@ -5,6 +5,7 @@ BEGIN
 	INSERT INTO SYSTEM (Name)
 	Values (@NewSystem);
 END;
+GO
 
 CREATE PROCEDURE uspAddFacility 
 	@Name NVarChar(50),
@@ -37,8 +38,9 @@ BEGIN
 		END;
 END;
 
+GO
 
-ALTER PROCEDURE uspAddPermit
+CREATE PROCEDURE uspAddPermit
 	@StartDate Date,
 	@EndDate Date = NULL,
 	@AllowedAverageOverflowVolume Int = NULL,
@@ -72,6 +74,8 @@ BEGIN
 		);
 END
 
+GO
+
 CREATE PROCEDURE uspAddEquipmentRestriction
 @NewRestriction NVarChar(500)
 AS
@@ -79,6 +83,8 @@ BEGIN
 	INSERT INTO EQUIPMENTRESTRICTION(Text)
 	Values (@NewRestriction);
 END;
+
+GO
 
 CREATE PROCEDURE uspAddMaintenanceRestriction
 @NewRestriction NVarChar(500)
@@ -88,6 +94,8 @@ BEGIN
 	Values (@NewRestriction);
 END;
 
+GO
+
 CREATE PROCEDURE uspAddMeasurementRestriction
 @NewRestriction NVarChar(500)
 AS
@@ -95,6 +103,8 @@ BEGIN
 	INSERT INTO MEASUREMENTRESTRICTION(Text)
 	Values (@NewRestriction);
 END;
+
+GO
 
 CREATE PROCEDURE uspAddOverflow  
 	@OverflowVolume Int,
@@ -117,6 +127,9 @@ BEGIN
 		@FacilityID
 	);
 END
+
+
+GO
 
 
 CREATE PROCEDURE uspAddIncident  
