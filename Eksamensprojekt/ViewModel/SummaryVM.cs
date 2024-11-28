@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Eksamensprojekt.Model;
 using System.Windows.Navigation;
+using Eksamensprojekt.View;
+using System.Windows;
 
 namespace Eksamensprojekt.ViewModel
 {
@@ -91,7 +93,11 @@ namespace Eksamensprojekt.ViewModel
         public void AddCommand()
         {
             Facility facility = FromStringToFacility();
-            _facilityService.AddToFacilityRepo(facility);
+            facility.ID=_facilityService.AddToFacilityRepo(facility);
+            ShowFacilities();
+            CreatePermitWindow permitWindow = new CreatePermitWindow(facility.ID);
+            permitWindow.Show();
+            //Tilføjelse af 
         }
         public Facility FromStringToFacility()
         {

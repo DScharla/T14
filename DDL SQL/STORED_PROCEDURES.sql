@@ -7,7 +7,7 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE uspAddFacility 
+ALTER PROCEDURE uspAddFacility 
 	@Name NVarChar(50),
 	@UDLNumber NVarChar(20),
 	@OBNumber NVarChar(20),
@@ -34,7 +34,7 @@ BEGIN
 				@UDLNumber,
 				@OBNumber,
 				@MinimumPoolSize,
-				@NYVariabel,
+				@NYVariabel
 				);
 			Set @FacilityID = SCOPE_IDENTITY();
 		END;

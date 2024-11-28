@@ -79,14 +79,15 @@ namespace Eksamensprojekt.Model
         {
             Facility facility = (Facility)entity;
             int newID;
-            string AddQuery = $"EXEC uspAddFacility @Name = \'{entity.Name}\', @UDLNumber={entity.UDLNumber}, @OBNumber = {entity.OBNumber}, @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemName=\'{entity.System}\'";
+            string AddQuery = $"DECLARE @newFacilityID Int;\nEXEC uspAddFacility @Name = \'{entity.Name}\', @UDLNumber=\'{entity.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemName=\'{entity.System}\', @FacilityID = @newFacilityID OUTPUT;\nSELECT @newFacilityID;";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
                 SqlCommand command = new SqlCommand(AddQuery, connection);
                 connection.Open();
-                newID = command.ExecuteNonQuery();
+                newID = (int)command.ExecuteScalar();
+
             }
 
             return newID;

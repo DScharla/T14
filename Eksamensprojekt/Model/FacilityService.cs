@@ -38,8 +38,8 @@ namespace Eksamensprojekt.Model
 
         public int AddToFacilityRepo(Facility facility)
         {
-            int? facilityID;
-            facilityRepo.Add(facility);
+            int facilityID = facilityRepo.Add(facility);
+            return facilityID;
         }
     }
 }

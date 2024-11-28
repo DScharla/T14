@@ -7,7 +7,7 @@ FROM            dbo.FACILITY INNER JOIN
 GO
 
 CREATE VIEW vwPermit AS
-SELECT        dbo.EQUIPMENTRESTRICTION.Text AS EquipmentRestriction, dbo.FACILITY.Name AS FacilityName, dbo.MAINTENANCERESTRICTION.Text AS MaintenanceRestriction, 
+SELECT        dbo.EQUIPMENTRESTRICTION.Text AS EquipmentRestriction, dbo.FACILITY.Name AS FacilityName, dbo.FACILITY.FacilityID, dbo.MAINTENANCERESTRICTION.Text AS MaintenanceRestriction, 
                          dbo.MEASUREMENTRESTRICTION.Text AS MeasurementRestriction, dbo.PERMIT.PermitID, dbo.PERMIT.StartDate, dbo.PERMIT.EndDate, dbo.PERMIT.AllowedAverageOverflowVolume, 
                          dbo.PERMIT.AllowedAverageOverflowPeriod, dbo.PERMIT.AllowedYearlyOverflowVolume, dbo.PERMIT.AllowedAverageIncidents, dbo.PERMIT.AllowedAverageIncidentsPeriod, dbo.PERMIT.AllowedYearlyIncidents, 
                          dbo.PERMIT.AdditionalRestriction
@@ -17,3 +17,4 @@ FROM            dbo.EQUIPMENTRESTRICTION INNER JOIN
                          dbo.MAINTENANCERESTRICTION ON dbo.PERMIT.MaintenanceRestrictionID = dbo.MAINTENANCERESTRICTION.MaintenanceRestrictionID INNER JOIN
                          dbo.MEASUREMENTRESTRICTION ON dbo.PERMIT.MeasurementRestrictionID = dbo.MEASUREMENTRESTRICTION.MeasurementRestrictionID;
 GO
+select * from vwPermit
