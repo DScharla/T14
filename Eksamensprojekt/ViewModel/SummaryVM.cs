@@ -45,12 +45,72 @@ namespace Eksamensprojekt.ViewModel
             get { return _minimumPoolSize; }
             set { _minimumPoolSize = value; }
         }
+
+        private string _startDate = string.Empty;
+        public string StartDate
+        {
+            get { return _startDate; }
+            set { _startDate = value; }
+        }
+
+        private string _endDate = string.Empty;
+        public string EndDate
+        {
+            get { return _endDate; }
+            set { _endDate = value; }
+        }
+
+        private string _allowedYearlyIncidents = string.Empty;
+        public string AllowedYearlyIncidents
+        {
+            get { return _allowedYearlyIncidents; }
+            set { _allowedYearlyIncidents = value; }
+        }
+
+        private string _allowedYearlyOverflowVolume = string.Empty;
+        public string AllowedYearlyOverflowVolume
+        {
+            get { return _allowedYearlyOverflowVolume; }
+            set { _allowedYearlyOverflowVolume = value; }
+        }
+
+        private string _additionalRestriction = string.Empty;
+        public string AdditionalRestriction
+        {
+            get { return _additionalRestriction; }
+            set { _additionalRestriction = value; }
+        }
+        private string _equipmentRestriction = string.Empty;
+        public string EquipmentRestriction
+        {
+            get { return _equipmentRestriction; }
+            set { _equipmentRestriction = value; }
+        }
+        private string _measurementRestriction = string.Empty;
+        public string MeasurementRestriction
+        {
+            get { return _measurementRestriction; }
+            set { _measurementRestriction = value; }
+        }
+
+        private string _maintenanceRestriction = string.Empty;
+        public string MaintenanceRestriction
+        {
+            get { return _maintenanceRestriction; }
+            set { _maintenanceRestriction = value; }
+        }
+        private int facilityID;
         //DCD: +1
         private FacilityService _facilityService;
 
         private ObservableCollection<Facility> _facilities;
-        public RelayCommand AddFacility => new RelayCommand(
-            execute => AddCommand(),
+        public RelayCommand AddFacilityCommand => new RelayCommand(
+            execute => AddFacility(),
+            canExecute => { return true; }
+            );
+
+        public RelayCommand AddPermitCommand => new RelayCommand(
+            execute => AddPermit(),
             canExecute => { return true; }
             );
         public ObservableCollection<Facility> Facilities { 
@@ -67,6 +127,13 @@ namespace Eksamensprojekt.ViewModel
             _facilityService = new FacilityService();
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
+        }
+        public SummaryVM(int FacilityID)
+        {
+            _facilityService = new FacilityService();
+            _facilities = new ObservableCollection<Facility>();
+            ShowFacilities();
+            this.facilityID = facilityID;
         }
 
         //DCD: private
@@ -90,13 +157,20 @@ namespace Eksamensprojekt.ViewModel
                 Facilities.Add(facility);
             }
         }
-        public void AddCommand()
+        public void AddFacility()
         {
             Facility facility = FromStringToFacility();
             facility.ID=_facilityService.AddToFacilityRepo(facility);
             ShowFacilities();
             CreatePermitWindow permitWindow = new CreatePermitWindow(facility.ID);
             permitWindow.Show();
+            //Tilføjelse af 
+        }
+        public void AddPermit()
+        {
+            Permit permit = FromStringToPermit();
+            _facilityService.AddToPermitRepo(permit);
+            ShowFacilities();
             //Tilføjelse af 
         }
         public Facility FromStringToFacility()
@@ -108,6 +182,20 @@ namespace Eksamensprojekt.ViewModel
             facility.System = System;
             facility.MinimumPoolSize = MinimumPoolSize;
             return facility;
+        }
+        public Permit FromStringToPermit()
+        {
+            Permit permit = new Permit();
+            permit.StartDate = DateTime.ParseExact(StartDate, "yyyy-MM-dd HH:mm", null);
+            permit.EndDate = DateTime.ParseExact(EndDate, "yyyy-MM-dd HH:mm", null);
+            permit.AllowedYearlyIncidents = Int32.Parse(AllowedYearlyIncidents);
+            permit.AllowedYearlyOverflowVolume = Int32.Parse(AllowedYearlyOverflowVolume);
+            permit.AdditionalRestriction = AdditionalRestriction;
+            permit.MaintenanceRestriction = MaintenanceRestriction;
+            permit.MeasurementRestriction = MeasurementRestriction;
+            permit.EquipmentRestriction = EquipmentRestriction;
+            permit.FacilityID = facilityID;
+            return permit;
         }
     }
 }

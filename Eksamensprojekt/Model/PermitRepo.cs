@@ -80,7 +80,20 @@ namespace Eksamensprojekt.Model
 
         public int Add(T entity)
         {
-            throw new NotImplementedException();
+            Permit permit = (Permit)entity;
+            int newID;
+            string AddQuery = $"EXEC uspAddPermit @StartDate = \'{entity.StartDate}\', @EndDate=\'{entity.EndDate}\', @AllowedYearlyOverflowVolume = {entity.AllowedYearlyOverflowVolume}, @AllowedYearlyIncidents={entity.AllowedYearlyIncidents}, @EquipmentRestrictionID=1, @MaintenanceRestrictionID=1, @MeasurementRestrictionID=1, @AdditionalRestriction=\'{entity.AdditionalRestriction}\', @FacilityName=;";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                SqlCommand command = new SqlCommand(AddQuery, connection);
+                connection.Open();
+                newID = (int)command.ExecuteScalar();
+
+            }
+
+            return newID;
         }
 
         public void Remove(T entity)

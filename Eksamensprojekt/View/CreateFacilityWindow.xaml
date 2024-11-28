@@ -40,7 +40,7 @@
          Height="30"
          Margin="447,29,203,28"
          Grid.Row="2"
-         Command="{Binding AddFacility}"
+         Command="{Binding AddFacilityCommand}"
          Background="White"/>
 
         

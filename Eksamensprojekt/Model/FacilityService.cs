@@ -41,5 +41,9 @@ namespace Eksamensprojekt.Model
             int facilityID = facilityRepo.Add(facility);
             return facilityID;
         }
+        public void AddToPermitRepo(Permit permit)
+        {
+            permitRepo.Add(permit);
+        }
     }
 }

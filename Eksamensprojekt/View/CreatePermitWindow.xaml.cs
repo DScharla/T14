@@ -30,7 +30,7 @@ namespace Eksamensprojekt.View
         }
         public CreatePermitWindow(int FacilityID)
         {
-            vm = new SummaryVM();
+            vm = new SummaryVM(FacilityID);
             DataContext = vm;
             this.FacilityID = FacilityID;
             InitializeComponent();
