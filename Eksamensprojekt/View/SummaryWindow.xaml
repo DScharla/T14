@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eksamensprojekt.View"
         mc:Ignorable="d"
-        Title="Oversigt" Height="450" Width="800">
+        Title="Oversigt" Height="800" Width="1200">
     <Window.Resources>
 
         <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
@@ -68,11 +68,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*" />
-            <RowDefinition Height="60*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Fill="Aquamarine"/>
-        <Label Content="Oversigt" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30"/>
+        <Rectangle Grid.Row="0" Fill="MediumAquamarine"/>
+        <Label Content="Oversigt" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30" FontWeight="Bold"/>
         <ListView
         x:Name="lvFacilities"
         Grid.Row="1"
@@ -175,7 +175,7 @@
                                     Height="30"
                                     Margin="0,0,0,0"
                                     Command="{Binding Placeholder}"
-                                    Background="Aquamarine"/>
+                                    Background="MediumAquamarine"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -189,30 +189,46 @@
         </ListView>
 
 
-        <Rectangle Grid.Row="2" Fill="Aquamarine"/>
+        <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
         <Button x:Name="btnEditFacility" 
-                Content="Redigér Overløbsbygværk" 
+                Content="Redigér overløbsbygværk" 
                 Width="150" 
                 Height="30"
                 Margin="0,0,500,0"
                 Grid.Row="2"
+                BorderBrush="Black"
+                BorderThickness="3"
                 Command="{Binding Placeholder}"
                 Background="White"/>
         <Button x:Name="btnAddFacility" 
-                Content="Opret Overløbsbygværk" 
+                Content="Opret overløbsbygværk" 
                 Width="150" 
                 Height="30"
                 Margin="0,0,100,0"
                 Grid.Row="2"
+                BorderBrush="Black"
+                BorderThickness="3"
                 Command="{Binding Placeholder}"
-                Background="White"/>
+                Background="White" Click="btnAddFacility_Click"/>
 
+        <Button x:Name="btnAttachPermit" 
+                Content="Tilknyt udledningstilladelse" 
+                Width="150" 
+                Height="30"
+                Margin="300,0,0,0"
+                Grid.Row="2"
+                BorderBrush="Black"
+                BorderThickness="3"
+                Command="{Binding Placeholder}"
+                Background="White"/>    
         <Button x:Name="btnLogOut" 
                 Content="Log ud" 
                 Width="50" 
                 Height="30"
                 Margin="700,0,0,0"
                 Grid.Row="2"
+                BorderBrush="Black"
+                BorderThickness="3"
                 Command="{Binding Placeholder}"
                 Background="White"/>    
 

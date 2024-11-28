@@ -29,5 +29,6 @@ namespace Eksamensprojekt.View
             DataContext = svm;
             InitializeComponent();
         }
+
     }
 }

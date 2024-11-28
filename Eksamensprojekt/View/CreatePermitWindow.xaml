@@ -5,52 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eksamensprojekt.View"
         mc:Ignorable="d"
-        Title="CreatePermitWindow" Height="800" Width="1200">
+        Title="Opret udledningstilladelse" Height="800" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*" />
-            <RowDefinition Height="60*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Fill="Aquamarine"/>
-        <Label Content="Opret udledningstilladelse" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30"/>
+        <Rectangle Grid.Row="0" Fill="MediumAquamarine"/>
+        <Label Content="Opret udledningstilladelse" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30" FontWeight="Bold"/>
         <Rectangle Grid.Row="1"/>
-        <Label Content="Gyldrig Fra*" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Gyldrig fra*" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxStartDate" Text="{Binding StartDate, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="100,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Label Content="Gyldig til" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxEndDate" Text="{Binding EndDate, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="300,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Antal Hændelser Tilladt" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxNumberOfIncidents" Text="{Binding AllowedYearlyIncidents, Mode=TwoWay}" Width="164" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label  Content="Tilladt overløbsmængde (m3)" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxAllowedOverflowVolume" Text="{Binding AllowedYearlyOverflowVolume, Mode=TwoWay}" Width="202" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Yderligere Krav" HorizontalAlignment="Center" Margin="0,294,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxAdditionalRestriction"  Text="{Binding AdditionalRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="550,329,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Antal hændelser tilladt" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxNumberOfIncidents" Text="{Binding AllowedYearlyIncidents, Mode=TwoWay}" Width="165" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label  Content="Tilladt overløbsmængde (m3)" HorizontalAlignment="Left" Margin="325,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxAllowedOverflowVolume" Text="{Binding AllowedYearlyOverflowVolume, Mode=TwoWay}" Width="210" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="325,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Yderligere krav" HorizontalAlignment="Left" Margin="550,386,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxAdditionalRestriction"  Text="{Binding AdditionalRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="550,420,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Label Content="Vedligeholdelseskrav" HorizontalAlignment="Left" Margin="100,386,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxMaintenanceRestriction"  Text="{Binding MaintenanceRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="100,420,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Udstyr krav" HorizontalAlignment="Left" Margin="100,294,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Krav til udstyr" HorizontalAlignment="Left" Margin="100,294,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxEquipmentRestriction"  Text="{Binding EquipmentRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="100,329,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Krav til måleudstyr" HorizontalAlignment="Left" Margin="550,386,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxMeasurementRestriction"  Text="{Binding MeasurementRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="550,420,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Rectangle Grid.Row="2" Fill="Aquamarine"/>
+        <Label Content="Krav til måleudstyr" HorizontalAlignment="Center" Margin="34,294,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxMeasurementRestriction"  Text="{Binding MeasurementRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="550,329,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
         <Button x:Name="btnCancel" 
-     Content="Spring over" 
-     Width="150" 
-     Height="30"
-     Margin="152,29,498,28"
-     Grid.Row="2"
-     Command="{Binding Placeholder}"
-     Background="White"/>
+         Content="Spring over" 
+         Width="150" 
+         Height="30"
+         Margin="152,0,498,0"
+         Grid.Row="2"
+         BorderBrush="Black"
+         BorderThickness="3"
+         Command="{Binding Placeholder}"
+         Background="White"/>
         <Button x:Name="btnSaveFacility" 
-     Content="Tilknyt udledningstilladelse" 
-     Width="150" 
-     Height="30"
-     Margin="447,29,203,28"
-     Grid.Row="2"
-     Command="{Binding AddPermitCommand}"
-     Background="White"/>
+         Content="Tilknyt udledningstilladelse" 
+         Width="150" 
+         Height="30"
+         Margin="447,0,203,0"
+         Grid.Row="2"
+         BorderBrush="Black"
+         BorderThickness="3"
+         Command="{Binding AddPermitCommand}"
+         Background="White"/>
 
-
-
+        <Label Content="Du er ved at oprette en udledningstilladelse til:" HorizontalAlignment="Center" Margin="700,0,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="binding" HorizontalAlignment="Center" Margin="900,25,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" FontWeight="Bold"/>
 
     </Grid>
 </Window>
