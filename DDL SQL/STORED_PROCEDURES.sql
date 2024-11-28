@@ -9,10 +9,11 @@ GO
 
 CREATE PROCEDURE uspAddFacility 
 	@Name NVarChar(50),
-	@UDL Int = NULL,
-	@OBNumber Int = NULL,
+	@UDLNumber NVarChar(20),
+	@OBNumber NVarChar(20),
 	@MinimumPoolSize NVarChar(500) = NULL,
-	@SystemName NVarChar(500) = NULL
+	@SystemName NVarChar(500) = NULL,
+	@FacilityID Int OUTPUT
 AS
 BEGIN
 	IF EXISTS(SELECT SystemID FROM SYSTEM WHERE Name=@SystemName)
@@ -30,11 +31,12 @@ BEGIN
 				SystemID)
 			VALUES (
 				@Name,
-				@UDL,
+				@UDLNumber,
 				@OBNumber,
 				@MinimumPoolSize,
-				@NYVariabel
+				@NYVariabel,
 				);
+			Set @FacilityID = SCOPE_IDENTITY();
 		END;
 END;
 
