@@ -5,16 +5,52 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Eksamensprojekt.Model;
+using System.Windows.Navigation;
 
 namespace Eksamensprojekt.ViewModel
 {
     public class SummaryVM
     {
+        private string _name = string.Empty;
+        public string Name {  
+            get { return _name; } 
+            set { _name = value; }}
+
+        private string _UDLNumber = string.Empty;
+        public string UDLNumber
+        {
+            get { return _UDLNumber; }
+            set { _UDLNumber = value; }
+        }
+
+        private string _OBNumber = string.Empty;
+        public string OBNumber
+        {
+            get { return _OBNumber; }
+            set { _OBNumber = value; }
+        }
+
+        private string _system = string.Empty;
+        public string System
+        {
+            get { return _system; }
+            set { _system = value; }
+        }
+
+        private string _minimumPoolSize = string.Empty;
+        public string MinimumPoolSize
+        {
+            get { return _minimumPoolSize; }
+            set { _minimumPoolSize = value; }
+        }
         //DCD: +1
         private FacilityService _facilityService;
 
         private ObservableCollection<Facility> _facilities;
-
+        public RelayCommand AddFacility => new RelayCommand(
+            execute => AddCommand(),
+            canExecute => { return true; }
+            );
         public ObservableCollection<Facility> Facilities { 
             get {
                 return _facilities; 
@@ -51,6 +87,21 @@ namespace Eksamensprojekt.ViewModel
                 facility.Permits = tempRestrictions;
                 Facilities.Add(facility);
             }
+        }
+        public void AddCommand()
+        {
+            Facility facility = FromStringToFacility();
+            _facilityService.AddToFacilityRepo(facility);
+        }
+        public Facility FromStringToFacility()
+        {
+            Facility facility = new Facility();
+            facility.Name = Name;
+            facility.UDLNumber = UDLNumber;
+            facility.OBNumber = OBNumber;
+            facility.System = System;
+            facility.MinimumPoolSize = MinimumPoolSize;
+            return facility;
         }
     }
 }

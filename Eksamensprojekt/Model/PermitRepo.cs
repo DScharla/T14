@@ -10,7 +10,7 @@ namespace Eksamensprojekt.Model
 {
     public class PermitRepo<T> : IRepository<T> where T : Permit
     {
-        private string getAllQuery = "SELECT * FROM PERMIT";
+        private string getAllQuery = "SELECT * FROM vwPermit";
 
         private string connectionString;
         public PermitRepo(string db)
@@ -78,7 +78,7 @@ namespace Eksamensprojekt.Model
             throw new NotImplementedException();
         }
 
-        public void Add(T entity)
+        public int Add(T entity)
         {
             throw new NotImplementedException();
         }

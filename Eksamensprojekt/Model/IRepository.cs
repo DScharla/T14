@@ -19,7 +19,7 @@ namespace Eksamensprojekt.Model
         
         T GetById(int id);
 
-        void Add(T entity);
+        int Add(T entity);
 
         void Remove(T entity);
 

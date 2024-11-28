@@ -15,42 +15,35 @@
         <Rectangle Grid.Row="0" Fill="Aquamarine"/>
         <Label Content="Opret overløbsbygværk" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30"/>
         <Rectangle Grid.Row="1"/>
-        <Label Content="UDL" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox Text="ædkjfsælj" Width="150" HorizontalAlignment="Left" Margin="100,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="OB-nr." HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox Text="ædkjfsælj" Width="150" HorizontalAlignment="Left" Margin="300,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="System" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox Text="Blue North" Width="150" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Minimum sparebassin volumen (m3)" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox Text="Ikke angivet (Sparebassinkapacitet på Holsted renseanlæg ca. 2000 m³ og på det nedlagte renseanlæg ved Rolighedsvej ca. 6000 m³ nævnt)" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Navn" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox Text="Holsted Tirslund Bæk, Søndergade ved Foldingbrovej" TextWrapping="Wrap" Width="400" Height="auto" HorizontalAlignment="Left" Margin="500,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="UDL*" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxUDLNumber" Text="{Binding UDLNUmber, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="100,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="OB-nr.*" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxOBNumber" Text="{Binding OBNumber, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="300,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="System*" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxSystem" Text="{Binding System, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label  Content="Minimum sparebassin volumen (m3)" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxMinimumPoolSize" Text="{Binding MinimumPoolSize, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Navn*" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxName"  Text="{Binding Name, Mode=TwoWay}" TextWrapping="Wrap" Width="400" Height="auto" HorizontalAlignment="Left" Margin="500,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Rectangle Grid.Row="2" Fill="Aquamarine"/>
-        <Button x:Name="btnEditFacility" 
-         Content="Redigér Overløbsbygværk" 
+        <Button x:Name="btnCancel" 
+         Content="Annuller" 
          Width="150" 
          Height="30"
-         Margin="0,0,500,0"
+         Margin="152,29,498,28"
          Grid.Row="2"
          Command="{Binding Placeholder}"
          Background="White"/>
-        <Button x:Name="btnAddFacility" 
-         Content="Opret Overløbsbygværk" 
+        <Button x:Name="btnSaveFacility" 
+         Content="Gem Overløbsbygværk" 
          Width="150" 
          Height="30"
-         Margin="0,0,100,0"
+         Margin="447,29,203,28"
          Grid.Row="2"
-         Command="{Binding Placeholder}"
+         Command="{Binding AddFacility}"
          Background="White"/>
 
-        <Button x:Name="btnLogOut" 
-         Content="Log ud" 
-         Width="50" 
-         Height="30"
-         Margin="700,0,0,0"
-         Grid.Row="2"
-         Command="{Binding Placeholder}"
-         Background="White"/>
+        
 
 
     </Grid>

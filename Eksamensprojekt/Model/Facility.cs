@@ -25,29 +25,29 @@ namespace Eksamensprojekt.Model
             set {_name = value;}
         }
 
-        private int _numberOfIncidents;
-        public int NumberOfIncidents
+        private int? _numberOfIncidents;
+        public int? NumberOfIncidents
         {
             get { return _numberOfIncidents; }
             set { _numberOfIncidents = value; }
         }
 
-        private int _totalOverflow;
-        public int TotalOverflow
+        private int? _totalOverflow;
+        public int? TotalOverflow
         {
             get { return _totalOverflow; }
             set { _totalOverflow = value; }
         }
 
-        private int _UDLNumber;
-        public int UDLNumber
+        private string _UDLNumber;
+        public string UDLNumber
         {
             get { return _UDLNumber; }
             set { _UDLNumber = value; }
         }
 
-        private int _OBNumber;
-        public int OBNumber
+        private string _OBNumber;
+        public string OBNumber
         {
             get { return _OBNumber; }
             set { _OBNumber = value; }

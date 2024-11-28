@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Eksamensprojekt.ViewModel;
 
 namespace Eksamensprojekt.View
 {
@@ -21,6 +22,8 @@ namespace Eksamensprojekt.View
     {
         public CreateFacilityWindow()
         {
+            SummaryVM vm = new SummaryVM();
+            DataContext = vm;
             InitializeComponent();
         }
     }

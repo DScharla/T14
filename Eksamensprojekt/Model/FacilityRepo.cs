@@ -53,10 +53,12 @@ namespace Eksamensprojekt.Model
             Facility entity = new Facility();
             entity.ID = (int)reader["FacilityID"];
             entity.Name = (string)reader["FacilityName"];
-            entity.NumberOfIncidents = (int)reader["NumberOfIncidents"];
-            entity.TotalOverflow = (int)reader["TotalOverflow"];
-            entity.OBNumber = (int)reader["OBNumber"];
-            entity.UDLNumber = (int)reader["UDL"];
+            try { entity.NumberOfIncidents = (int)reader["NumberOfIncidents"]; }
+            catch { entity.NumberOfIncidents = null; }
+            try { entity.TotalOverflow = (int)reader["TotalOverflow"]; }
+            catch { entity.TotalOverflow = null; }
+            entity.OBNumber = (string)reader["OBNumber"];
+            entity.UDLNumber = (string)reader["UDLNumber"];
             try { entity.MinimumPoolSize = (string)reader["MinimumPoolSize"]; }
             catch { entity.MinimumPoolSize = null; }
             
@@ -73,11 +75,22 @@ namespace Eksamensprojekt.Model
         }
 
 
-        public void Add(T entity)
+        public int Add(T entity)
         {
-            throw new NotImplementedException();
-        }
+            Facility facility = (Facility)entity;
+            int newID;
+            string AddQuery = $"EXEC uspAddFacility @Name = \'{entity.Name}\', @UDLNumber={entity.UDLNumber}, @OBNumber = {entity.OBNumber}, @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemName=\'{entity.System}\'";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                SqlCommand command = new SqlCommand(AddQuery, connection);
+                connection.Open();
+                newID = command.ExecuteNonQuery();
+            }
+
+            return newID;
+        }
 
         public void Remove(T entity)
         {

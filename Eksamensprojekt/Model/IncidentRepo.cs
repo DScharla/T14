@@ -35,7 +35,7 @@ namespace Eksamensprojekt.Model
             throw new NotImplementedException();
         }
 
-        public void Add(T entity)
+        public int Add(T entity)
         {
             throw new NotImplementedException();
         }

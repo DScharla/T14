@@ -10,12 +10,12 @@ namespace Eksamensprojekt.Model
     public class FacilityService
     {
         private static string connectionString = "DBName";
-        private FacilityRepo<Facility> repoTest = new FacilityRepo<Facility>(connectionString);
+        private FacilityRepo<Facility> facilityRepo = new FacilityRepo<Facility>(connectionString);
         private PermitRepo<Permit> permitRepo = new PermitRepo<Permit>(connectionString);
 
         public ObservableCollection<Facility> GetAllData()
         {
-            ObservableCollection<Facility> tempFacilities = repoTest.GetAll();
+            ObservableCollection<Facility> tempFacilities = facilityRepo.GetAll();
             AddPermitsToFacility(tempFacilities);    
             return tempFacilities;
         }
@@ -34,6 +34,12 @@ namespace Eksamensprojekt.Model
                 }
             }
             return restrictions;
+        }
+
+        public int AddToFacilityRepo(Facility facility)
+        {
+            int? facilityID;
+            facilityRepo.Add(facility);
         }
     }
 }
