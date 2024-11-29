@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Eksamensprojekt.ViewModel;
+using Eksamensprojekt.Model;
 
 namespace Eksamensprojekt.View
 {
@@ -20,7 +21,7 @@ namespace Eksamensprojekt.View
     /// </summary>
     public partial class CreatePermitWindow : Window
     {
-        public int FacilityID;
+        public Facility facility;
         public SummaryVM vm;
         public CreatePermitWindow()
         {
@@ -28,11 +29,11 @@ namespace Eksamensprojekt.View
             DataContext = vm;
             InitializeComponent();
         }
-        public CreatePermitWindow(int FacilityID)
+        public CreatePermitWindow(Facility facility)
         {
-            vm = new SummaryVM(FacilityID);
+            vm = new SummaryVM(facility);
             DataContext = vm;
-            this.FacilityID = FacilityID;
+            this.facility = facility;
             InitializeComponent();
         }
     }

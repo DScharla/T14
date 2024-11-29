@@ -55,7 +55,7 @@ CREATE PROCEDURE uspAddPermit
 	@EquipmentRestrictionID Int,
 	@MaintenanceRestrictionID Int,
 	@MeasurementRestrictionID Int,
-	@FacilityName NVarChar(500)
+	@FacilityID Int
 AS
 BEGIN
 	INSERT INTO PERMIT
@@ -72,8 +72,7 @@ BEGIN
 		@EquipmentRestrictionID,
 		@MaintenanceRestrictionID,
 		@MeasurementRestrictionID,		
-		(SELECT FacilityID FROM FACILITY WHERE Name=@FacilityName)
-		);
+		@FacilityID);
 END
 
 GO

@@ -46,15 +46,15 @@ namespace Eksamensprojekt.ViewModel
             set { _minimumPoolSize = value; }
         }
 
-        private string _startDate = string.Empty;
-        public string StartDate
+        private DateTime _startDate = DateTime.Now;
+        public DateTime StartDate
         {
             get { return _startDate; }
             set { _startDate = value; }
         }
 
-        private string _endDate = string.Empty;
-        public string EndDate
+        private DateTime? _endDate = null;
+        public DateTime? EndDate
         {
             get { return _endDate; }
             set { _endDate = value; }
@@ -99,7 +99,7 @@ namespace Eksamensprojekt.ViewModel
             get { return _maintenanceRestriction; }
             set { _maintenanceRestriction = value; }
         }
-        private int facilityID;
+        private Facility facility;
         //DCD: +1
         private FacilityService _facilityService;
 
@@ -128,12 +128,12 @@ namespace Eksamensprojekt.ViewModel
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
         }
-        public SummaryVM(int FacilityID)
+        public SummaryVM(Facility facility)
         {
             _facilityService = new FacilityService();
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
-            this.facilityID = facilityID;
+            this.facility = facility;
         }
 
         //DCD: private
@@ -162,7 +162,7 @@ namespace Eksamensprojekt.ViewModel
             Facility facility = FromStringToFacility();
             facility.ID=_facilityService.AddToFacilityRepo(facility);
             ShowFacilities();
-            CreatePermitWindow permitWindow = new CreatePermitWindow(facility.ID);
+            CreatePermitWindow permitWindow = new CreatePermitWindow(facility);
             permitWindow.Show();
             //Tilføjelse af 
         }
@@ -186,15 +186,16 @@ namespace Eksamensprojekt.ViewModel
         public Permit FromStringToPermit()
         {
             Permit permit = new Permit();
-            permit.StartDate = DateTime.ParseExact(StartDate, "yyyy-MM-dd HH:mm", null);
-            permit.EndDate = DateTime.ParseExact(EndDate, "yyyy-MM-dd HH:mm", null);
+            permit.StartDate = StartDate;
+            try { permit.EndDate = EndDate; }
+            catch { permit.EndDate = null; }
             permit.AllowedYearlyIncidents = Int32.Parse(AllowedYearlyIncidents);
             permit.AllowedYearlyOverflowVolume = Int32.Parse(AllowedYearlyOverflowVolume);
             permit.AdditionalRestriction = AdditionalRestriction;
             permit.MaintenanceRestriction = MaintenanceRestriction;
             permit.MeasurementRestriction = MeasurementRestriction;
             permit.EquipmentRestriction = EquipmentRestriction;
-            permit.FacilityID = facilityID;
+            permit.FacilityID = facility.ID;
             return permit;
         }
     }

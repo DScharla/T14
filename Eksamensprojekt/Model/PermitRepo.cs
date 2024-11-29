@@ -82,14 +82,14 @@ namespace Eksamensprojekt.Model
         {
             Permit permit = (Permit)entity;
             int newID;
-            string AddQuery = $"EXEC uspAddPermit @StartDate = \'{entity.StartDate}\', @EndDate=\'{entity.EndDate}\', @AllowedYearlyOverflowVolume = {entity.AllowedYearlyOverflowVolume}, @AllowedYearlyIncidents={entity.AllowedYearlyIncidents}, @EquipmentRestrictionID=1, @MaintenanceRestrictionID=1, @MeasurementRestrictionID=1, @AdditionalRestriction=\'{entity.AdditionalRestriction}\', @FacilityName=;";
+            string AddQuery = $"EXEC uspAddPermit @StartDate = \'{entity.StartDate.ToString("yyyy/MM/dd")}\', @EndDate=\'{entity.EndDate?.ToString("yyyy/MM/dd")}\', @AllowedYearlyOverflowVolume = {entity.AllowedYearlyOverflowVolume}, @AllowedYearlyIncidents={entity.AllowedYearlyIncidents}, @EquipmentRestrictionID=1, @MaintenanceRestrictionID=1, @MeasurementRestrictionID=1, @AdditionalRestriction=\'{entity.AdditionalRestriction}\', @FacilityID={entity.FacilityID};";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
                 SqlCommand command = new SqlCommand(AddQuery, connection);
                 connection.Open();
-                newID = (int)command.ExecuteScalar();
+                newID = (int)command.ExecuteNonQuery();
 
             }
 

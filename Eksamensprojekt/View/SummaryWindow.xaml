@@ -209,7 +209,7 @@
                 BorderBrush="Black"
                 BorderThickness="3"
                 Command="{Binding Placeholder}"
-                Background="White" Click="btnAddFacility_Click"/>
+                Background="White"/>
 
         <Button x:Name="btnAttachPermit" 
                 Content="Tilknyt udledningstilladelse" 
