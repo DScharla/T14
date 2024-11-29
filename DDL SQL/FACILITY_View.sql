@@ -1,3 +1,5 @@
+
+
 CREATE VIEW vwFacility AS
 SELECT        dbo.FACILITY.FacilityID, dbo.FACILITY.Name AS FacilityName, dbo.FACILITY.NumberOfIncidents, dbo.FACILITY.TotalOverflow, dbo.FACILITY.UDLNumber, dbo.FACILITY.OBNumber, dbo.FACILITY.MinimumPoolSize, 
                          dbo.SYSTEM.Name AS SystemName
@@ -17,4 +19,3 @@ FROM            dbo.EQUIPMENTRESTRICTION INNER JOIN
                          dbo.MAINTENANCERESTRICTION ON dbo.PERMIT.MaintenanceRestrictionID = dbo.MAINTENANCERESTRICTION.MaintenanceRestrictionID INNER JOIN
                          dbo.MEASUREMENTRESTRICTION ON dbo.PERMIT.MeasurementRestrictionID = dbo.MEASUREMENTRESTRICTION.MeasurementRestrictionID;
 GO
-select * from vwPermit

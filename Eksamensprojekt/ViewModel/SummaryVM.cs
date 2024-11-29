@@ -107,6 +107,31 @@ namespace Eksamensprojekt.ViewModel
             get { return _equipmentRestrictionCollection; }
             set { _equipmentRestrictionCollection = value; }
         }
+
+        private ObservableCollection<string> _measurementRestrictionCollection;
+
+        public ObservableCollection<string> MeasurementRestrictionCollection
+        {
+            get { return _measurementRestrictionCollection; }
+            set { _measurementRestrictionCollection = value; }
+        }
+
+        private ObservableCollection<string> _maintenanceRestrictionCollection;
+
+        public ObservableCollection<string> MaintenanceRestrictionCollection
+        {
+            get { return _maintenanceRestrictionCollection; }
+            set { _maintenanceRestrictionCollection = value; }
+        }
+
+        private ObservableCollection<string> _systemOptions;
+
+        public ObservableCollection<string> SystemOptions
+        {
+            get { return _systemOptions; }
+            set { _systemOptions = value; }
+        }
+
         private Facility facility;
         //DCD: +1
         private FacilityService _facilityService;
@@ -136,6 +161,9 @@ namespace Eksamensprojekt.ViewModel
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
+            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
+            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
+            //_systemOptions = GetRestrictionOptions("SYSTEM"); - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
         }
         public SummaryVM(Facility facility)
         {
@@ -144,6 +172,8 @@ namespace Eksamensprojekt.ViewModel
             ShowFacilities();
             this.facility = facility;
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
+            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
+            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");            
         }
 
         //DCD: private

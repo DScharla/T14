@@ -34,5 +34,7 @@ namespace Eksamensprojekt.View
             DataContext = vm;
             InitializeComponent();
         }
+
+        
     }
 }

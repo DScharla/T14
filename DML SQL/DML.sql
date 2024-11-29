@@ -10,7 +10,7 @@ EXEC uspAddFacility @Name = 'Glejbjerg, Borgergade', @UDL = 216, @MinimumPoolSiz
 EXEC uspAddFacility @Name = 'Glejbjerg, Grenevej', @UDL = 214, @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = 205, @SystemName = 'Blue North'
 EXEC uspAddFacility @Name = 'Kystbæk, Storegade', @UDL = 234, @OBNumber = 216, @MinimumPoolSize = 'Ikke angivet direkte, men der henvises til en samlet kapacitet for sparebassiner på ca. 8000 m3', @SystemName = 'Blue North';
 DECLARE @newFacilityID Int;
-EXEC uspAddFacility @Name = 'Test3', @UDLNumber = '1003', @OBNumber = '1004', @MinimumPoolSize = 'Ikke angivet direkte, men der henvises til en samlet kapacitet for sparebassiner på ca. 8000 m3', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
+EXEC uspAddFacility @Name = 'Test3', @UDL = '1003', @OBNumber = '1004', @MinimumPoolSize = 'Ikke angivet direkte, men der henvises til en samlet kapacitet for sparebassiner på ca. 8000 m3', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
 PRINT @newFacilityID;
 -- EQUIPMENTRESTRICTIONS
 EXEC uspAddEquipmentRestriction @NewRestriction = 'Ikke angivet'
