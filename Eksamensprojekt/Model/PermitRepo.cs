@@ -105,5 +105,26 @@ namespace Eksamensprojekt.Model
         {
             throw new NotImplementedException();
         }
+        public ObservableCollection<string> GetRestrictionOptionsFromDB(string RestrictionName)
+        {
+            ObservableCollection<string> restrictionOptions = new ObservableCollection<string>();
+            string getRestrictionOptionsQuery = $"SELECT Text FROM {RestrictionName}";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(getRestrictionOptionsQuery, connection);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        restrictionOptions.Add(
+                             (string)reader["Text"]
+                            );
+                    }
+                }
+            }
+            return restrictionOptions;
+        }
     }
 }

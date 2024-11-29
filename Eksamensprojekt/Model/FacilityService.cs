@@ -45,5 +45,11 @@ namespace Eksamensprojekt.Model
         {
             permitRepo.Add(permit);
         }
+        public ObservableCollection<string> GetRestrictionOptionsFromRepo(string NameOfRestriction)
+        {
+            ObservableCollection<string> restrictionOptions = new ObservableCollection<string>();
+            restrictionOptions = permitRepo.GetRestrictionOptionsFromDB(NameOfRestriction);
+            return restrictionOptions;
+        }
     }
 }

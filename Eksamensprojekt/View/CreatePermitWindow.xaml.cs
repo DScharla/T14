@@ -21,7 +21,6 @@ namespace Eksamensprojekt.View
     /// </summary>
     public partial class CreatePermitWindow : Window
     {
-        public Facility facility;
         public SummaryVM vm;
         public CreatePermitWindow()
         {
@@ -33,7 +32,6 @@ namespace Eksamensprojekt.View
         {
             vm = new SummaryVM(facility);
             DataContext = vm;
-            this.facility = facility;
             InitializeComponent();
         }
     }

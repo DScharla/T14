@@ -99,6 +99,14 @@ namespace Eksamensprojekt.ViewModel
             get { return _maintenanceRestriction; }
             set { _maintenanceRestriction = value; }
         }
+
+        private ObservableCollection<string> _equipmentRestrictionCollection;
+
+        public ObservableCollection<string> EquipmentRestrictionCollection
+        {
+            get { return _equipmentRestrictionCollection; }
+            set { _equipmentRestrictionCollection = value; }
+        }
         private Facility facility;
         //DCD: +1
         private FacilityService _facilityService;
@@ -127,6 +135,7 @@ namespace Eksamensprojekt.ViewModel
             _facilityService = new FacilityService();
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
+            _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
         }
         public SummaryVM(Facility facility)
         {
@@ -134,6 +143,7 @@ namespace Eksamensprojekt.ViewModel
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
             this.facility = facility;
+            _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
         }
 
         //DCD: private
@@ -197,6 +207,12 @@ namespace Eksamensprojekt.ViewModel
             permit.EquipmentRestriction = EquipmentRestriction;
             permit.FacilityID = facility.ID;
             return permit;
+        }
+        public ObservableCollection<string> GetRestrictionOptions(string NameOfRestrictions)
+        {
+            ObservableCollection<string> restrictionOptions = new ObservableCollection<string>();
+            restrictionOptions=_facilityService.GetRestrictionOptionsFromRepo(NameOfRestrictions);
+            return restrictionOptions;
         }
     }
 }
