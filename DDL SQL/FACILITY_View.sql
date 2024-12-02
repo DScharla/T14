@@ -2,7 +2,7 @@
 
 CREATE VIEW vwFacility AS
 SELECT        dbo.FACILITY.FacilityID, dbo.FACILITY.Name AS FacilityName, dbo.FACILITY.NumberOfIncidents, dbo.FACILITY.TotalOverflow, dbo.FACILITY.UDLNumber, dbo.FACILITY.OBNumber, dbo.FACILITY.MinimumPoolSize, 
-                         dbo.SYSTEM.Name AS SystemName
+                         dbo.SYSTEM.Text AS SystemName
 FROM            dbo.FACILITY INNER JOIN
                          dbo.SYSTEM ON dbo.FACILITY.SystemID = dbo.SYSTEM.SystemID;
 

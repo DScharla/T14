@@ -2,12 +2,12 @@ CREATE PROCEDURE uspAddSystem
 	@NewSystem NVarChar(50)
 AS
 BEGIN
-	INSERT INTO SYSTEM (Name)
+	INSERT INTO SYSTEM (Text)
 	Values (@NewSystem);
 END;
 GO
 
-ALTER PROCEDURE uspAddFacility 
+CREATE PROCEDURE uspAddFacility 
 	@Name NVarChar(50),
 	@UDLNumber NVarChar(20),
 	@OBNumber NVarChar(20),
@@ -16,12 +16,12 @@ ALTER PROCEDURE uspAddFacility
 	@FacilityID Int OUTPUT
 AS
 BEGIN
-	IF EXISTS(SELECT SystemID FROM SYSTEM WHERE Name=@SystemName)
+	IF EXISTS(SELECT SystemID FROM SYSTEM WHERE Text=@SystemName)
 		BEGIN
 			DECLARE @NYVariabel Int;
 			SELECT @NYVariabel = SystemID
 			From SYSTEM
-			WHERE NAME=@SystemName;
+			WHERE Text=@SystemName;
 
 			INSERT INTO FACILITY (
 				Name,

@@ -42,7 +42,7 @@
          BorderThickness="3"
          Command="{Binding Placeholder}"
          Background="White"/>
-        <Button x:Name="btnSaveFacility" 
+        <Button x:Name="btnSavePermit" 
          Content="Tilknyt udledningstilladelse" 
          Width="150" 
          Height="30"

@@ -1,17 +1,19 @@
 -- SYSTEMER
+EXEC uspAddSystem @NewSystem = 'Ikke angivet'
 EXEC uspAddSystem @NewSystem = 'Model'
 EXEC uspAddSystem @NewSystem = 'S2'
 EXEC uspAddSystem @NewSystem = 'Blue North'
 
+
 -- FACILITIES
-EXEC uspAddFacility @Name = 'Stadionvej', @UDL = 500, @OBNumber = 104, @SystemName = 'S2'
-EXEC uspAddFacility @Name = 'Glejbjerg, Glejbjergvej', @UDL = 215, @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = 203, @SystemName = 'Blue North'
-EXEC uspAddFacility @Name = 'Glejbjerg, Borgergade', @UDL = 216, @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = 204, @SystemName = 'Blue North'
-EXEC uspAddFacility @Name = 'Glejbjerg, Grenevej', @UDL = 214, @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = 205, @SystemName = 'Blue North'
-EXEC uspAddFacility @Name = 'Kystbæk, Storegade', @UDL = 234, @OBNumber = 216, @MinimumPoolSize = 'Ikke angivet direkte, men der henvises til en samlet kapacitet for sparebassiner på ca. 8000 m3', @SystemName = 'Blue North';
 DECLARE @newFacilityID Int;
-EXEC uspAddFacility @Name = 'Test3', @UDL = '1003', @OBNumber = '1004', @MinimumPoolSize = 'Ikke angivet direkte, men der henvises til en samlet kapacitet for sparebassiner på ca. 8000 m3', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
-PRINT @newFacilityID;
+EXEC uspAddFacility @Name = 'Stadionvej', @UDLNumber = '500', @OBNumber = '104', @SystemName = 'S2', @FacilityID = @newFacilityID OUTPUT;
+EXEC uspAddFacility @Name = 'Glejbjerg, Glejbjergvej', @UDLNumber = '215', @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = '203', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
+EXEC uspAddFacility @Name = 'Glejbjerg, Borgergade', @UDLNumber = '216', @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = '204', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
+EXEC uspAddFacility @Name = 'Glejbjerg, Grenevej', @UDLNumber = '214', @MinimumPoolSize = '980 m3 i betonbassin + 750 m3 i to jordbassiner', @OBNumber = '205', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
+EXEC uspAddFacility @Name = 'Kystbæk, Storegade', @UDLNumber = '234', @OBNumber = '216', @MinimumPoolSize = 'Ikke angivet direkte, men der henvises til en samlet kapacitet for sparebassiner på ca. 8000 m3', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
+EXEC uspAddFacility @Name = 'Test3', @UDLNumber = '1003', @OBNumber = '1004', @MinimumPoolSize = 'Ikke angivet direkte, men der henvises til en samlet kapacitet for sparebassiner på ca. 8000 m3', @SystemName = 'Blue North', @FacilityID = @newFacilityID OUTPUT;
+
 -- EQUIPMENTRESTRICTIONS
 EXEC uspAddEquipmentRestriction @NewRestriction = 'Ikke angivet'
 EXEC uspAddEquipmentRestriction @NewRestriction = 'Rist og skumbræt'
@@ -64,3 +66,5 @@ EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @End
 EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 4
 EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 4
 EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 4
+
+SELECT * FROM FACILITY;

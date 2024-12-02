@@ -86,7 +86,7 @@ namespace Eksamensprojekt.Model
             int measurementRestrictionID = GetRestrictionIDFromTable("MeasurementRestrictionID", "MEASUREMENTRESTRICTION", entity.MeasurementRestriction);
             int maintenanceRestrictionID = GetRestrictionIDFromTable("MaintenanceRestrictionID", "MAINTENANCERESTRICTION", entity.MaintenanceRestriction);
 
-            string getRestrictionOptionsQuery = $"SELECT EquipmentRestrictionID FROM EQUIPMENTRESTRICTION WHERE Text = {entity.EquipmentRestriction}";
+            
             string AddQuery = $"EXEC uspAddPermit @StartDate = \'{entity.StartDate.ToString("yyyy/MM/dd")}\', @EndDate=\'{entity.EndDate?.ToString("yyyy/MM/dd")}\', @AllowedYearlyOverflowVolume = {entity.AllowedYearlyOverflowVolume}, @AllowedYearlyIncidents={entity.AllowedYearlyIncidents}, @EquipmentRestrictionID={equipmentRestrictionID}, @MaintenanceRestrictionID={maintenanceRestrictionID}, @MeasurementRestrictionID={measurementRestrictionID}, @AdditionalRestriction=\'{entity.AdditionalRestriction}\', @FacilityID={entity.FacilityID};";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
