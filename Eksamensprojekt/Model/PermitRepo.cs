@@ -82,7 +82,12 @@ namespace Eksamensprojekt.Model
         {
             Permit permit = (Permit)entity;
             int newID;
-            string AddQuery = $"EXEC uspAddPermit @StartDate = \'{entity.StartDate.ToString("yyyy/MM/dd")}\', @EndDate=\'{entity.EndDate?.ToString("yyyy/MM/dd")}\', @AllowedYearlyOverflowVolume = {entity.AllowedYearlyOverflowVolume}, @AllowedYearlyIncidents={entity.AllowedYearlyIncidents}, @EquipmentRestrictionID=1, @MaintenanceRestrictionID=1, @MeasurementRestrictionID=1, @AdditionalRestriction=\'{entity.AdditionalRestriction}\', @FacilityID={entity.FacilityID};";
+            int equipmentRestrictionID = GetRestrictionIDFromTable("EquipmentRestrictionID", "EQUIPMENTRESTRICTION", entity.EquipmentRestriction);
+            int measurementRestrictionID = GetRestrictionIDFromTable("MeasurementRestrictionID", "MEASUREMENTRESTRICTION", entity.MeasurementRestriction);
+            int maintenanceRestrictionID = GetRestrictionIDFromTable("MaintenanceRestrictionID", "MAINTENANCERESTRICTION", entity.MaintenanceRestriction);
+
+            string getRestrictionOptionsQuery = $"SELECT EquipmentRestrictionID FROM EQUIPMENTRESTRICTION WHERE Text = {entity.EquipmentRestriction}";
+            string AddQuery = $"EXEC uspAddPermit @StartDate = \'{entity.StartDate.ToString("yyyy/MM/dd")}\', @EndDate=\'{entity.EndDate?.ToString("yyyy/MM/dd")}\', @AllowedYearlyOverflowVolume = {entity.AllowedYearlyOverflowVolume}, @AllowedYearlyIncidents={entity.AllowedYearlyIncidents}, @EquipmentRestrictionID={equipmentRestrictionID}, @MaintenanceRestrictionID={maintenanceRestrictionID}, @MeasurementRestrictionID={measurementRestrictionID}, @AdditionalRestriction=\'{entity.AdditionalRestriction}\', @FacilityID={entity.FacilityID};";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -94,6 +99,20 @@ namespace Eksamensprojekt.Model
             }
 
             return newID;
+        }
+
+        public int GetRestrictionIDFromTable(string columnName, string tableName, string restriction)
+        {
+            int restrictionID;
+            string query = $"SELECT {columnName} FROM {tableName} WHERE Text = \'{restriction}\'";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                restrictionID = (int)command.ExecuteScalar();
+            }
+            return restrictionID;
         }
 
         public void Remove(T entity)

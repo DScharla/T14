@@ -163,7 +163,7 @@ namespace Eksamensprojekt.ViewModel
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
-            //_systemOptions = GetRestrictionOptions("SYSTEM"); - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
+            _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
         }
         public SummaryVM(Facility facility)
         {

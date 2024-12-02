@@ -23,14 +23,14 @@
         <TextBox x:Name="txtbxNumberOfIncidents" Text="{Binding AllowedYearlyIncidents, Mode=TwoWay}" Width="165" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Label  Content="Tilladt overløbsmængde (m3)" HorizontalAlignment="Left" Margin="325,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxAllowedOverflowVolume" Text="{Binding AllowedYearlyOverflowVolume, Mode=TwoWay}" Width="210" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="325,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Yderligere krav" HorizontalAlignment="Left" Margin="550,386,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxAdditionalRestriction"  Text="{Binding AdditionalRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="550,420,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Vedligeholdelseskrav" HorizontalAlignment="Left" Margin="100,386,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <ComboBox x:Name="cmbxMaintenanceRestriction" SelectedIndex="0" ItemsSource="{Binding MaintenanceRestrictionCollection}" SelectedValue="{Binding MaintenanceRestriction}" Width="400" Height="Auto" HorizontalAlignment="Left" Margin="100,420,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Label Content="Krav til udstyr" HorizontalAlignment="Left" Margin="100,294,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <ComboBox x:Name="cmbxEquipmentRestriction" SelectedIndex="0" ItemsSource="{Binding EquipmentRestrictionCollection}" SelectedValue="{Binding EquipmentRestriction}" Width="400" Height="Auto"  HorizontalAlignment="Left" Margin="100,329,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Label Content="Krav til måleudstyr" HorizontalAlignment="Left" Margin="550,294,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <ComboBox x:Name="cmbxMeasurementRestriction" SelectedIndex="0" ItemsSource="{Binding MeasurementRestrictionCollection}" SelectedValue="{Binding MeasurementRestriction}" Width="400" Height="Auto" HorizontalAlignment="Left" Margin="550,329,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Vedligeholdelseskrav" HorizontalAlignment="Left" Margin="100,386,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <ComboBox x:Name="cmbxMaintenanceRestriction" SelectedIndex="0" ItemsSource="{Binding MaintenanceRestrictionCollection}" SelectedValue="{Binding MaintenanceRestriction}" Width="400" Height="Auto" HorizontalAlignment="Left" Margin="100,420,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Yderligere krav" HorizontalAlignment="Left" Margin="550,386,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxAdditionalRestriction"  Text="{Binding AdditionalRestriction, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="550,420,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
         <Button x:Name="btnCancel" 
          Content="Spring over" 
