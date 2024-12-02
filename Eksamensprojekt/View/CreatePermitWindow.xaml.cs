@@ -33,6 +33,8 @@ namespace Eksamensprojekt.View
             vm = new SummaryVM(facility);
             DataContext = vm;
             InitializeComponent();
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(this.Close);
         }
 
         

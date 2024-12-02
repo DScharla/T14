@@ -8,6 +8,7 @@ using Eksamensprojekt.Model;
 using System.Windows.Navigation;
 using Eksamensprojekt.View;
 using System.Windows;
+using System.Threading.Channels;
 
 namespace Eksamensprojekt.ViewModel
 {
@@ -165,6 +166,8 @@ namespace Eksamensprojekt.ViewModel
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
         }
+
+        
         public SummaryVM(Facility facility)
         {
             _facilityService = new FacilityService();
@@ -173,9 +176,11 @@ namespace Eksamensprojekt.ViewModel
             this.facility = facility;
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
-            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");            
+            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
+            
+            
         }
-
+        
         //DCD: private
         private void ShowFacilities()
         {
@@ -200,19 +205,40 @@ namespace Eksamensprojekt.ViewModel
         public void AddFacility()
         {
             Facility facility = FromStringToFacility();
-            facility.ID=_facilityService.AddToFacilityRepo(facility);
+            facility.ID = _facilityService.AddToFacilityRepo(facility);
             ShowFacilities();
             CreatePermitWindow permitWindow = new CreatePermitWindow(facility);
             permitWindow.Show();
+            CloseAction();
+            
             //Tilføjelse af 
         }
+        
+
+
+        
         public void AddPermit()
         {
+            /* CreatePermitWindow permitWindow = new CreatePermitWindow(facility);
+            permitWindow.Show();            */
             Permit permit = FromStringToPermit();
             _facilityService.AddToPermitRepo(permit);
+            string messageBoxText = "Tilladelsen er gemt"; 
+            string caption = "Succes"; 
+            MessageBoxButton button = MessageBoxButton.OK; 
+            MessageBoxImage icon = MessageBoxImage.Exclamation; 
+            MessageBoxResult result; 
+            result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+
+            CloseAction();
+
             ShowFacilities();
+
             //Tilføjelse af 
         }
+
+        public Action CloseAction { get; set; }
+
         public Facility FromStringToFacility()
         {
             Facility facility = new Facility();

@@ -25,6 +25,8 @@ namespace Eksamensprojekt.View
             SummaryVM vm = new SummaryVM();
             DataContext = vm;
             InitializeComponent();
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(this.Close);
         }
     }
 }
