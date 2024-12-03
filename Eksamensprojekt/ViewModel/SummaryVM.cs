@@ -20,13 +20,13 @@ namespace Eksamensprojekt.ViewModel
     public class SummaryVM : INotifyPropertyChanged
     {
         //cla rød/grøn test ***
-        private Brush _color = Brushes.Red;
-        public Brush Color
-        {
-            get { return _color; }
-            set
-            { _color = value; }
-        }
+        public string Color { get; } = "Red";
+
+        public string Color2 { get; } = "Blue";
+
+        public string Color3 { get; } = "Yellow";
+
+        public string Color4 { get; } = "Violet";
         //cla rød/grøn test ***
 
         private string _name = string.Empty;
