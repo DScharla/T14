@@ -41,8 +41,7 @@ BEGIN
 END;
 
 GO
-USE VF
-SELECT Text FROM MAINTENANCERESTRICTION
+
 CREATE PROCEDURE uspAddPermit
 	@StartDate Date,
 	@EndDate Date = NULL,
@@ -166,3 +165,25 @@ SET NumberOfIncidents = @NumberOfIncidents
 WHERE FacilityID = @FacilityID
 END
 
+CREATE PROCEDURE uspUpdateFacility
+	@FacilityID Int,
+	@Name NVarChar(50),
+	@UDLNumber NVarChar(20),
+	@OBNumber NVarChar(20),
+	@MinimumPoolSize NVarChar(500) = NULL,
+	@SystemName NVarChar(500) = NULL,
+	@NumberOfIncidents Int,
+	@TotalOverflow Int,
+	@SystemID Int
+AS
+BEGIN
+	UPDATE FACILITY
+	SET 
+		Name = @Name,
+		NumberOfIncidents =@NumberOfIncidents,
+		TotalOverflow = @TotalOverflow,
+		UDLNumber = @UDLNumber,
+		OBNumber = @OBNumber,
+		MinimumPoolSize = @MinimumPoolSize,
+		SystemID = @SystemID
+WHERE FacilityID=@FacilityID;

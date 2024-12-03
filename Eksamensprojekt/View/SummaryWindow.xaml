@@ -77,8 +77,8 @@
         x:Name="lvFacilities"
         Grid.Row="1"
         Margin="10,0,10,0"
-        ItemsSource="{Binding Facilities, UpdateSourceTrigger=PropertyChanged}"
-        SelectedItem="{Binding SelectedAssignment}">
+        ItemsSource="{Binding Facilities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        SelectedItem="{Binding Facility, Mode=TwoWay}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
                     <GridViewColumn Header="UDL"
@@ -198,7 +198,7 @@
                 Grid.Row="2"
                 BorderBrush="Black"
                 BorderThickness="3"
-                Command="{Binding Placeholder}"
+                Command="{Binding EditFacilityCommand}"
                 Background="White"/>
         <Button x:Name="btnAddFacility" 
                 Content="Opret overløbsbygværk" 

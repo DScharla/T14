@@ -1,4 +1,4 @@
-
+USE VF;
 
 CREATE VIEW vwFacility AS
 SELECT        dbo.FACILITY.FacilityID, dbo.FACILITY.Name AS FacilityName, dbo.FACILITY.NumberOfIncidents, dbo.FACILITY.TotalOverflow, dbo.FACILITY.UDLNumber, dbo.FACILITY.OBNumber, dbo.FACILITY.MinimumPoolSize, 

@@ -137,7 +137,12 @@ namespace Eksamensprojekt.ViewModel
             set { _systemOptions = value; }
         }
 
-        private Facility facility;
+        private Facility? _facility;
+        public Facility? Facility
+        {
+            get { return _facility; }
+            set { _facility = value; }
+        }
         //DCD: +1
         private FacilityService _facilityService;
 
@@ -147,11 +152,7 @@ namespace Eksamensprojekt.ViewModel
 
         protected void OnPropertyChanged(string name)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         public ObservableCollection<Facility> Facilities
         {
@@ -162,7 +163,7 @@ namespace Eksamensprojekt.ViewModel
             set
             {
                 _facilities = value;
-                NotifyPropertyChanged();
+                OnPropertyChanged("Facilties");
             }
         }
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "") 
@@ -179,14 +180,23 @@ namespace Eksamensprojekt.ViewModel
 
         public RelayCommand AddPermitCommand => new RelayCommand(
             execute => AddPermit(),
-            canExecute => { return true; }
+            canExecute => { return IsSelectedNull(Facility); }
             );
+        public RelayCommand EditFacilityCommand => new RelayCommand(
+           execute => EditFacility(),
+           canExecute => { return IsSelectedNull(Facility); }
+           );
+        public RelayCommand SaveEditFacilityCommand => new RelayCommand(
+           execute => SaveEditFacility(),
+           canExecute => { return true; }
+           );
         
+
         //DCD: +1
         public SummaryVM()
         {
             _facilityService = new FacilityService();
-            _facilities = new ObservableCollection<Facility>();
+            Facilities = new ObservableCollection<Facility>();
             ShowFacilities();
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
@@ -200,7 +210,7 @@ namespace Eksamensprojekt.ViewModel
             _facilityService = new FacilityService();
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
-            this.facility = facility;
+            Facility = facility;
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
@@ -212,7 +222,7 @@ namespace Eksamensprojekt.ViewModel
         private void ShowFacilities()
         {
             ObservableCollection<Facility> tempFacilities = _facilityService.GetAllData();
-
+            ObservableCollection<Facility> newFacilities = _facilityService.GetAllData();
             foreach (Facility facility in tempFacilities)
             {
                 DateTime now = new DateTime();
@@ -226,7 +236,9 @@ namespace Eksamensprojekt.ViewModel
 
                 tempRestrictions.OrderByDescending(tempRestrictions => tempRestrictions.StartDate);
                 facility.Permits = tempRestrictions;
-                Facilities.Add(facility);
+                newFacilities.Add(facility);
+                Facilities = newFacilities;
+                OnPropertyChanged("Facilities");
             }
         }
 
@@ -275,7 +287,25 @@ namespace Eksamensprojekt.ViewModel
 
             //Tilføjelse af 
         }
+        public void EditFacility()
+        {
+            EditFacilityWindow editFacilityWindow = new EditFacilityWindow(Facility);
+            editFacilityWindow.Show();
 
+        }
+
+        public void SaveEditFacility()
+        {
+            _facilityService.UpdateInFacilityRepo(Facility);
+            ShowFacilities();
+            CloseAction();
+        }
+
+        private bool IsSelectedNull(Facility facility)
+        {
+            if (facility != null) return true;
+            return false;
+        }
         public Action CloseAction { get; set; }
 
         public Facility FromStringToFacility()
@@ -300,7 +330,7 @@ namespace Eksamensprojekt.ViewModel
             permit.MaintenanceRestriction = MaintenanceRestriction;
             permit.MeasurementRestriction = MeasurementRestriction;
             permit.EquipmentRestriction = EquipmentRestriction;
-            permit.FacilityID = facility.ID;
+            permit.FacilityID = Facility.ID;
             return permit;
         }
         public ObservableCollection<string> GetRestrictionOptions(string NameOfRestrictions)
