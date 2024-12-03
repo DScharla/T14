@@ -186,7 +186,7 @@
                                     Height="30"
                                     Margin="0,0,0,0"
                                     Background="MediumAquamarine"
-                                    Command="{Binding Placeholder}"
+                                    Command="{Binding SeeMoreWindow}"
                                     Content="Se mere" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
