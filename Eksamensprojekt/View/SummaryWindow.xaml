@@ -86,7 +86,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding UDLNumber}"
-							   TextTrimming="CharacterEllipsis"
+                                Background="{Binding Color}"
+                               TextTrimming="CharacterEllipsis"
 							   ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
