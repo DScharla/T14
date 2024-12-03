@@ -9,6 +9,16 @@ namespace Eksamensprojekt.Model
 {
     public class Facility
     {
+        //cla rød/grøn test ***
+        private string _incidentsCompliance;
+
+        public string IncidentsCompliance
+        {
+            get { return _incidentsCompliance; }
+            set { _incidentsCompliance = value; }
+        }
+
+        //cla rød/grøn test ***
         private int _ID;
 
         public int ID 

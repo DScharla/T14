@@ -1,3 +1,14 @@
+DROP PROCEDURE uspAddEquipmentRestriction;
+DROP PROCEDURE uspAddMaintenanceRestriction;
+DROP PROCEDURE uspAddMeasurementRestriction;
+DROP PROCEDURE uspAddFacility;
+DROP PROCEDURE uspAddIncident;
+DROP PROCEDURE uspAddOverflow;
+DROP PROCEDURE uspAddPermit;
+DROP PROCEDURE uspAddSystem;
+
+GO
+
 CREATE PROCEDURE uspAddSystem 
 	@NewSystem NVarChar(50)
 AS
@@ -41,8 +52,9 @@ BEGIN
 END;
 
 GO
-USE VF
-SELECT Text FROM MAINTENANCERESTRICTION
+
+
+
 CREATE PROCEDURE uspAddPermit
 	@StartDate Date,
 	@EndDate Date = NULL,
@@ -166,3 +178,28 @@ SET NumberOfIncidents = @NumberOfIncidents
 WHERE FacilityID = @FacilityID
 END
 
+GO
+
+CREATE PROCEDURE uspUpdateFacility
+	@FacilityID Int,
+	@Name NVarChar(50),
+	@UDLNumber NVarChar(20),
+	@OBNumber NVarChar(20),
+	@MinimumPoolSize NVarChar(500),
+	@NumberOfIncidents Int = NULL,
+	@TotalOverflow Int = NULL,
+	@SystemID Int
+AS
+BEGIN
+	UPDATE FACILITY
+	SET 
+		Name = @Name,
+		NumberOfIncidents =@NumberOfIncidents,
+		TotalOverflow = @TotalOverflow,
+		UDLNumber = @UDLNumber,
+		OBNumber = @OBNumber,
+		MinimumPoolSize = @MinimumPoolSize,
+		SystemID = @SystemID
+WHERE FacilityID=@FacilityID
+END
+GO;
