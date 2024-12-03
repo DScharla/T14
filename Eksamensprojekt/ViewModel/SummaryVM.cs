@@ -196,7 +196,7 @@ namespace Eksamensprojekt.ViewModel
             );
         public RelayCommand OpenCreatePermitWindowWithSelectedFacilityCommand => new RelayCommand(
             execute => OpenCreatePermitWindowWithSelectedFacility(),
-            canExecute => { return true; } //IsSelectedNull(Facility) == true; }
+            canExecute => { return IsSelectedNull(Facility); }
             );
        
         public RelayCommand CancelAndCloseCurrentCommand => new RelayCommand(
