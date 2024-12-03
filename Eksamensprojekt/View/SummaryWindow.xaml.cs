@@ -28,6 +28,8 @@ namespace Eksamensprojekt.View
             SummaryVM svm = new SummaryVM();
             DataContext = svm;
             InitializeComponent();
+            if (svm.CloseAction == null)
+                svm.CloseAction = new Action(this.Close);
         }
 
     }

@@ -9,10 +9,14 @@ using System.Windows.Navigation;
 using Eksamensprojekt.View;
 using System.Windows;
 using System.Threading.Channels;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace Eksamensprojekt.ViewModel
+
+
+namespace Eksamensprojekt.ViewModel 
 {
-    public class SummaryVM
+    public class SummaryVM : INotifyPropertyChanged
     {
         private string _name = string.Empty;
         public string Name {  
@@ -138,6 +142,36 @@ namespace Eksamensprojekt.ViewModel
         private FacilityService _facilityService;
 
         private ObservableCollection<Facility> _facilities;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        public ObservableCollection<Facility> Facilities
+        {
+            get
+            {
+                return _facilities;
+            }
+            set
+            {
+                _facilities = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "") 
+        { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+
+        public RelayCommand CreateFacilityCommand => new RelayCommand(
+            execute => OpenCreateFacilityWindow(),
+            canExecute => { return true; }
+            );
         public RelayCommand AddFacilityCommand => new RelayCommand(
             execute => AddFacility(),
             canExecute => { return true; }
@@ -147,14 +181,7 @@ namespace Eksamensprojekt.ViewModel
             execute => AddPermit(),
             canExecute => { return true; }
             );
-        public ObservableCollection<Facility> Facilities { 
-            get {
-                return _facilities; 
-            } 
-            set {
-                ShowFacilities(); 
-            } 
-        }
+        
         //DCD: +1
         public SummaryVM()
         {
@@ -202,6 +229,15 @@ namespace Eksamensprojekt.ViewModel
                 Facilities.Add(facility);
             }
         }
+
+        public void OpenCreateFacilityWindow()
+        {
+            CreateFacilityWindow facilityWindow = new CreateFacilityWindow();
+            //CloseAction();
+            facilityWindow.Show();
+            
+            
+        }
         public void AddFacility()
         {
             Facility facility = FromStringToFacility();
@@ -209,6 +245,7 @@ namespace Eksamensprojekt.ViewModel
             ShowFacilities();
             CreatePermitWindow permitWindow = new CreatePermitWindow(facility);
             permitWindow.Show();
+            ShowFacilities();
             CloseAction();
             
             //Tilføjelse af 
@@ -230,9 +267,11 @@ namespace Eksamensprojekt.ViewModel
             MessageBoxResult result; 
             result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
+            ShowFacilities();
             CloseAction();
 
-            ShowFacilities();
+            
+
 
             //Tilføjelse af 
         }

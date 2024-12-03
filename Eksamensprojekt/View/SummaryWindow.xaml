@@ -77,7 +77,7 @@
         x:Name="lvFacilities"
         Grid.Row="1"
         Margin="10,0,10,0"
-        ItemsSource="{Binding Facilities}"
+        ItemsSource="{Binding Facilities, UpdateSourceTrigger=PropertyChanged}"
         SelectedItem="{Binding SelectedAssignment}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
@@ -208,7 +208,7 @@
                 Grid.Row="2"
                 BorderBrush="Black"
                 BorderThickness="3"
-                Command="{Binding Placeholder}"
+                Command="{Binding CreateFacilityCommand}"
                 Background="White"/>
 
         <Button x:Name="btnAttachPermit" 
