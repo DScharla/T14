@@ -23,7 +23,7 @@ namespace Eksamensprojekt.View
     {
         public SeeMoreWindow(Facility facility)
         {
-            SummaryVM vm = new SummaryVM();
+            SummaryVM vm = new SummaryVM(facility);
             DataContext = vm;
             InitializeComponent();
             if (vm.CloseAction == null)

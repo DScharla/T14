@@ -186,7 +186,7 @@
                                     Height="30"
                                     Margin="0,0,0,0"
                                     Background="MediumAquamarine"
-                                    Command="{Binding SeeMoreWindow}"
+                                    Command="{Binding SeeMoreWindowCommand}"
                                     Content="Se mere" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -200,8 +200,17 @@
 		</ListView.GroupStyle>-->
         </ListView>
 
-
+        
         <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
+        <Button
+    x:Name="btnMore2"
+    Width="100"
+    Height="30"
+    Margin="100,0,0,0"
+    Background="MediumAquamarine"
+    Command="{Binding SeeMoreWindowCommand}"
+    Content="Se mere"
+    Grid.Row="2"/>
         <Button x:Name="btnEditFacility" 
                 Content="Redigér overløbsbygværk" 
                 Width="150" 
