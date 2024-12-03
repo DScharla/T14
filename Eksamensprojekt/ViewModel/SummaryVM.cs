@@ -204,7 +204,6 @@ namespace Eksamensprojekt.ViewModel
             canExecute => { return true; }
             );
             
-        
         public RelayCommand EditFacilityCommand => new RelayCommand(
            execute => EditFacility(),
            canExecute => { return IsSelectedNull(Facility); }
@@ -222,7 +221,7 @@ namespace Eksamensprojekt.ViewModel
             Facilities = new ObservableCollection<Facility>();
             ShowFacilities();
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
-            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
+            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION"); //kan de 3 slettes her fra?
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
         }
@@ -266,7 +265,7 @@ namespace Eksamensprojekt.ViewModel
         public void OpenCreateFacilityWindow()
         {
             CreateFacilityWindow facilityWindow = new CreateFacilityWindow();
-            //CloseAction();
+            CloseAction();
             facilityWindow.Show();
             
             
@@ -277,9 +276,9 @@ namespace Eksamensprojekt.ViewModel
             facility.ID = _facilityService.AddToFacilityRepo(facility);
             ShowFacilities();
             CreatePermitWindow permitWindow = new CreatePermitWindow(facility);
+            CloseAction();
             permitWindow.Show();
             ShowFacilities();
-            CloseAction();
             
             //Tilføjelse af 
         }
@@ -287,14 +286,17 @@ namespace Eksamensprojekt.ViewModel
         public void OpenCreatePermitWindowWithSelectedFacility()
         {
             CreatePermitWindow permitWindow = new CreatePermitWindow(Facility);
-            permitWindow.Show();
             CloseAction();
+            permitWindow.Show();
+            
         }
 
 
         public void CancelAndCloseCurrent()
         {
+            SummaryWindow summaryWindow = new SummaryWindow();
             CloseAction();
+            summaryWindow.Show();
         }
         
         public void AddPermit()
@@ -311,16 +313,19 @@ namespace Eksamensprojekt.ViewModel
             result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
             ShowFacilities();
+            SummaryWindow summaryWindow = new SummaryWindow();
             CloseAction();
+            summaryWindow.Show();
 
-            
+
 
 
             //Tilføjelse af 
         }
-        public void EditFacility()
+        public void EditFacility() //edit Permit?
         {
             EditFacilityWindow editFacilityWindow = new EditFacilityWindow(Facility);
+            CloseAction();
             editFacilityWindow.Show();
 
         }
@@ -329,7 +334,9 @@ namespace Eksamensprojekt.ViewModel
         {
             _facilityService.UpdateInFacilityRepo(Facility);
             ShowFacilities();
+            SummaryWindow summaryWindow = new SummaryWindow();
             CloseAction();
+            summaryWindow.Show();
         }
 
         private bool IsSelectedNull(Facility facility)

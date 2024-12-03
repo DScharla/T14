@@ -237,14 +237,15 @@
         <Button
             x:Name="btnLogOut"
             Grid.Row="2"
-            Width="50"
+            Width="100"  
             Height="30"
             Margin="700,0,0,0"
             Background="White"
             BorderBrush="Black"
             BorderThickness="3"
             Command="{Binding CancelAndCloseCurrentCommand}"
-            Content="Log ud" />
+            Content="Refresh / Log ud" />
+        <!-- logud-knap, før Width="50"-->
 
 
     </Grid>
