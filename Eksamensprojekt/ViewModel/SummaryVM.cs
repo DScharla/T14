@@ -180,7 +180,7 @@ namespace Eksamensprojekt.ViewModel
 
         public RelayCommand AddPermitCommand => new RelayCommand(
             execute => AddPermit(),
-            canExecute => { return IsSelectedNull(Facility); }
+            canExecute => { return true; }
             );
         public RelayCommand EditFacilityCommand => new RelayCommand(
            execute => EditFacility(),
