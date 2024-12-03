@@ -84,11 +84,11 @@
             FontSize="30"
             FontWeight="Bold" />
         <ListView
-            x:Name="lvFacilities"
-            Grid.Row="1"
-            Margin="10,0,10,0"
-            ItemsSource="{Binding Facilities, UpdateSourceTrigger=PropertyChanged}"
-            SelectedItem="{Binding Facility}">
+        x:Name="lvFacilities"
+        Grid.Row="1"
+        Margin="10,0,10,0"
+        ItemsSource="{Binding Facilities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        SelectedItem="{Binding Facility, Mode=TwoWay}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
                     <GridViewColumn Width="150" Header="UDL">
@@ -201,29 +201,27 @@
         </ListView>
 
 
-        <Rectangle Grid.Row="2" Fill="MediumAquamarine" />
-        <Button
-            x:Name="btnEditFacility"
-            Grid.Row="2"
-            Width="150"
-            Height="30"
-            Margin="0,0,500,0"
-            Background="White"
-            BorderBrush="Black"
-            BorderThickness="3"
-            Command="{Binding Placeholder}"
-            Content="Redigér overløbsbygværk" />
-        <Button
-            x:Name="btnAddFacility"
-            Grid.Row="2"
-            Width="150"
-            Height="30"
-            Margin="0,0,100,0"
-            Background="White"
-            BorderBrush="Black"
-            BorderThickness="3"
-            Command="{Binding CreateFacilityCommand}"
-            Content="Opret overløbsbygværk" />
+        <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
+        <Button x:Name="btnEditFacility" 
+                Content="Redigér overløbsbygværk" 
+                Width="150" 
+                Height="30"
+                Margin="0,0,500,0"
+                Grid.Row="2"
+                BorderBrush="Black"
+                BorderThickness="3"
+                Command="{Binding EditFacilityCommand}"
+                Background="White"/>
+        <Button x:Name="btnAddFacility" 
+                Content="Opret overløbsbygværk" 
+                Width="150" 
+                Height="30"
+                Margin="0,0,100,0"
+                Grid.Row="2"
+                BorderBrush="Black"
+                BorderThickness="3"
+                Command="{Binding CreateFacilityCommand}"
+                Background="White"/>
 
         <Button
             x:Name="btnAttachPermit"

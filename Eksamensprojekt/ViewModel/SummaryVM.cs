@@ -149,18 +149,12 @@ namespace Eksamensprojekt.ViewModel
             set { _systemOptions = value; }
         }
 
-        private Facility? facility; //Underscore?
+        private Facility? _facility;
         public Facility? Facility
         {
-            get { return facility; }
-            set
-            {
-                facility = value;
-                OnPropertyChanged();
-            }
+            get { return _facility; }
+            set { _facility = value; }
         }
-
-
         //DCD: +1
         private FacilityService _facilityService;
 
@@ -211,6 +205,16 @@ namespace Eksamensprojekt.ViewModel
             );
             
         
+        public RelayCommand EditFacilityCommand => new RelayCommand(
+           execute => EditFacility(),
+           canExecute => { return IsSelectedNull(Facility); }
+           );
+        public RelayCommand SaveEditFacilityCommand => new RelayCommand(
+           execute => SaveEditFacility(),
+           canExecute => { return true; }
+           );
+        
+
         //DCD: +1
         public SummaryVM()
         {
@@ -229,21 +233,12 @@ namespace Eksamensprojekt.ViewModel
             _facilityService = new FacilityService();
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
-            this.facility = facility;
+            Facility = facility;
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             
             
-        }
-
-        private bool IsSelectedNull(Facility facilty) 
-        {
-            if (facility == null)
-            {
-                return false;
-            }
-            return true;
         }
         
         //DCD: private
@@ -323,7 +318,25 @@ namespace Eksamensprojekt.ViewModel
 
             //Tilføjelse af 
         }
+        public void EditFacility()
+        {
+            EditFacilityWindow editFacilityWindow = new EditFacilityWindow(Facility);
+            editFacilityWindow.Show();
 
+        }
+
+        public void SaveEditFacility()
+        {
+            _facilityService.UpdateInFacilityRepo(Facility);
+            ShowFacilities();
+            CloseAction();
+        }
+
+        private bool IsSelectedNull(Facility facility)
+        {
+            if (facility != null) return true;
+            return false;
+        }
         public Action CloseAction { get; set; }
 
         public Facility FromStringToFacility()
@@ -348,7 +361,7 @@ namespace Eksamensprojekt.ViewModel
             permit.MaintenanceRestriction = MaintenanceRestriction;
             permit.MeasurementRestriction = MeasurementRestriction;
             permit.EquipmentRestriction = EquipmentRestriction;
-            permit.FacilityID = facility.ID;
+            permit.FacilityID = Facility.ID;
             return permit;
         }
         public ObservableCollection<string> GetRestrictionOptions(string NameOfRestrictions)
