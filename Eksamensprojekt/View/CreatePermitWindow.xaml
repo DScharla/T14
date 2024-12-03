@@ -54,7 +54,7 @@
          Background="White"/>
 
         <Label Content="Du er ved at oprette en udledningstilladelse til:" HorizontalAlignment="Center" Margin="700,0,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox Text="{Binding facility.Name, UpdateSourceTrigger=PropertyChanged}" Width="Auto" HorizontalAlignment="Center" Margin="900,25,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" FontWeight="Bold"/>
+        <TextBox Text="{Binding Facility.Name, UpdateSourceTrigger=PropertyChanged}" Width="Auto" HorizontalAlignment="Center" Margin="900,25,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" FontWeight="Bold"/>
 
     </Grid>
 </Window>
