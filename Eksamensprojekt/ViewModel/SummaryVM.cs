@@ -104,6 +104,7 @@ namespace Eksamensprojekt.ViewModel
             get { return _maintenanceRestriction; }
             set { _maintenanceRestriction = value; }
         }
+        
 
         private ObservableCollection<string> _equipmentRestrictionCollection;
 
@@ -137,7 +138,18 @@ namespace Eksamensprojekt.ViewModel
             set { _systemOptions = value; }
         }
 
-        private Facility facility;
+        private Facility? facility; //Underscore?
+        public Facility? Facility
+        {
+            get { return facility; }
+            set
+            {
+                facility = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         //DCD: +1
         private FacilityService _facilityService;
 
@@ -145,13 +157,9 @@ namespace Eksamensprojekt.ViewModel
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void OnPropertyChanged(string name)
+        protected void OnPropertyChanged(string? propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         public ObservableCollection<Facility> Facilities
         {
@@ -162,7 +170,7 @@ namespace Eksamensprojekt.ViewModel
             set
             {
                 _facilities = value;
-                NotifyPropertyChanged();
+                OnPropertyChanged();
             }
         }
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "") 
@@ -181,12 +189,22 @@ namespace Eksamensprojekt.ViewModel
             execute => AddPermit(),
             canExecute => { return true; }
             );
+        public RelayCommand OpenCreatePermitWindowWithSelectedFacilityCommand => new RelayCommand(
+            execute => OpenCreatePermitWindowWithSelectedFacility(),
+            canExecute => { return true; } //IsSelectedNull(Facility) == true; }
+            );
+       
+        public RelayCommand CancelAndCloseCurrentCommand => new RelayCommand(
+            execute => CancelAndCloseCurrent(),
+            canExecute => { return true; }
+            );
+            
         
         //DCD: +1
         public SummaryVM()
         {
             _facilityService = new FacilityService();
-            _facilities = new ObservableCollection<Facility>();
+            Facilities = new ObservableCollection<Facility>();
             ShowFacilities();
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
@@ -206,6 +224,15 @@ namespace Eksamensprojekt.ViewModel
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             
             
+        }
+
+        private bool IsSelectedNull(Facility facilty) 
+        {
+            if (facility == null)
+            {
+                return false;
+            }
+            return true;
         }
         
         //DCD: private
@@ -250,9 +277,19 @@ namespace Eksamensprojekt.ViewModel
             
             //Tilføjelse af 
         }
-        
+
+        public void OpenCreatePermitWindowWithSelectedFacility()
+        {
+            CreatePermitWindow permitWindow = new CreatePermitWindow(Facility);
+            permitWindow.Show();
+            CloseAction();
+        }
 
 
+        public void CancelAndCloseCurrent()
+        {
+            CloseAction();
+        }
         
         public void AddPermit()
         {

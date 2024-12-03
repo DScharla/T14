@@ -78,7 +78,7 @@
         Grid.Row="1"
         Margin="10,0,10,0"
         ItemsSource="{Binding Facilities, UpdateSourceTrigger=PropertyChanged}"
-        SelectedItem="{Binding SelectedAssignment}">
+        SelectedItem="{Binding Facility}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
                     <GridViewColumn Header="UDL"
@@ -87,7 +87,8 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding UDLNumber}"
 							   TextTrimming="CharacterEllipsis"
-							   ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" />
+                               ToolTip="{Binding UDLNumber}" />
+                                <!-- ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" /> -->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -97,7 +98,8 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding OBNumber}"
 							   TextTrimming="CharacterEllipsis"
-							   ToolTip="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}" />
+                               ToolTip="{Binding OBNumber}" />
+                                <!-- ToolTip="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}" /> -->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -107,7 +109,7 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding Permits[0].AllowedYearlyIncidents}"
 							   TextTrimming="CharacterEllipsis"
-							   ToolTip="{Binding EndRegion.DisplayName}" />
+							   ToolTip="{Binding Permits[0].AllowedYearlyIncidents}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -117,7 +119,7 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding Permits[0].AllowedYearlyOverflowVolume}"
 							   TextTrimming="CharacterEllipsis"
-							   ToolTip="{Binding StartAddress}" />
+							   ToolTip="{Binding Permits[0].AllowedYearlyOverflowVolume}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -127,7 +129,7 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding NumberOfIncidents}"
 					                TextTrimming="CharacterEllipsis"
-					                ToolTip="{Binding RegionAssignmentId}" />
+					                ToolTip="{Binding NumberOfIncidents}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -137,7 +139,7 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding TotalOverflow}"
 							   TextTrimming="CharacterEllipsis"
-							   ToolTip="{Binding EndAddress}" />
+							   ToolTip="{Binding TotalOverflow}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>                    
@@ -148,7 +150,7 @@
                                 <TextBlock Text="{Binding Name}"
                                        VerticalAlignment="Center"
 									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding StartRegion.DisplayName}"/>
+									   ToolTip="{Binding Name}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>              
@@ -160,7 +162,7 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding System}"
 									   TextTrimming="CharacterEllipsis"
-									   ToolTip="{Binding AssignmentType}" />
+									   ToolTip="{Binding System}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -219,7 +221,7 @@
                 Grid.Row="2"
                 BorderBrush="Black"
                 BorderThickness="3"
-                Command="{Binding Placeholder}"
+                Command="{Binding OpenCreatePermitWindowWithSelectedFacilityCommand}"
                 Background="White"/>    
         <Button x:Name="btnLogOut" 
                 Content="Log ud" 
@@ -229,7 +231,7 @@
                 Grid.Row="2"
                 BorderBrush="Black"
                 BorderThickness="3"
-                Command="{Binding Placeholder}"
+                Command="{Binding CancelAndCloseCurrentCommand}"
                 Background="White"/>    
 
 

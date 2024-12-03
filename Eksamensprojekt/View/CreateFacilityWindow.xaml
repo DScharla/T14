@@ -34,7 +34,7 @@
          Grid.Row="2"
          BorderBrush="Black"
          BorderThickness="3"
-         Command="{Binding Placeholder}"
+         Command="{Binding CancelAndCloseCurrentCommand}"
          Background="White"/>
         <Button x:Name="btnSaveFacility" 
          Content="Gem Overløbsbygværk" 

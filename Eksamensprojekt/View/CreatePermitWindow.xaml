@@ -40,7 +40,7 @@
          Grid.Row="2"
          BorderBrush="Black"
          BorderThickness="3"
-         Command="{Binding Placeholder}"
+         Command="{Binding CancelAndCloseCurrentCommand}"
          Background="White"/>
         <Button x:Name="btnSavePermit" 
          Content="Tilknyt udledningstilladelse" 
@@ -54,7 +54,7 @@
          Background="White"/>
 
         <Label Content="Du er ved at oprette en udledningstilladelse til:" HorizontalAlignment="Center" Margin="700,0,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox Text="{Binding facility.Name}" Width="Auto" HorizontalAlignment="Center" Margin="900,25,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" FontWeight="Bold"/>
+        <TextBox Text="{Binding facility.Name, UpdateSourceTrigger=PropertyChanged}" Width="Auto" HorizontalAlignment="Center" Margin="900,25,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" FontWeight="Bold"/>
 
     </Grid>
 </Window>
