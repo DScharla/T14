@@ -220,7 +220,10 @@ namespace Eksamensprojekt.ViewModel
            execute => SaveEditFacility(),
            canExecute => { return true; }
            );
-        
+        public RelayCommand SeeMoreWindowCommand => new RelayCommand(
+            execute => SeeMore(),
+            canExecute => { return true; }
+            );
 
         //DCD: +1
         public SummaryVM()
@@ -228,9 +231,9 @@ namespace Eksamensprojekt.ViewModel
             _facilityService = new FacilityService();
             Facilities = new ObservableCollection<Facility>();
             ShowFacilities();
-            _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
-            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION"); //kan de 3 slettes her fra?
-            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
+/*            _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
+            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
+            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");*/
             _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
         }
 
@@ -244,8 +247,8 @@ namespace Eksamensprojekt.ViewModel
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
-            
-            
+            _systemOptions = GetRestrictionOptions("SYSTEM");
+
         }
         
         //DCD: private
@@ -372,6 +375,11 @@ namespace Eksamensprojekt.ViewModel
             SummaryWindow summaryWindow = new SummaryWindow();
             CloseAction();
             summaryWindow.Show();
+        }
+        public void SeeMore()
+        {
+            SeeMoreWindow seeMoreWindow = new SeeMoreWindow(Facility);
+            seeMoreWindow.Show();
         }
 
         private bool IsSelectedNull(Facility facility)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Eksamensprojekt.Model;
+using Eksamensprojekt.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,32 +13,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Eksamensprojekt.ViewModel;
-using Eksamensprojekt.Model;
 
 namespace Eksamensprojekt.View
 {
     /// <summary>
-    /// Interaction logic for CreatePermitWindow.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class CreatePermitWindow : Window
+    public partial class SeeMoreWindow : Window
     {
-        public SummaryVM vm;
-/*        public CreatePermitWindow()
+        public SeeMoreWindow(Facility facility)
         {
-            vm = new SummaryVM();
-            DataContext = vm;
-            InitializeComponent();
-        }*/
-        public CreatePermitWindow(Facility facility)
-        {
-            vm = new SummaryVM(facility);
+            SummaryVM vm = new SummaryVM(facility);
             DataContext = vm;
             InitializeComponent();
             if (vm.CloseAction == null)
                 vm.CloseAction = new Action(this.Close);
         }
-
-        
     }
 }

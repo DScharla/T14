@@ -1,0 +1,108 @@
+﻿<Window x:Class="Eksamensprojekt.View.SeeMoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eksamensprojekt.View"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        
+        WindowState="Normal"
+        Title="Detaljer" Height="400" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="MediumAquamarine"/>
+        <Label Content="Detaljer om:" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="20" FontWeight="Bold"/>
+        <Label Content="{Binding Facility.Name}" HorizontalAlignment="Left" Margin="156,0,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+        <Rectangle Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1">
+            <TextBlock.Inlines>
+                <Run FontWeight="Bold" FontSize="14" Text="Overløbsbygværket:" />
+            </TextBlock.Inlines>
+        </TextBlock>
+        <StackPanel HorizontalAlignment="Left" Margin="10,30,10,0" VerticalAlignment="Top" Grid.Row="1" Orientation="Horizontal" MaxWidth="200">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Margin" Value="0,0,10,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Width="50">
+                <TextBlock.Inlines>
+                    <Run Text="UDL:" TextDecorations="Underline"/>
+                    <LineBreak></LineBreak>
+                    <Run Text="{Binding Facility.UDLNumber}"/>
+                </TextBlock.Inlines>
+            </TextBlock>
+            <TextBlock>
+                <TextBlock.Inlines>
+                    <Run Text="OB-Nr.:" TextDecorations="Underline"/>
+                    <LineBreak></LineBreak>
+                    <Run Text="123"/>
+                </TextBlock.Inlines>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Margin="10,80,10,0" VerticalAlignment="Top" Grid.Row="1" Orientation="Horizontal" MaxWidth="200">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Margin" Value="0,0,10,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Width="140">
+                <TextBlock.Inlines>
+                    <Run Text="UDL:" TextDecorations="Underline"/>
+                    <LineBreak></LineBreak>
+                    <Run Text="123"/>
+                </TextBlock.Inlines>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Margin="10,130,10,0" VerticalAlignment="Top" Grid.Row="1" Orientation="Horizontal" MaxWidth="140">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Margin" Value="0,0,10,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Width="140" TextWrapping="Wrap">
+                <TextBlock.Inlines>
+                    <Run Text="Minimums volumen af sparrebassin:" TextDecorations="Underline"/>
+                    <LineBreak></LineBreak>
+                    <Run Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has"/>
+                </TextBlock.Inlines>
+            </TextBlock>
+        </StackPanel>
+        <Label Content="OB-nr." HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxOBNumber" Text="{Binding OBNumber, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="300,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Navn*" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxName"  Text="{Binding Name, Mode=TwoWay}" TextWrapping="Wrap" Width="400" Height="auto" HorizontalAlignment="Left" Margin="500,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label  Content="Minimum sparebassin volumen (m3)" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxMinimumPoolSize" Text="{Binding MinimumPoolSize, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
+        <Button x:Name="btnCancel" 
+         Content="Annuller" 
+         Width="150" 
+         Height="30"
+         Margin="152,0,498,0"
+         Grid.Row="2"
+         BorderBrush="Black"
+         BorderThickness="3"
+         Command="{Binding CancelAndCloseCurrentCommand}"
+         Background="White"/>
+        <Button x:Name="btnSaveFacility" 
+         Content="Gem Overløbsbygværk" 
+         Width="150" 
+         Height="30"
+         Margin="447,0,203,0"
+         Grid.Row="2"
+         BorderBrush="Black"
+         BorderThickness="3"       
+         Command="{Binding AddFacilityCommand}"
+         Background="White"/>
+
+
+
+
+    </Grid>
+</Window>

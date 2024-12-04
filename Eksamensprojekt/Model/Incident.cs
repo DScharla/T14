@@ -36,6 +36,19 @@ namespace Eksamensprojekt.Model
             set { _incidentID = value; }
         }
 
+        public Incident(DateTime startTime, DateTime EndTime, int OverflowVolume)
+        {
+            this._startTime = startTime;
+            this._endTime = EndTime;
+            this._overflowVolume = OverflowVolume;
+        }
+        public Incident(DateTime startTime, DateTime EndTime, int OverflowVolume, int incidentID) 
+        {
+            this._startTime = startTime;
+            this._endTime = EndTime;
+            this._overflowVolume = OverflowVolume;
+            this._incidentID = IncidentID;
+        }
 
     }
 }
