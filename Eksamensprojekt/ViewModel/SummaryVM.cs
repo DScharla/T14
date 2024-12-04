@@ -224,9 +224,9 @@ namespace Eksamensprojekt.ViewModel
             _facilityService = new FacilityService();
             Facilities = new ObservableCollection<Facility>();
             ShowFacilities();
-            _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
+/*            _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
-            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
+            _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");*/
             _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
         }
 
@@ -240,8 +240,8 @@ namespace Eksamensprojekt.ViewModel
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
-            
-            
+            _systemOptions = GetRestrictionOptions("SYSTEM");
+
         }
         
         //DCD: private

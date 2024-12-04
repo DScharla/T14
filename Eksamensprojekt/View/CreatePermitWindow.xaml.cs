@@ -22,12 +22,12 @@ namespace Eksamensprojekt.View
     public partial class CreatePermitWindow : Window
     {
         public SummaryVM vm;
-        public CreatePermitWindow()
+/*        public CreatePermitWindow()
         {
             vm = new SummaryVM();
             DataContext = vm;
             InitializeComponent();
-        }
+        }*/
         public CreatePermitWindow(Facility facility)
         {
             vm = new SummaryVM(facility);
