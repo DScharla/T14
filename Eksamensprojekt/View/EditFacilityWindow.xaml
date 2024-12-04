@@ -13,7 +13,7 @@
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
         <Rectangle Grid.Row="0" Fill="MediumAquamarine"/>
-        <Label Content="Opret overløbsbygværk" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30" FontWeight="Bold"/>
+        <Label Content="Redigér overløbsbygværk" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30" FontWeight="Bold"/>
         <Rectangle Grid.Row="1"/>
         <Label Content="UDL*" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxUDLNumber" Text="{Binding Facility.UDLNumber, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="100,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
@@ -22,7 +22,7 @@
         <Label Content="Navn*" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxName"  Text="{Binding Facility.Name, Mode=TwoWay}"  TextWrapping="Wrap" Width="400" Height="auto" HorizontalAlignment="Left" Margin="500,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Label Content="System" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <ComboBox x:Name="cmbxSystem" ItemsSource="{Binding SystemOptions}" SelectedValue="{Binding System}" SelectedIndex="1" Width="150" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <ComboBox x:Name="cmbxSystem" ItemsSource="{Binding SystemOptions, Mode=TwoWay}" SelectedValue="{Binding SystemOptions}" SelectedIndex="1" Width="150" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Label  Content="Minimum sparebassin volumen (m3)" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <TextBox x:Name="txtbxMinimumPoolSize" Text="{Binding Facility.MinimumPoolSize, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
         <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>

@@ -202,15 +202,14 @@
 
         
         <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
-        <Button
-    x:Name="btnMore2"
-    Width="100"
-    Height="30"
-    Margin="100,0,0,0"
-    Background="MediumAquamarine"
-    Command="{Binding SeeMoreWindowCommand}"
-    Content="Se mere"
-    Grid.Row="2"/>
+        <Button x:Name="btnMore2"
+                Width="100"
+                Height="30"
+                Margin="100,0,0,0"
+                Background="White"
+                Command="{Binding SeeMoreWindowCommand}"
+                Content="Se mere"
+                Grid.Row="2"/>  
         <Button x:Name="btnEditFacility" 
                 Content="Redigér overløbsbygværk" 
                 Width="150" 
