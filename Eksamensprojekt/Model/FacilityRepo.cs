@@ -63,6 +63,7 @@ namespace Eksamensprojekt.Model
             catch { entity.MinimumPoolSize = null; }
             
             entity.System = (string)reader["SystemName"];
+            
 
             return (T)entity;
 

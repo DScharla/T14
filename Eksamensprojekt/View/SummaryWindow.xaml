@@ -94,29 +94,21 @@
                     <GridViewColumn Width="150" Header="UDL">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Border Background="{Binding DataContext.Color4, RelativeSource={RelativeSource AncestorType=Window}}">
-                                    <TextBlock
-                                        Background="{Binding Color2}"
-                                        Text="{Binding UDLNumber}"
-                                        TextTrimming="CharacterEllipsis"
-                                        ToolTip="{Binding UDLNumber}" />
-                                </Border>
-
-                                <!--  ToolTip="{Binding Start, StringFormat={}{0:dd/MM/yy HH:mm}}" />  -->
+                                <TextBlock
+                                    Background="{Binding Color2}"
+                                    Text="{Binding UDLNumber}"
+                                    TextTrimming="CharacterEllipsis"
+                                    ToolTip="{Binding UDLNumber}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="150" Header="OB-nr">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Border Background="{Binding DataContext.Color, RelativeSource={RelativeSource AncestorType=Window}}">
-                                    <TextBlock
-                                        Text="{Binding OBNumber}"
-                                        TextTrimming="CharacterEllipsis"
-                                        ToolTip="{Binding OBNumber}" />
-                                </Border>
-
-                                <!--  ToolTip="{Binding Finish, StringFormat={}{0:dd/MM/yy HH:mm}}" />  -->
+                                <TextBlock
+                                    Text="{Binding OBNumber}"
+                                    TextTrimming="CharacterEllipsis"
+                                    ToolTip="{Binding OBNumber}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -144,6 +136,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
+                                    Background="{Binding IncidentsCompliance}"
                                     Text="{Binding NumberOfIncidents}"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding NumberOfIncidents}" />
@@ -154,6 +147,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
+                                    Background="{Binding OverflowCompliance}"
                                     Text="{Binding TotalOverflow}"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding TotalOverflow}" />

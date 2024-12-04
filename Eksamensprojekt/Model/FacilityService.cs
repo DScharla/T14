@@ -20,6 +20,8 @@ namespace Eksamensprojekt.Model
             return tempFacilities;
         }
 
+        
+
         public ObservableCollection<Permit> AddPermitsToFacility(ObservableCollection<Facility> facilities)
         {
             ObservableCollection<Permit> restrictions = permitRepo.GetAll();

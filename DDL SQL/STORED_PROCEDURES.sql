@@ -202,4 +202,4 @@ BEGIN
 		SystemID = @SystemID
 WHERE FacilityID=@FacilityID
 END
-GO;
+GO

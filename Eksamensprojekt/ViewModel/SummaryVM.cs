@@ -20,13 +20,21 @@ namespace Eksamensprojekt.ViewModel
     public class SummaryVM : INotifyPropertyChanged
     {
         //cla rød/grøn test ***
-        public string Color { get; } = "Red";
 
-        public string Color2 { get; } = "Blue";
+        private string _incidentsCompliance;
+        public string IncidentsCompliance
+        {
+            get { return _incidentsCompliance; }
+            set { _incidentsCompliance = value; }
+        }
 
-        public string Color3 { get; } = "Yellow";
+        private string _overflowCompliance;
 
-        public string Color4 { get; } = "Violet";
+        public string OverflowCompliance
+        {
+            get { return _overflowCompliance; }
+            set { _overflowCompliance = value; }
+        }
         //cla rød/grøn test ***
 
         private string _name = string.Empty;
@@ -264,9 +272,36 @@ namespace Eksamensprojekt.ViewModel
 
                 tempRestrictions.OrderByDescending(tempRestrictions => tempRestrictions.StartDate);
                 facility.Permits = tempRestrictions;
+                //cla***
+
+                facility.IncidentsCompliance = CheckIncidentsCompliance(facility);
+                facility.OverflowCompliance = CheckOverflowCompliance(facility);
+
+                //cla***
                 Facilities.Add(facility);
             }
         }
+
+        //cla***
+        public string CheckIncidentsCompliance(Facility facility)
+        {
+            if (facility.NumberOfIncidents > facility.Permits[0].AllowedYearlyIncidents)
+            {
+                return "Red";
+            }
+            return "Green";
+        }
+
+        public string CheckOverflowCompliance(Facility facility)
+        {
+            if (facility.TotalOverflow > facility.Permits[0].AllowedYearlyOverflowVolume)
+            {
+                return "Red";
+            }
+            return "Green";
+        }
+        //entity.IncidentsCompliance = CheckIncidentsCompliance();
+        //cla***
 
         public void OpenCreateFacilityWindow()
         {

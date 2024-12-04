@@ -18,6 +18,14 @@ namespace Eksamensprojekt.Model
             set { _incidentsCompliance = value; }
         }
 
+        private string _overflowCompliance;
+
+        public string OverflowCompliance
+        {
+            get { return _overflowCompliance; }
+            set { _overflowCompliance = value; }
+        }
+
         //cla rød/grøn test ***
         private int _ID;
 
