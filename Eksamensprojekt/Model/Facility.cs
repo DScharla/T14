@@ -83,10 +83,32 @@ namespace Eksamensprojekt.Model
             get { return _permits; }
             set { _permits = value; }
         }
+        private ObservableCollection<Incident> _incidents;
+
+        public ObservableCollection<Incident> Incidents
+        {
+            get { return _incidents; }
+            set 
+            { 
+                _incidents = value;
+                NumberOfIncidents = Incidents.Count;
+                TotalOverflow = CalculateTotalOverflow(Incidents);
+            }
+        }
 
         public Facility()
         {
-            _permits = new ObservableCollection<Permit>();
+            Permits = new ObservableCollection<Permit>();
+            Incidents = new ObservableCollection<Incident>();
+        }
+        public int CalculateTotalOverflow(ObservableCollection<Incident> incidents)
+        {
+            int totalOverflow = 0;
+            foreach (Incident incident in Incidents)
+            {
+                totalOverflow += incident.OverflowVolume; 
+            }
+            return totalOverflow;
         }
     }
 }
