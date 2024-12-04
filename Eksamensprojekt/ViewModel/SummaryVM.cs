@@ -157,18 +157,12 @@ namespace Eksamensprojekt.ViewModel
             set { _systemOptions = value; }
         }
 
-        private Facility? facility; //Underscore?
+        private Facility? _facility;
         public Facility? Facility
         {
-            get { return facility; }
-            set
-            {
-                facility = value;
-                OnPropertyChanged();
-            }
+            get { return _facility; }
+            set { _facility = value; }
         }
-
-
         //DCD: +1
         private FacilityService _facilityService;
 
@@ -210,7 +204,7 @@ namespace Eksamensprojekt.ViewModel
             );
         public RelayCommand OpenCreatePermitWindowWithSelectedFacilityCommand => new RelayCommand(
             execute => OpenCreatePermitWindowWithSelectedFacility(),
-            canExecute => { return true; } //IsSelectedNull(Facility) == true; }
+            canExecute => { return IsSelectedNull(Facility); }
             );
        
         public RelayCommand CancelAndCloseCurrentCommand => new RelayCommand(
@@ -218,7 +212,16 @@ namespace Eksamensprojekt.ViewModel
             canExecute => { return true; }
             );
             
+        public RelayCommand EditFacilityCommand => new RelayCommand(
+           execute => EditFacility(),
+           canExecute => { return IsSelectedNull(Facility); }
+           );
+        public RelayCommand SaveEditFacilityCommand => new RelayCommand(
+           execute => SaveEditFacility(),
+           canExecute => { return true; }
+           );
         
+
         //DCD: +1
         public SummaryVM()
         {
@@ -226,7 +229,7 @@ namespace Eksamensprojekt.ViewModel
             Facilities = new ObservableCollection<Facility>();
             ShowFacilities();
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
-            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
+            _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION"); //kan de 3 slettes her fra?
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
         }
@@ -237,21 +240,12 @@ namespace Eksamensprojekt.ViewModel
             _facilityService = new FacilityService();
             _facilities = new ObservableCollection<Facility>();
             ShowFacilities();
-            this.facility = facility;
+            Facility = facility;
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             
             
-        }
-
-        private bool IsSelectedNull(Facility facilty) 
-        {
-            if (facility == null)
-            {
-                return false;
-            }
-            return true;
         }
         
         //DCD: private
@@ -306,7 +300,7 @@ namespace Eksamensprojekt.ViewModel
         public void OpenCreateFacilityWindow()
         {
             CreateFacilityWindow facilityWindow = new CreateFacilityWindow();
-            //CloseAction();
+            CloseAction();
             facilityWindow.Show();
             
             
@@ -317,9 +311,9 @@ namespace Eksamensprojekt.ViewModel
             facility.ID = _facilityService.AddToFacilityRepo(facility);
             ShowFacilities();
             CreatePermitWindow permitWindow = new CreatePermitWindow(facility);
+            CloseAction();
             permitWindow.Show();
             ShowFacilities();
-            CloseAction();
             
             //Tilføjelse af 
         }
@@ -327,14 +321,17 @@ namespace Eksamensprojekt.ViewModel
         public void OpenCreatePermitWindowWithSelectedFacility()
         {
             CreatePermitWindow permitWindow = new CreatePermitWindow(Facility);
-            permitWindow.Show();
             CloseAction();
+            permitWindow.Show();
+            
         }
 
 
         public void CancelAndCloseCurrent()
         {
+            SummaryWindow summaryWindow = new SummaryWindow();
             CloseAction();
+            summaryWindow.Show();
         }
         
         public void AddPermit()
@@ -351,14 +348,37 @@ namespace Eksamensprojekt.ViewModel
             result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
             ShowFacilities();
+            SummaryWindow summaryWindow = new SummaryWindow();
             CloseAction();
+            summaryWindow.Show();
 
-            
+
 
 
             //Tilføjelse af 
         }
+        public void EditFacility() //edit Permit?
+        {
+            EditFacilityWindow editFacilityWindow = new EditFacilityWindow(Facility);
+            CloseAction();
+            editFacilityWindow.Show();
 
+        }
+
+        public void SaveEditFacility()
+        {
+            _facilityService.UpdateInFacilityRepo(Facility);
+            ShowFacilities();
+            SummaryWindow summaryWindow = new SummaryWindow();
+            CloseAction();
+            summaryWindow.Show();
+        }
+
+        private bool IsSelectedNull(Facility facility)
+        {
+            if (facility != null) return true;
+            return false;
+        }
         public Action CloseAction { get; set; }
 
         public Facility FromStringToFacility()
@@ -383,7 +403,7 @@ namespace Eksamensprojekt.ViewModel
             permit.MaintenanceRestriction = MaintenanceRestriction;
             permit.MeasurementRestriction = MeasurementRestriction;
             permit.EquipmentRestriction = EquipmentRestriction;
-            permit.FacilityID = facility.ID;
+            permit.FacilityID = Facility.ID;
             return permit;
         }
         public ObservableCollection<string> GetRestrictionOptions(string NameOfRestrictions)

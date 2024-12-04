@@ -53,5 +53,9 @@ namespace Eksamensprojekt.Model
             restrictionOptions = permitRepo.GetRestrictionOptionsFromDB(NameOfRestriction);
             return restrictionOptions;
         }
+        public void UpdateInFacilityRepo(Facility facility)
+        {
+            facilityRepo.Update(facility);
+        }
     }
 }

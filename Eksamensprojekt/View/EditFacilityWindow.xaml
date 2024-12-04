@@ -1,0 +1,54 @@
+﻿<Window x:Class="Eksamensprojekt.View.EditFacilityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eksamensprojekt.View"
+        mc:Ignorable="d"
+        Title="Redigér overløbsbygværk" Height="800" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="MediumAquamarine"/>
+        <Label Content="Redigér overløbsbygværk" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="30" FontWeight="Bold"/>
+        <Rectangle Grid.Row="1"/>
+        <Label Content="UDL*" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxUDLNumber" Text="{Binding Facility.UDLNumber, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="100,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="OB-nr.*" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxOBNumber" Text="{Binding Facility.OBNumber, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="300,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Navn*" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxName"  Text="{Binding Facility.Name, Mode=TwoWay}"  TextWrapping="Wrap" Width="400" Height="auto" HorizontalAlignment="Left" Margin="500,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="System" HorizontalAlignment="Left" Margin="100,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <ComboBox x:Name="cmbxSystem" ItemsSource="{Binding SystemOptions}" SelectedValue="{Binding Facility.System, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="100,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label  Content="Minimum sparebassin volumen (m3)" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxMinimumPoolSize" Text="{Binding Facility.MinimumPoolSize, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
+        <Button x:Name="btnCancel" 
+         Content="Annuller" 
+         Width="150" 
+         Height="30"
+         Margin="152,0,498,0"
+         Grid.Row="2"
+         BorderBrush="Black"
+         BorderThickness="3"
+         Command="{Binding CancelAndCloseCurrentCommand}"
+         Background="White"/>
+        <Button x:Name="btnSaveFacility" 
+         Content="Gem Overløbsbygværk" 
+         Width="150" 
+         Height="30"
+         Margin="447,0,203,0"
+         Grid.Row="2"
+         BorderBrush="Black"
+         BorderThickness="3"       
+         Command="{Binding SaveEditFacilityCommand}"
+         Background="White"/>
+
+        
+
+
+    </Grid>
+</Window>

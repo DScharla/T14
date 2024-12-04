@@ -102,7 +102,45 @@ namespace Eksamensprojekt.Model
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            Facility facility = (Facility)entity;
+            int systemID;
+            string GetSystemIDQuery = $"SELECT SystemID FROM SYSTEM WHERE Text='{facility.System}'";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand getSystemID = new SqlCommand(GetSystemIDQuery, connection);
+                connection.Open();
+
+                systemID = (int)getSystemID.ExecuteScalar();
+            }
+            string UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+            if (facility.NumberOfIncidents == null || facility.TotalOverflow == null)
+            {
+                if (facility.TotalOverflow == null && facility.NumberOfIncidents == null)
+                {
+                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+                }
+                else if (facility.TotalOverflow == null)
+                {
+                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+                }
+                else if (facility.NumberOfIncidents == null)
+                {
+                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+                }
+               
+            }
+                
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                
+                SqlCommand UpdateFacility = new SqlCommand(UpdateQuery, connection);
+                connection.Open();
+                UpdateFacility.ExecuteScalar();
+
+            }
         }
     }
 }
