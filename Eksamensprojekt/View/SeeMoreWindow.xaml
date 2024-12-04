@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterOwner"
         
         WindowState="Normal"
-        Title="Detaljer" Height="400" Width="600">
+        Title="Detaljer" Height="500" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
@@ -41,7 +41,7 @@
                 <TextBlock.Inlines>
                     <Run Text="OB-Nr.:" TextDecorations="Underline"/>
                     <LineBreak></LineBreak>
-                    <Run Text="123"/>
+                    <Run Text="{Binding Facility.OBNumber}"/>
                 </TextBlock.Inlines>
             </TextBlock>
         </StackPanel>
@@ -53,9 +53,9 @@
             </StackPanel.Resources>
             <TextBlock Width="140">
                 <TextBlock.Inlines>
-                    <Run Text="UDL:" TextDecorations="Underline"/>
+                    <Run Text="System:" TextDecorations="Underline"/>
                     <LineBreak></LineBreak>
-                    <Run Text="123"/>
+                    <Run Text="{Binding Facility.System}"/>
                 </TextBlock.Inlines>
             </TextBlock>
         </StackPanel>
@@ -67,35 +67,53 @@
             </StackPanel.Resources>
             <TextBlock Width="140" TextWrapping="Wrap">
                 <TextBlock.Inlines>
-                    <Run Text="Minimums volumen af sparrebassin:" TextDecorations="Underline"/>
+                    <Run Text="Minimums volumen af sparrebassin (m3):" TextDecorations="Underline"/>
                     <LineBreak></LineBreak>
-                    <Run Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has"/>
+                    <Run Text="{Binding Facility.MinimumPoolSize}"/>
                 </TextBlock.Inlines>
             </TextBlock>
         </StackPanel>
-        <Label Content="OB-nr." HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxOBNumber" Text="{Binding OBNumber, Mode=TwoWay}" Width="150" HorizontalAlignment="Left" Margin="300,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label Content="Navn*" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxName"  Text="{Binding Name, Mode=TwoWay}" TextWrapping="Wrap" Width="400" Height="auto" HorizontalAlignment="Left" Margin="500,40,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <Label  Content="Minimum sparebassin volumen (m3)" HorizontalAlignment="Left" Margin="300,110,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxMinimumPoolSize" Text="{Binding MinimumPoolSize, Mode=TwoWay}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,140,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <Label Content="Gyldighedsperiode (fra-til):" HorizontalAlignment="Left" Margin="300,50,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxPermit1StartDate" Text="{Binding skrillex}" Width="150" HorizontalAlignment="Left" Margin="300,80,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <!-- CO: skal startdate og enddate vises i datepickers (som linjen nedenfor) eller i textboxe/textblokke/labels (linjen ovenfor) -->
+        <DatePicker x:Name="dpPermit1StartDate" SelectedDate="{Binding skrillex}" Width="150" HorizontalAlignment="Left" Margin="300,80,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox Text="-" HorizontalAlignment="Left" Margin="455,80,0,0" VerticalAlignment="Top" Grid.Row="1" IsReadOnly="True" FontSize="20" FontWeight="Bold"/>
+        <TextBox x:Name="txtbxPermit1EndDate" Text="{Binding skrillex}" Width="150" HorizontalAlignment="Left" Margin="475,80,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <!-- CO: skal startdate og enddate vises i datepickers (som linjen nedenfor) eller i textboxe/textblokke/labels (linjen ovenfor) -->
+        <DatePicker x:Name="dpPermit1EndDate" SelectedDate="{Binding skrillex}" Width="150" HorizontalAlignment="Left" Margin="475,80,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+
+        <Label  Content="Krav til udstyr:" HorizontalAlignment="Left" Margin="300,120,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxPermit1EquipmentRestriction" Text="{Binding skrillex}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,150,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
-        <Button x:Name="btnCancel" 
-         Content="Annuller" 
+        <Button x:Name="btnPermit1"
+         VerticalAlignment="Top"
+         Content="Permit 1" 
          Width="150" 
          Height="30"
-         Margin="152,0,498,0"
-         Grid.Row="2"
+         Margin="0,10,350,0"
+         Grid.Row="1"
          BorderBrush="Black"
          BorderThickness="3"
          Command="{Binding CancelAndCloseCurrentCommand}"
          Background="White"/>
-        <Button x:Name="btnSaveFacility" 
-         Content="Gem Overløbsbygværk" 
+        <Button x:Name="btnPermit2" 
+         VerticalAlignment="Top"
+         Content="Permit 2" 
          Width="150" 
          Height="30"
-         Margin="447,0,203,0"
-         Grid.Row="2"
+         Margin="0,10,50,0"
+         Grid.Row="1"
+         BorderBrush="Black"
+         BorderThickness="3"       
+         Command="{Binding AddFacilityCommand}"
+         Background="White"/>
+        <Button x:Name="btnPermit3" 
+         VerticalAlignment="Top"
+         Content="Permit 3" 
+         Width="150" 
+         Height="30"
+         Margin="250,10,0,0"
+         Grid.Row="1"
          BorderBrush="Black"
          BorderThickness="3"       
          Command="{Binding AddFacilityCommand}"
