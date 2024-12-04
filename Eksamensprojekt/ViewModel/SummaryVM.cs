@@ -212,7 +212,10 @@ namespace Eksamensprojekt.ViewModel
            execute => SaveEditFacility(),
            canExecute => { return true; }
            );
-        
+        public RelayCommand SeeMoreWindowCommand => new RelayCommand(
+            execute => SeeMore(),
+            canExecute => { return true; }
+            );
 
         //DCD: +1
         public SummaryVM()
@@ -337,6 +340,11 @@ namespace Eksamensprojekt.ViewModel
             SummaryWindow summaryWindow = new SummaryWindow();
             CloseAction();
             summaryWindow.Show();
+        }
+        public void SeeMore()
+        {
+            SeeMoreWindow seeMoreWindow = new SeeMoreWindow(Facility);
+            seeMoreWindow.Show();
         }
 
         private bool IsSelectedNull(Facility facility)
