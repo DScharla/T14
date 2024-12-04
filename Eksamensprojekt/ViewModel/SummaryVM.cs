@@ -279,7 +279,7 @@ namespace Eksamensprojekt.ViewModel
         //cla***
         public string CheckIncidentsCompliance(Facility facility)
         {
-            if (facility.NumberOfIncidents > facility.Permits[0].AllowedYearlyIncidents)
+            if (facility.Permits.Count > 0 && facility.NumberOfIncidents > facility.Permits[0].AllowedYearlyIncidents)
             {
                 return "Red";
             }
@@ -288,7 +288,7 @@ namespace Eksamensprojekt.ViewModel
 
         public string CheckOverflowCompliance(Facility facility)
         {
-            if (facility.TotalOverflow > facility.Permits[0].AllowedYearlyOverflowVolume)
+            if (facility.Permits.Count > 0 && facility.TotalOverflow > facility.Permits[0].AllowedYearlyOverflowVolume)
             {
                 return "Red";
             }

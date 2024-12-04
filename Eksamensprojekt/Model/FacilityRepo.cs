@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Microsoft.Data.SqlClient;
 using System.Security.Cryptography.Xml;
+using System.Data.Common;
 
 namespace Eksamensprojekt.Model
 {
@@ -79,19 +80,36 @@ namespace Eksamensprojekt.Model
         public int Add(T entity)
         {
             Facility facility = (Facility)entity;
-            int newID;
-            string AddQuery = $"DECLARE @newFacilityID Int;\nEXEC uspAddFacility @Name = \'{entity.Name}\', @UDLNumber=\'{entity.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemName=\'{entity.System}\', @FacilityID = @newFacilityID OUTPUT;\nSELECT @newFacilityID;";
-
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                
 
-                SqlCommand command = new SqlCommand(AddQuery, connection);
-                connection.Open();
-                newID = (int)command.ExecuteScalar();
+                using (var executeCommand = new SqlCommand("uspAddFacility", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    executeCommand.Parameters.AddWithValue("@Name", entity.Name);
+                    executeCommand.Parameters.AddWithValue("@UDLNumber", entity.UDLNumber);
+                    executeCommand.Parameters.AddWithValue("@OBNumber", entity.OBNumber);
+                    executeCommand.Parameters.AddWithValue("@MinimumPoolSize", entity.MinimumPoolSize);
+                    executeCommand.Parameters.AddWithValue("@SystemName", entity.System);
+                    
+
+                    SqlParameter facilityIDParam = new SqlParameter("@FacilityID", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
+                    executeCommand.Parameters.Add(facilityIDParam);
+
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+                    facility.ID = (int)facilityIDParam.Value;
+                }           
+                 
+                             
 
             }
 
-            return newID;
+            return facility.ID;
         }
 
         public void Remove(T entity)
