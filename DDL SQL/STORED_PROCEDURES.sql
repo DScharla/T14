@@ -23,32 +23,26 @@ CREATE PROCEDURE uspAddFacility
 	@UDLNumber NVarChar(20),
 	@OBNumber NVarChar(20),
 	@MinimumPoolSize NVarChar(500) = NULL,
-	@SystemName NVarChar(500) = NULL,
+	@SystemID Int = NULL,
 	@FacilityID Int OUTPUT
 AS
 BEGIN
-	IF EXISTS(SELECT SystemID FROM SYSTEM WHERE Text=@SystemName)
-		BEGIN
-			DECLARE @NYVariabel Int;
-			SELECT @NYVariabel = SystemID
-			From SYSTEM
-			WHERE Text=@SystemName;
-
-			INSERT INTO FACILITY (
-				Name,
-				UDLNumber,
-				OBNumber,
-				MinimumPoolSize,
-				SystemID)
-			VALUES (
-				@Name,
-				@UDLNumber,
-				@OBNumber,
-				@MinimumPoolSize,
-				@NYVariabel
-				);
-			Set @FacilityID = SCOPE_IDENTITY();
-		END;
+	BEGIN
+		INSERT INTO FACILITY (
+			Name,
+			UDLNumber,
+			OBNumber,
+			MinimumPoolSize,
+			SystemID)
+		VALUES (
+			@Name,
+			@UDLNumber,
+			@OBNumber,
+			@MinimumPoolSize,
+			@SystemID,
+			);
+		Set @FacilityID = SCOPE_IDENTITY();
+	END;
 END;
 
 GO

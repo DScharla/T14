@@ -62,8 +62,7 @@ namespace Eksamensprojekt.Model
             entity.UDLNumber = (string)reader["UDLNumber"];
             try { entity.MinimumPoolSize = (string)reader["MinimumPoolSize"]; }
             catch { entity.MinimumPoolSize = null; }
-            
-            entity.System = (string)reader["SystemName"];
+            entity.SystemID = (int)reader["SystemID"];
             
 
             return (T)entity;
@@ -93,7 +92,7 @@ namespace Eksamensprojekt.Model
                     executeCommand.Parameters.AddWithValue("@UDLNumber", entity.UDLNumber);
                     executeCommand.Parameters.AddWithValue("@OBNumber", entity.OBNumber);
                     executeCommand.Parameters.AddWithValue("@MinimumPoolSize", entity.MinimumPoolSize);
-                    executeCommand.Parameters.AddWithValue("@SystemName", entity.System);
+                    executeCommand.Parameters.AddWithValue("@SystemID", entity.SystemID);
                     
 
                     SqlParameter facilityIDParam = new SqlParameter("@FacilityID", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
@@ -121,30 +120,21 @@ namespace Eksamensprojekt.Model
         public void Update(T entity)
         {
             Facility facility = (Facility)entity;
-            int systemID;
-            string GetSystemIDQuery = $"SELECT SystemID FROM SYSTEM WHERE Text='{facility.System}'";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand getSystemID = new SqlCommand(GetSystemIDQuery, connection);
-                connection.Open();
-
-                systemID = (int)getSystemID.ExecuteScalar();
-            }
-            string UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+            string UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
             if (facility.NumberOfIncidents == null || facility.TotalOverflow == null)
             {
                 if (facility.TotalOverflow == null && facility.NumberOfIncidents == null)
                 {
-                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
                 }
                 else if (facility.TotalOverflow == null)
                 {
-                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
                 }
                 else if (facility.NumberOfIncidents == null)
                 {
-                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {systemID};";
+                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
                 }
                
             }

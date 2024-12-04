@@ -391,11 +391,17 @@ namespace Eksamensprojekt.ViewModel
 
         public Facility FromStringToFacility()
         {
+            int systemID = 0;
+            for (int i = 0; i < (SystemOptions.Count-1); i++)
+            {
+                if (System == SystemOptions[i]) { systemID = i; }
+            }
+
             Facility facility = new Facility();
             facility.Name = Name;
             facility.UDLNumber = UDLNumber;
             facility.OBNumber = OBNumber;
-            facility.System = System;
+            facility.SystemID = systemID;
             facility.MinimumPoolSize = MinimumPoolSize;
             return facility;
         }

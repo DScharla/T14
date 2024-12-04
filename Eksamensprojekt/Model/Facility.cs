@@ -71,11 +71,11 @@ namespace Eksamensprojekt.Model
             set { _OBNumber = value; }
         }
 
-        private string _system;
-        public string System
+        private int _systemID;
+        public int SystemID
         {
-            get { return _system; }
-            set { _system = value; }
+            get { return _systemID; }
+            set { _systemID = value; }
         }
 
         private string _minimumPoolSize;
