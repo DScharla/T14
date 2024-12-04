@@ -12,8 +12,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
-            <RowDefinition Height="80*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="89*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Rectangle Grid.Row="0" Fill="MediumAquamarine"/>
         <Label Content="Detaljer om:" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Center" Grid.Row="0" FontSize="20" FontWeight="Bold"/>
@@ -83,7 +83,13 @@
         <DatePicker x:Name="dpPermit1EndDate" SelectedDate="{Binding skrillex}" Width="150" HorizontalAlignment="Left" Margin="475,80,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
 
         <Label  Content="Krav til udstyr:" HorizontalAlignment="Left" Margin="300,120,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxPermit1EquipmentRestriction" Text="{Binding skrillex}" Width="400" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,150,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <TextBox x:Name="txtbxPermit1EquipmentRestriction" Text="{Binding skrillex}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,145,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <Label  Content="Krav til måleudstyr:" HorizontalAlignment="Left" Margin="300,200,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxPermit1MeasurementRestriction" Text="{Binding skrillex}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,225,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <Label  Content="Vedligeholdelseskrav:" HorizontalAlignment="Left" Margin="300,280,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxPermit1MaintenanceRestriction" Text="{Binding skrillex}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,305,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <Label  Content="Yderligere krav:" HorizontalAlignment="Left" Margin="300,360,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
+        <TextBox x:Name="txtbxPermit1AdditionalRestriction" Text="{Binding skrillex}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,385,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
         <Button x:Name="btnPermit1"
          VerticalAlignment="Top"
@@ -94,7 +100,7 @@
          Grid.Row="1"
          BorderBrush="Black"
          BorderThickness="3"
-         Command="{Binding CancelAndCloseCurrentCommand}"
+         Command="{Binding nada}"
          Background="White"/>
         <Button x:Name="btnPermit2" 
          VerticalAlignment="Top"
@@ -105,7 +111,7 @@
          Grid.Row="1"
          BorderBrush="Black"
          BorderThickness="3"       
-         Command="{Binding AddFacilityCommand}"
+         Command="{Binding nada}"
          Background="White"/>
         <Button x:Name="btnPermit3" 
          VerticalAlignment="Top"
@@ -116,7 +122,7 @@
          Grid.Row="1"
          BorderBrush="Black"
          BorderThickness="3"       
-         Command="{Binding AddFacilityCommand}"
+         Command="{Binding nada}"
          Background="White"/>
 
 
