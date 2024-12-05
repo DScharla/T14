@@ -6,6 +6,7 @@ DROP PROCEDURE uspAddIncident;
 DROP PROCEDURE uspAddOverflow;
 DROP PROCEDURE uspAddPermit;
 DROP PROCEDURE uspAddSystem;
+DROP PROCEDURE uspUpdateFacility;
 
 GO
 
@@ -39,7 +40,7 @@ BEGIN
 			@UDLNumber,
 			@OBNumber,
 			@MinimumPoolSize,
-			@SystemID,
+			@SystemID
 			);
 		Set @FacilityID = SCOPE_IDENTITY();
 	END;
