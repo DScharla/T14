@@ -119,5 +119,16 @@ namespace Eksamensprojekt.Model
             }
             return isOverflowWithin5hours;
         }
+        public void RemoveFacilityFromRepo(Facility facility) 
+        { 
+            facilityRepo.Remove(facility);
+        }
+        public void RemovePermitFromRepp(Facility facility)
+        {
+            foreach (Permit permit in facility.Permits)
+            {
+                permitRepo.Remove(permit);
+            }
+        }
     }
 }
