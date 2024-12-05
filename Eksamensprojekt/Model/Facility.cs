@@ -84,6 +84,8 @@ namespace Eksamensprojekt.Model
             get { return _minimumPoolSize; }
             set { _minimumPoolSize = value; }
         }
+        private string _system;
+        public string System { get { return _system; } set { _system = value; } }
 
         private ObservableCollection<Permit> _permits;
         public ObservableCollection<Permit> Permits   
@@ -118,5 +120,6 @@ namespace Eksamensprojekt.Model
             }
             return totalOverflow;
         }
+
     }
 }

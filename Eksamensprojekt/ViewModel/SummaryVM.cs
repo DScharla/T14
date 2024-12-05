@@ -235,11 +235,12 @@ namespace Eksamensprojekt.ViewModel
         {
             _facilityService = new FacilityService();
             Facilities = new ObservableCollection<Facility>();
-            ShowFacilities();
+           
 /*            _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");*/
             _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
+            ShowFacilities();
         }
 
         
@@ -247,13 +248,13 @@ namespace Eksamensprojekt.ViewModel
         {
             _facilityService = new FacilityService();
             _facilities = new ObservableCollection<Facility>();
-            ShowFacilities();
+            
             Facility = facility;
             _equipmentRestrictionCollection = GetRestrictionOptions("EQUIPMENTRESTRICTION");
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             _systemOptions = GetRestrictionOptions("SYSTEM");
-
+            ShowFacilities();
         }
         
         //DCD: private
@@ -280,8 +281,10 @@ namespace Eksamensprojekt.ViewModel
                 facility.OverflowCompliance = CheckOverflowCompliance(facility);
 
                 //cla***
-                Facilities = tempFacilities;
+                facility.System = SystemOptions[facility.SystemID - 1];
             }
+            
+            Facilities = tempFacilities;
         }
         
 
@@ -402,9 +405,9 @@ namespace Eksamensprojekt.ViewModel
         public Facility FromStringToFacility()
         {
             int systemID = 0;
-            for (int i = 0; i < (SystemOptions.Count-1); i++)
+            for (int i = 0; i < (SystemOptions.Count); i++)
             {
-                if (System == SystemOptions[i]) { systemID = i; }
+                if (System == SystemOptions[i]) { systemID = i+1; }
             }
 
             Facility facility = new Facility();
