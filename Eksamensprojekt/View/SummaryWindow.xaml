@@ -10,7 +10,6 @@
     Height="800"
     mc:Ignorable="d">
     <Window.Resources>
-
         <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="18" />
@@ -211,8 +210,10 @@
         <Button x:Name="btnMore2"
                 Width="100"
                 Height="30"
-                Margin="100,0,0,0"
+                Margin="865,24,235,24"
                 Background="White"
+                BorderBrush="Black"
+                BorderThickness="3"
                 Command="{Binding SeeMoreWindowCommand}"
                 Content="Se mere"
                 Grid.Row="2"/>  
@@ -253,14 +254,24 @@
             Grid.Row="2"
             Width="100"
             Height="30"
-            Margin="700,0,0,0"
+            Margin="1056,24,44,24"
             Background="White"
             BorderBrush="Black"
             BorderThickness="3"
             Command="{Binding CancelAndCloseCurrentCommand}"
             Content="Refresh / Log ud" />
-        <!--  logud-knap, før Width="50"  -->
-
-
+        <!-- logud-knap, før Width="50"-->
+        
+        <Button x:Name="btnRemoveFacility" 
+        Content="Slet overløbsbygværk"
+        Width="150" 
+        Height="30"
+        Margin="120,24,930,24"
+        Grid.Row="2"
+        BorderBrush="Black"
+        BorderThickness="3"
+        Command="{Binding RemoveFacilityCommand}"
+        Background="White"/>
+        <!-- Fjern overløbsbygværk knap-->
     </Grid>
 </Window>

@@ -248,6 +248,11 @@ namespace Eksamensprojekt.ViewModel
             set { _currentPermit = value; OnPropertyChanged(); }
         }
 
+        public RelayCommand RemoveFacilityCommand => new RelayCommand(
+            execute => RemoveFacility(),
+            canExecute => { return IsSelectedNull(Facility); }
+            );
+
         //DCD: +1
         public SummaryVM()
         {
@@ -404,7 +409,11 @@ namespace Eksamensprojekt.ViewModel
             SeeMoreWindow seeMoreWindow = new SeeMoreWindow(Facility);
             seeMoreWindow.Show();
         }
-
+        public void RemoveFacility()
+        {
+            _facilityService.RemoveFacilityFromRepo(Facility);
+            ShowFacilities();
+        }
         private bool IsSelectedNull(Facility facility)
         {
             if (facility != null) return true;

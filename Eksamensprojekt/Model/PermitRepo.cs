@@ -119,7 +119,20 @@ namespace Eksamensprojekt.Model
 
         public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            Permit facility = (Permit)entity;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (var executeCommand = new SqlCommand("uspRemoveFacility", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.PermitID);
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Update(T entity)
