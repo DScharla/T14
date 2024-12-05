@@ -54,12 +54,14 @@ namespace Eksamensprojekt.Model
             catch { entity.AllowedAverageIncidents = null; }
             try { entity.AllowedAverageIncidentsPeriod = (DateTime)reader["AllowedAverageIncidentsPeriod"]; }
             catch { entity.AllowedAverageIncidentsPeriod = null; }
-            entity.AllowedYearlyIncidents = (int)reader["AllowedYearlyIncidents"];
+            try { entity.AllowedYearlyIncidents = (int)reader["AllowedYearlyIncidents"]; }
+            catch { entity.AllowedYearlyIncidents = (int)reader["AllowedYearlyIncidents"]; }
             try { entity.AllowedAverageOverflowVolume = (int)reader["AllowedAverageOverflowVolume"]; }
             catch { entity.AllowedAverageOverflowVolume = null; }
             try { entity.AllowedAverageOverflowPeriod = (DateTime)reader["AllowedAverageOverflowPeriod"]; }
             catch { entity.AllowedAverageOverflowPeriod = null; }
-            entity.AllowedYearlyOverflowVolume = (int)reader["AllowedYearlyOverflowVolume"];
+            try { entity.AllowedYearlyOverflowVolume = (int)reader["AllowedYearlyOverflowVolume"]; }
+            catch { entity.AllowedYearlyOverflowVolume = null; }
             try { entity.EquipmentRestriction = (string)reader["EquipmentRestriction"]; }
             catch { entity.EquipmentRestriction = null; }
             try { entity.MaintenanceRestriction = (string)reader["MaintenanceRestriction"]; }
