@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using Microsoft.Data.SqlClient;
 using System.Security.Cryptography.Xml;
 using System.Data.Common;
+using System.Data;
 
 namespace Eksamensprojekt.Model
 {
@@ -120,35 +121,59 @@ namespace Eksamensprojekt.Model
         public void Update(T entity)
         {
             Facility facility = (Facility)entity;
-
-            string UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
-            if (facility.NumberOfIncidents == null || facility.TotalOverflow == null)
-            {
-                if (facility.TotalOverflow == null && facility.NumberOfIncidents == null)
-                {
-                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
-                }
-                else if (facility.TotalOverflow == null)
-                {
-                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = {facility.NumberOfIncidents}, @TotalOverflow = Null, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
-                }
-                else if (facility.NumberOfIncidents == null)
-                {
-                    UpdateQuery = $"EXEC uspUpdateFacility @FacilityID = {facility.ID}, @NumberOfIncidents = Null, @TotalOverflow = {facility.TotalOverflow}, @Name = \'{facility.Name}\', @UDLNumber = \'{facility.UDLNumber}\', @OBNumber = \'{entity.OBNumber}\', @MinimumPoolSize=\'{entity.MinimumPoolSize}\', @SystemID = {entity.SystemID};";
-                }
-               
-            }
-                
-
-
+            int systemID;
+            string GetSystemIDQuery = $"SELECT SystemID FROM SYSTEM WHERE Text=@text";
+                        
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                
-                SqlCommand UpdateFacility = new SqlCommand(UpdateQuery, connection);
                 connection.Open();
-                UpdateFacility.ExecuteScalar();
 
+                using (SqlCommand getSystemIDCommand = new SqlCommand(GetSystemIDQuery, connection))
+                {
+                    getSystemIDCommand.Parameters.AddWithValue("@text", facility.System);                    
+
+                    systemID = (int)getSystemIDCommand.ExecuteScalar();                                        
+                }
+
+                using (var updateCommand = new SqlCommand("uspUpdateFacility", connection))
+                {
+                    updateCommand.CommandType = CommandType.StoredProcedure;
+                                       
+                    updateCommand.Parameters.AddWithValue("@FacilityID", facility.ID);
+                    updateCommand.Parameters.AddWithValue("@Name", facility.Name);
+                    updateCommand.Parameters.AddWithValue("@UDLNumber", facility.UDLNumber);
+                    updateCommand.Parameters.AddWithValue("@OBNumber", facility.OBNumber);
+                    updateCommand.Parameters.AddWithValue("@MinimumPoolSize", facility.MinimumPoolSize);
+                    updateCommand.Parameters.AddWithValue("@SystemID", systemID);
+
+                    if (facility.TotalOverflow != null)
+                    {
+                        updateCommand.Parameters.AddWithValue("@TotalOverflow", facility.TotalOverflow);
+                    }                    
+                    if (facility.NumberOfIncidents != null)
+                    {
+                        updateCommand.Parameters.AddWithValue("@NumberOfIncidents", facility.NumberOfIncidents);
+                    }
+                    updateCommand.ExecuteNonQuery();
+
+                }
             }
+                                            
+                
+        }
+            
+
+
+            
+                
+               
+            
+                
+
+
+                
+                
+            
         }
     }
-}
+

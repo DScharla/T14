@@ -84,11 +84,11 @@
             FontSize="30"
             FontWeight="Bold" />
         <ListView
-        x:Name="lvFacilities"
-        Grid.Row="1"
-        Margin="10,0,10,0"
-        ItemsSource="{Binding Facilities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-        SelectedItem="{Binding Facility, Mode=TwoWay}">
+            x:Name="lvFacilities"
+            Grid.Row="1"
+            Margin="10,0,10,0"
+            ItemsSource="{Binding Facilities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding Facility, Mode=TwoWay}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
                     <GridViewColumn Width="150" Header="UDL">
@@ -137,6 +137,7 @@
                             <DataTemplate>
                                 <TextBlock
                                     Background="{Binding IncidentsCompliance}"
+                                    Foreground="White"
                                     Text="{Binding NumberOfIncidents}"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding NumberOfIncidents}" />
@@ -148,6 +149,7 @@
                             <DataTemplate>
                                 <TextBlock
                                     Background="{Binding OverflowCompliance}"
+                                    Foreground="White"
                                     Text="{Binding TotalOverflow}"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding TotalOverflow}" />
@@ -245,7 +247,7 @@
         <Button
             x:Name="btnLogOut"
             Grid.Row="2"
-            Width="100"  
+            Width="100"
             Height="30"
             Margin="700,0,0,0"
             Background="White"
@@ -253,7 +255,7 @@
             BorderThickness="3"
             Command="{Binding CancelAndCloseCurrentCommand}"
             Content="Refresh / Log ud" />
-        <!-- logud-knap, før Width="50"-->
+        <!--  logud-knap, før Width="50"  -->
 
 
     </Grid>
