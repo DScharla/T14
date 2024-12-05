@@ -225,6 +225,29 @@ namespace Eksamensprojekt.ViewModel
             canExecute => { return true; }
             );
 
+        public RelayCommand PermitOneActiveCommand => new RelayCommand(
+            execute => SetPermitAsCurrent(0),
+            canExecute => { return true; }
+            );
+
+        public RelayCommand PermitTwoActiveCommand => new RelayCommand(
+            execute => SetPermitAsCurrent(1),
+            canExecute => { return true; }
+            );
+
+        public void SetPermitAsCurrent(int index)
+        {
+            CurrentPermit = Facility.Permits[index];
+        }
+
+        private Permit _currentPermit;
+
+        public Permit CurrentPermit
+        {
+            get { return _currentPermit; }
+            set { _currentPermit = value; OnPropertyChanged(); }
+        }
+
         //DCD: +1
         public SummaryVM()
         {
@@ -248,6 +271,7 @@ namespace Eksamensprojekt.ViewModel
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             _systemOptions = GetRestrictionOptions("SYSTEM");
+            SetPermitAsCurrent(0);
 
         }
         
@@ -269,17 +293,17 @@ namespace Eksamensprojekt.ViewModel
 
                 tempRestrictions.OrderByDescending(tempRestrictions => tempRestrictions.StartDate);
                 facility.Permits = tempRestrictions;
-                //cla***
+                
 
                 facility.IncidentsCompliance = CheckIncidentsCompliance(facility);
                 facility.OverflowCompliance = CheckOverflowCompliance(facility);
 
-                //cla***
+                
                 Facilities.Add(facility);
             }
         }
 
-        //cla***
+        
         public string CheckIncidentsCompliance(Facility facility)
         {
             if (facility.Permits.Count > 0 && facility.NumberOfIncidents > facility.Permits[0].AllowedYearlyIncidents)
@@ -297,8 +321,7 @@ namespace Eksamensprojekt.ViewModel
             }
             return "Green";
         }
-        //entity.IncidentsCompliance = CheckIncidentsCompliance();
-        //cla***
+        
 
         public void OpenCreateFacilityWindow()
         {
@@ -392,9 +415,9 @@ namespace Eksamensprojekt.ViewModel
         public Facility FromStringToFacility()
         {
             int systemID = 0;
-            for (int i = 0; i < (SystemOptions.Count-1); i++)
+            for (int i = 0; i < (SystemOptions.Count); i++)
             {
-                if (System == SystemOptions[i]) { systemID = i; }
+                if (System == SystemOptions[i]) { systemID = i+1; }
             }
 
             Facility facility = new Facility();
@@ -403,6 +426,7 @@ namespace Eksamensprojekt.ViewModel
             facility.OBNumber = OBNumber;
             facility.SystemID = systemID;
             facility.MinimumPoolSize = MinimumPoolSize;
+            facility.System = SystemOptions[facility.SystemID-1];
             return facility;
         }
         public Permit FromStringToPermit()

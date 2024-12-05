@@ -138,6 +138,8 @@
                                 <TextBlock
                                     Background="{Binding IncidentsCompliance}"
                                     Foreground="White"
+                                    Width="150"
+                                    TextAlignment="Center"
                                     Text="{Binding NumberOfIncidents}"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding NumberOfIncidents}" />
@@ -151,6 +153,8 @@
                                     Background="{Binding OverflowCompliance}"
                                     Foreground="White"
                                     Text="{Binding TotalOverflow}"
+                                    Width="150"
+                                    TextAlignment="Center"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding TotalOverflow}" />
                             </DataTemplate>

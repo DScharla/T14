@@ -26,6 +26,15 @@ namespace Eksamensprojekt.Model
             set { _overflowCompliance = value; }
         }
 
+        private string _system;
+
+        public string System
+        {
+            get { return _system; }
+            set { _system = value; }
+        }
+
+
         //cla rød/grøn test ***
         private int _ID;
 

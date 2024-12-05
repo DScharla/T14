@@ -64,6 +64,7 @@ namespace Eksamensprojekt.Model
             try { entity.MinimumPoolSize = (string)reader["MinimumPoolSize"]; }
             catch { entity.MinimumPoolSize = null; }
             entity.SystemID = (int)reader["SystemID"];
+            entity.System = (string)reader["SystemName"];
             
 
             return (T)entity;
@@ -127,13 +128,7 @@ namespace Eksamensprojekt.Model
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
-                using (SqlCommand getSystemIDCommand = new SqlCommand(GetSystemIDQuery, connection))
-                {
-                    getSystemIDCommand.Parameters.AddWithValue("@text", facility.System);                    
-
-                    systemID = (int)getSystemIDCommand.ExecuteScalar();                                        
-                }
+                
 
                 using (var updateCommand = new SqlCommand("uspUpdateFacility", connection))
                 {
@@ -144,7 +139,7 @@ namespace Eksamensprojekt.Model
                     updateCommand.Parameters.AddWithValue("@UDLNumber", facility.UDLNumber);
                     updateCommand.Parameters.AddWithValue("@OBNumber", facility.OBNumber);
                     updateCommand.Parameters.AddWithValue("@MinimumPoolSize", facility.MinimumPoolSize);
-                    updateCommand.Parameters.AddWithValue("@SystemID", systemID);
+                    updateCommand.Parameters.AddWithValue("@SystemID", facility.SystemID);
 
                     if (facility.TotalOverflow != null)
                     {
