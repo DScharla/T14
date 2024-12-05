@@ -2,6 +2,8 @@ DROP VIEW vwFacility;
 DROP VIEW vwPermit;
 GO
 
+
+
 CREATE VIEW vwFacility AS
 SELECT        
 	dbo.FACILITY.FacilityID,
@@ -11,9 +13,12 @@ SELECT
 	dbo.FACILITY.UDLNumber,
 	dbo.FACILITY.OBNumber,
 	dbo.FACILITY.MinimumPoolSize, 
-    dbo.FACILITY.SystemID
+    dbo.FACILITY.SystemID,
+	dbo.SYSTEM.Text AS SystemName
 FROM            
-	dbo.FACILITY
+	dbo.SYSTEM INNER JOIN
+		dbo.FACILITY ON dbo.SYSTEM.SystemID = dbo.FACILITY.SystemID;
+
 
 GO
 
