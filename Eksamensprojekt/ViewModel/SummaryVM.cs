@@ -237,7 +237,9 @@ namespace Eksamensprojekt.ViewModel
 
         public void SetPermitAsCurrent(int index)
         {
-            CurrentPermit = Facility.Permits[index];
+            if (index < Facility.Permits.Count-1)
+                CurrentPermit = Facility.Permits[index];
+            else { CurrentPermit = new Permit(); }
         }
 
         private Permit _currentPermit;
@@ -276,6 +278,7 @@ namespace Eksamensprojekt.ViewModel
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");
             _systemOptions = GetRestrictionOptions("SYSTEM");
+            SystemOptions.OrderBy(s => s);
             SetPermitAsCurrent(0);
 
         }
@@ -426,7 +429,11 @@ namespace Eksamensprojekt.ViewModel
             int systemID = 0;
             for (int i = 0; i < (SystemOptions.Count); i++)
             {
-                if (System == SystemOptions[i]) { systemID = i+1; }
+                if (System == SystemOptions[i]) 
+                { 
+                    systemID = i; 
+                    if (i == 0) { systemID = 4; }
+                }
             }
 
             Facility facility = new Facility();
