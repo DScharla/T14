@@ -201,10 +201,8 @@ BEGIN
 		SystemID = @SystemID
 WHERE FacilityID=@FacilityID
 END
+
 GO
-
-
-
 
 CREATE PROCEDURE uspRemoveFacility
 	@FacilityID Int
@@ -216,7 +214,9 @@ BEGIN
 	DELETE FROM FACILITY WHERE FacilityID=@FacilityID;
 	
 END
+
 GO
+
 CREATE PROCEDURE uspRemovePermit
 	@PermitID Int
 AS

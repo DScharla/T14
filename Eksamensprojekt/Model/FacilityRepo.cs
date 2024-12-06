@@ -126,11 +126,11 @@ namespace Eksamensprojekt.Model
                     using (var executeCommand = new SqlCommand("uspRemoveFacility", connection, transaction))
                     {
                         executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
                         executeCommand.Parameters.AddWithValue("@FacilityID", entity.ID);
                         try
                         {
                             executeCommand.ExecuteNonQuery();
+                            transaction.Commit();
                             isRemoved = true;
                         }
                         catch{ transaction.Rollback(); }
