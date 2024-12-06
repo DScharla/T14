@@ -8,6 +8,11 @@ namespace Eksamensprojekt.Model
 {
     public class Overflow 
     {
+		public Overflow()
+		{
+			
+		}
+		
 		private DateTime _startTime;
 
 		public DateTime StartTime
@@ -19,9 +24,27 @@ namespace Eksamensprojekt.Model
 
 		public TimeSpan Duration
 		{
-			get { return _duration; }
-			set { _duration = value; }
+			get { return EndTime - StartTime; }
+			//set { _duration = EndTime-StartTime; }
 		}
+
+		private DateTime _endTime;
+
+		public  DateTime EndTime
+		{
+			get { return _endTime; }
+			set { _endTime = value; }
+		}
+
+		private int _incidentID;
+
+		public int IncidentID
+		{
+			get { return _incidentID; }
+			set { _incidentID = value; }
+		}
+
+
 		private int _overflowVolume;
 
 		public int OverflowVolume

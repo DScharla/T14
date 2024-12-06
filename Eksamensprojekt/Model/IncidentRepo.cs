@@ -25,7 +25,7 @@ namespace Eksamensprojekt.Model
             throw new NotImplementedException();
         }
 
-        public T FromStringToType(SqlDataReader reader)
+        public T FromDBToType(SqlDataReader reader)
         {
             throw new NotImplementedException();
         }

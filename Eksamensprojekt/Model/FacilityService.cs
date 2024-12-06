@@ -75,8 +75,8 @@ namespace Eksamensprojekt.Model
         {
                 foreach (Overflow overflow in overflows) //Iterere gennem alle overflows der varer mere end 5 minutter og er for samme facility
                 {
-                    if (IsOverflowOver5hoursOfIncident(incidents, overflow)) //Hvis Overflow IKKE er sket indenfor 5 timer af EndDate på Sidste Incident
-                    {
+                    if (IsOverflowOver5hoursOfIncident(incidents, overflow) == false) //Hvis Overflow IKKE er sket indenfor 5 timer af EndDate på Sidste Incident
+                {
                         incidents.Add(new Incident(
                         overflow.StartTime,
                         overflow.StartTime + overflow.Duration,
@@ -84,12 +84,19 @@ namespace Eksamensprojekt.Model
                         ); //Tilføjer alle overflows der varer mere end 5 minutter og er fra samme facility
                         incidents[incidents.Count - 1].IncidentID = incidentRepo.Add(incidents[incidents.Count - 1]);
                     }
-                    else if (IsOverflowOver5hoursOfIncident(incidents, overflow) == false ) 
+                    else if (IsOverflowOver5hoursOfIncident(incidents, overflow)) 
                     {
-                        // Dette overflow er idnenfor 5 timer af et tidligere incident, derfor skal den lægge dette overflow volumen oveni det incident, og sætte endTime i incident til at være slut tidpunktet for overflowet. overflow.StartTime + overflow.Duration
-                        incidents[incidents.Count - 1].EndTime += overflow.Duration;
-                        incidents[incidents.Count - 1].OverflowVolume += overflow.OverflowVolume;
-                        incidentRepo.Update(incidents[incidents.Count - 1]);
+                        if (incidents.Count!= 0)
+                        {
+                            // Dette overflow er idnenfor 5 timer af et tidligere incident, derfor skal den lægge dette overflow volumen oveni det incident, og sætte endTime i incident til at være slut tidpunktet for overflowet. overflow.StartTime + overflow.Duration
+                            incidents[incidents.Count - 1].EndTime += overflow.Duration;
+                            incidents[incidents.Count - 1].OverflowVolume += overflow.OverflowVolume;
+                            incidentRepo.Update(incidents[incidents.Count - 1]);
+                        }
+                        else
+                        {
+
+                        }
                     }
                 }
                 facility.Incidents = incidents;
