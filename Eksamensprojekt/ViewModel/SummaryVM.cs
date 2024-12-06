@@ -222,22 +222,22 @@ namespace Eksamensprojekt.ViewModel
            );
         public RelayCommand SeeMoreWindowCommand => new RelayCommand(
             execute => SeeMore(),
-            canExecute => { return true; }
+            canExecute => { return IsSelectedNull(Facility); }
             );
 
         public RelayCommand PermitOneActiveCommand => new RelayCommand(
             execute => SetPermitAsCurrent(0),
-            canExecute => { return true; }
+            canExecute => { return IsSelectedNull(CurrentPermit); }
             );
 
         public RelayCommand PermitTwoActiveCommand => new RelayCommand(
             execute => SetPermitAsCurrent(1),
-            canExecute => { return true; }
+            canExecute => { return IsSelectedNull(CurrentPermit); }
             );
 
         public void SetPermitAsCurrent(int index)
         {
-            if (index < Facility.Permits.Count-1)
+            if (index < Facility.Permits.Count)
                 CurrentPermit = Facility.Permits[index];
             else { CurrentPermit = new Permit(); }
         }
@@ -430,6 +430,11 @@ namespace Eksamensprojekt.ViewModel
         private bool IsSelectedNull(Facility facility)
         {
             if (facility != null) return true;
+            return false;
+        }
+        private bool IsSelectedNull(Permit permit)
+        {
+            if (permit != null) return true;
             return false;
         }
         public Action CloseAction { get; set; }
