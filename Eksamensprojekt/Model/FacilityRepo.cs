@@ -120,28 +120,23 @@ namespace Eksamensprojekt.Model
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    try
+                    using (var executeCommand = new SqlCommand("uspRemoveFacility", connection, transaction))
                     {
-                        using (var executeCommand = new SqlCommand("uspRemoveFacility", connection))
-                        {
-                            executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                        executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                            executeCommand.Parameters.AddWithValue("@FacilityID", entity.ID);
-                            connection.Open();
-                            SqlParameter IsRemovedParam = new SqlParameter("@IsRemoved", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                            executeCommand.Parameters.Add(IsRemovedParam);
+                        executeCommand.Parameters.AddWithValue("@FacilityID", entity.ID);
+                        try
+                        {
                             executeCommand.ExecuteNonQuery();
                             isRemoved = true;
                         }
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        isRemoved = true;
+                        catch{ transaction.Rollback(); }
                     }
                 }
+                
             }
             return isRemoved;
         }

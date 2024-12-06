@@ -415,6 +415,15 @@ namespace Eksamensprojekt.ViewModel
         public void RemoveFacility()
         {
             bool isRemoved = _facilityService.RemoveFacilityFromRepo(Facility);
+            if (isRemoved == false) 
+            {
+                string messageBoxText = "Det lykkedes ikke at slette overløbsbygværket! Kontakt din IT administrator";
+                string caption = "Fejl";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result;
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
+            }
             ShowFacilities();
         }
         private bool IsSelectedNull(Facility facility)
