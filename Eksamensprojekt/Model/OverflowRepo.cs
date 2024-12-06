@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Microsoft.Data.SqlClient;
+using System.IO;
 
 namespace Eksamensprojekt.Model
 {
@@ -16,7 +17,20 @@ namespace Eksamensprojekt.Model
             connectionString = new ConnectionStringDataReader(db).connectionString;
         }
 
-        
+        public void FromCsvToOverflow(string absolutePath)
+        {
+            List <string> data = new List<string>();
+            string line;
+            using (StreamReader sr = new StreamReader(absolutePath))
+            {
+                sr.ReadLine();
+                while ((line = sr.ReadLine()) != null)
+                {
+                        data.Add(line);                        
+                }
+                
+            }
+        }
 
         public ObservableCollection<T> GetAll()
         {
