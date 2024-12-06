@@ -90,7 +90,7 @@
             SelectedItem="{Binding Facility, Mode=TwoWay}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderContainerStyle="{StaticResource myControlTemplateStyle}">
-                    <GridViewColumn Width="150" Header="UDL">
+                    <GridViewColumn Width="125" Header="UDL">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
@@ -101,7 +101,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="150" Header="OB-nr">
+                    <GridViewColumn Width="125" Header="OB-nr">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
@@ -137,7 +137,7 @@
                                 <TextBlock
                                     Background="{Binding IncidentsCompliance}"
                                     Foreground="White"
-                                    Width="150"
+                                    Width="200"
                                     TextAlignment="Center"
                                     Text="{Binding NumberOfIncidents}"
                                     TextTrimming="CharacterEllipsis"
@@ -152,14 +152,14 @@
                                     Background="{Binding OverflowCompliance}"
                                     Foreground="White"
                                     Text="{Binding TotalOverflow}"
-                                    Width="150"
+                                    Width="200"
                                     TextAlignment="Center"
                                     TextTrimming="CharacterEllipsis"
                                     ToolTip="{Binding TotalOverflow}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" Header="Overløbsbygværk">
+                    <GridViewColumn Width="250" Header="Overløbsbygværk">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock

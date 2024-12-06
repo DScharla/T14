@@ -74,22 +74,22 @@
             </TextBlock>
         </StackPanel>
         <Label Content="Gyldighedsperiode (fra-til):" HorizontalAlignment="Left" Margin="300,50,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxPermit1StartDate" Text="{Binding CurrentPermit.StartDate}" Width="150" HorizontalAlignment="Left" Margin="300,80,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <TextBox x:Name="txtbxPermitStartDate" Text="{Binding CurrentPermit.StartDate}" Width="150" HorizontalAlignment="Left" Margin="300,80,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <!-- CO: skal startdate og enddate vises i datepickers (som linjen nedenfor) eller i textboxe/textblokke/labels (linjen ovenfor) -->
         
-        <TextBox Text="-" HorizontalAlignment="Left" Margin="455,80,0,0" VerticalAlignment="Top" Grid.Row="1" IsReadOnly="True" FontSize="20" FontWeight="Bold"/>
-        <TextBox x:Name="txtbxPermit1EndDate" Text="{Binding skrillex}" Width="150" HorizontalAlignment="Left" Margin="475,80,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <TextBlock Text="-" HorizontalAlignment="Left" Margin="460,75,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="20" FontWeight="Bold"/>
+        <TextBox x:Name="txtbxPermitEndDate" Text="{Binding CurrentPermit.EndDate}" Width="150" HorizontalAlignment="Left" Margin="475,80,0,150" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <!-- CO: skal startdate og enddate vises i datepickers (som linjen nedenfor) eller i textboxe/textblokke/labels (linjen ovenfor) -->
 
 
         <Label  Content="Krav til udstyr:" HorizontalAlignment="Left" Margin="300,120,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxPermit1EquipmentRestriction" Text="{Binding CurrentPermit.EquipmentRestriction}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,145,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <TextBox x:Name="txtbxPermitEquipmentRestriction" Text="{Binding CurrentPermit.EquipmentRestriction}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,145,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <Label  Content="Krav til måleudstyr:" HorizontalAlignment="Left" Margin="300,200,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxPermit1MeasurementRestriction" Text="{Binding skrillex}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,225,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <TextBox x:Name="txtbxPermitMeasurementRestriction" Text="{Binding CurrentPermit.MeasurementRestriction}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,225,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <Label  Content="Vedligeholdelseskrav:" HorizontalAlignment="Left" Margin="300,280,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxPermit1MaintenanceRestriction" Text="{Binding skrillex}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,305,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <TextBox x:Name="txtbxPermitMaintenanceRestriction" Text="{Binding CurrentPermit.MaintenanceRestriction}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,305,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <Label  Content="Yderligere krav:" HorizontalAlignment="Left" Margin="300,360,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15"/>
-        <TextBox x:Name="txtbxPermit1AdditionalRestriction" Text="{Binding skrillex}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,385,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
+        <TextBox x:Name="txtbxPermit1AdditionalRestriction" Text="{Binding CurrentPermit.AdditionalRestriction}" Width="600" Height="Auto" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,385,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="15" IsReadOnly="True"/>
         <Rectangle Grid.Row="2" Fill="MediumAquamarine"/>
         <Button x:Name="btnPermit1"
          VerticalAlignment="Top"
@@ -111,9 +111,9 @@
          Grid.Row="1"
          BorderBrush="Black"
          BorderThickness="3"       
-         Command="{Binding nada}"
+         Command="{Binding PermitTwoActiveCommand}"
          Background="White"/>
-        <Button x:Name="btnPermit3" 
+        <!--. <Button x:Name="btnPermit3" 
          VerticalAlignment="Top"
          Content="Permit 3" 
          Width="150" 
@@ -122,8 +122,8 @@
          Grid.Row="1"
          BorderBrush="Black"
          BorderThickness="3"       
-         Command="{Binding nada}"
-         Background="White"/>
+         Command="{Binding PermitThreeActiveCommand}"
+         Background="White"/> .-->
 
 
 
