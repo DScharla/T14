@@ -63,7 +63,8 @@ CREATE PROCEDURE uspAddPermit
 	@EquipmentRestrictionID Int,
 	@MaintenanceRestrictionID Int,
 	@MeasurementRestrictionID Int,
-	@FacilityID Int
+	@FacilityID Int,
+	@PermitID Int OUTPUT
 AS
 BEGIN
 	INSERT INTO PERMIT
@@ -81,6 +82,7 @@ BEGIN
 		@MaintenanceRestrictionID,
 		@MeasurementRestrictionID,		
 		@FacilityID);
+		Set @PermitID = SCOPE_IDENTITY();
 END
 
 GO
