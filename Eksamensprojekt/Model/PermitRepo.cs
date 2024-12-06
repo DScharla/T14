@@ -55,7 +55,7 @@ namespace Eksamensprojekt.Model
             try { entity.AllowedAverageIncidentsPeriod = (DateTime)reader["AllowedAverageIncidentsPeriod"]; }
             catch { entity.AllowedAverageIncidentsPeriod = null; }
             try { entity.AllowedYearlyIncidents = (int)reader["AllowedYearlyIncidents"]; }
-            catch { entity.AllowedYearlyIncidents = (int)reader["AllowedYearlyIncidents"]; }
+            catch { entity.AllowedYearlyIncidents = null; }
             try { entity.AllowedAverageOverflowVolume = (int)reader["AllowedAverageOverflowVolume"]; }
             catch { entity.AllowedAverageOverflowVolume = null; }
             try { entity.AllowedAverageOverflowPeriod = (DateTime)reader["AllowedAverageOverflowPeriod"]; }
@@ -83,24 +83,36 @@ namespace Eksamensprojekt.Model
         public int Add(T entity)
         {
             Permit permit = (Permit)entity;
-            int newID;
             int equipmentRestrictionID = GetRestrictionIDFromTable("EquipmentRestrictionID", "EQUIPMENTRESTRICTION", entity.EquipmentRestriction);
             int measurementRestrictionID = GetRestrictionIDFromTable("MeasurementRestrictionID", "MEASUREMENTRESTRICTION", entity.MeasurementRestriction);
             int maintenanceRestrictionID = GetRestrictionIDFromTable("MaintenanceRestrictionID", "MAINTENANCERESTRICTION", entity.MaintenanceRestriction);
 
-            
-            string AddQuery = $"EXEC uspAddPermit @StartDate = \'{entity.StartDate.ToString("yyyy/MM/dd")}\', @EndDate=\'{entity.EndDate?.ToString("yyyy/MM/dd")}\', @AllowedYearlyOverflowVolume = {entity.AllowedYearlyOverflowVolume}, @AllowedYearlyIncidents={entity.AllowedYearlyIncidents}, @EquipmentRestrictionID={equipmentRestrictionID}, @MaintenanceRestrictionID={maintenanceRestrictionID}, @MeasurementRestrictionID={measurementRestrictionID}, @AdditionalRestriction=\'{entity.AdditionalRestriction}\', @FacilityID={entity.FacilityID};";
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                using (var executeCommand = new SqlCommand("uspAddPermit", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                SqlCommand command = new SqlCommand(AddQuery, connection);
-                connection.Open();
-                newID = (int)command.ExecuteNonQuery();
+                    executeCommand.Parameters.AddWithValue("@StartDate", entity.StartDate);
+                    if (entity.EndDate != null) { executeCommand.Parameters.AddWithValue("@EndDate", entity.EndDate); };
+                    if (entity.AllowedYearlyOverflowVolume != null) { executeCommand.Parameters.AddWithValue("@AllowedYearlyOverflowVolume", entity.AllowedYearlyOverflowVolume); }
+                    if (entity.AllowedYearlyIncidents != null) { executeCommand.Parameters.AddWithValue("@AllowedYearlyIncidents", entity.AllowedYearlyIncidents); }
+                    executeCommand.Parameters.AddWithValue("@EquipmentRestrictionID", equipmentRestrictionID);
+                    executeCommand.Parameters.AddWithValue("@MaintenanceRestrictionID", maintenanceRestrictionID);
+                    executeCommand.Parameters.AddWithValue("@MeasurementRestrictionID", measurementRestrictionID);
+                    if (entity.AdditionalRestriction != null) { executeCommand.Parameters.AddWithValue("@AdditionalRestriction", entity.AdditionalRestriction); }
+                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID);
 
+                    SqlParameter permitIDParam = new SqlParameter("@PermitID", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
+                    executeCommand.Parameters.Add(permitIDParam);
+
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+                    permit.PermitID = (int)permitIDParam.Value;
+                }
             }
-
-            return newID;
+            return permit.PermitID;
         }
 
         public int GetRestrictionIDFromTable(string columnName, string tableName, string restriction)

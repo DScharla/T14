@@ -451,8 +451,10 @@ namespace Eksamensprojekt.ViewModel
             permit.StartDate = StartDate;
             try { permit.EndDate = EndDate; }
             catch { permit.EndDate = null; }
-            permit.AllowedYearlyIncidents = Int32.Parse(AllowedYearlyIncidents);
-            permit.AllowedYearlyOverflowVolume = Int32.Parse(AllowedYearlyOverflowVolume);
+            try { permit.AllowedYearlyIncidents = Int32.Parse(AllowedYearlyIncidents); }
+            catch { permit.AllowedYearlyIncidents = null; }
+            try { permit.AllowedYearlyOverflowVolume = Int32.Parse(AllowedYearlyOverflowVolume); }
+            catch { permit.AllowedYearlyOverflowVolume = null; }
             permit.AdditionalRestriction = AdditionalRestriction;
             permit.MaintenanceRestriction = MaintenanceRestriction;
             permit.MeasurementRestriction = MeasurementRestriction;
