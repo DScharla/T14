@@ -306,7 +306,7 @@ namespace Eksamensprojekt.ViewModel
                 facility.IncidentsCompliance = CheckIncidentsCompliance(facility);
                 facility.OverflowCompliance = CheckOverflowCompliance(facility);
 
-                
+                //Facilities.Add(facility);
                 
             }
             Facilities = tempFacilities;
