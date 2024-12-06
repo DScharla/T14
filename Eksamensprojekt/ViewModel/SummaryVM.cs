@@ -227,24 +227,24 @@ namespace Eksamensprojekt.ViewModel
 
         public RelayCommand PermitOneActiveCommand => new RelayCommand(
             execute => SetPermitAsCurrent(0),
-            canExecute => { return IsSelectedNull(CurrentPermit); }
+            canExecute => { return Facility.Permits.Count > 0;}
             );
 
         public RelayCommand PermitTwoActiveCommand => new RelayCommand(
             execute => SetPermitAsCurrent(1),
-            canExecute => { return IsSelectedNull(CurrentPermit); }
+            canExecute => { return Facility.Permits.Count > 1; }
             );
 
         public void SetPermitAsCurrent(int index)
         {
             if (index < Facility.Permits.Count)
                 CurrentPermit = Facility.Permits[index];
-            else { CurrentPermit = new Permit(); }
+            else { CurrentPermit = null; }
         }
 
-        private Permit _currentPermit;
+        private Permit? _currentPermit;
 
-        public Permit CurrentPermit
+        public Permit? CurrentPermit
         {
             get { return _currentPermit; }
             set { _currentPermit = value; OnPropertyChanged(); }
@@ -306,7 +306,6 @@ namespace Eksamensprojekt.ViewModel
                 facility.IncidentsCompliance = CheckIncidentsCompliance(facility);
                 facility.OverflowCompliance = CheckOverflowCompliance(facility);
 
-                //Facilities.Add(facility);
                 
             }
             Facilities = tempFacilities;
