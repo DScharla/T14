@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,22 +130,36 @@ namespace Eksamensprojekt.Model
             return restrictionID;
         }
 
-        public void Remove(T entity)
+        public bool Remove(T entity)
         {
             Permit facility = (Permit)entity;
+            bool isRemoved = false;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (var executeCommand = new SqlCommand("uspRemoveFacility", connection))
+                using (var transaction = connection.BeginTransaction())
                 {
-                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    try
+                    {
+                        using (var executeCommand = new SqlCommand("uspRemovePermit", connection))
+                        {
+                            executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.PermitID);
-                    connection.Open();
+                            executeCommand.Parameters.AddWithValue("@PermitID", entity.PermitID);
+                            connection.Open();
 
-                    executeCommand.ExecuteNonQuery();
+                            executeCommand.ExecuteNonQuery();
+                            isRemoved = true;
+                        }
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        isRemoved = true;
+                    }
                 }
             }
+            return isRemoved;
         }
 
         public void Update(T entity)

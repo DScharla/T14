@@ -42,7 +42,7 @@ namespace Eksamensprojekt.Model
         }
 
 
-        public void Remove(T entity)
+        public bool Remove(T entity)
         {
             throw new NotImplementedException();
         }

@@ -414,7 +414,7 @@ namespace Eksamensprojekt.ViewModel
         }
         public void RemoveFacility()
         {
-            _facilityService.RemoveFacilityFromRepo(Facility);
+            bool isRemoved = _facilityService.RemoveFacilityFromRepo(Facility);
             ShowFacilities();
         }
         private bool IsSelectedNull(Facility facility)

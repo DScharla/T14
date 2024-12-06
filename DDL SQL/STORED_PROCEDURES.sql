@@ -7,6 +7,8 @@ DROP PROCEDURE uspAddOverflow;
 DROP PROCEDURE uspAddPermit;
 DROP PROCEDURE uspAddSystem;
 DROP PROCEDURE uspUpdateFacility;
+DROP PROCEDURE uspRemoveFacility;
+DROP PROCEDURE uspRemovePermit;
 
 GO
 
@@ -200,3 +202,24 @@ BEGIN
 WHERE FacilityID=@FacilityID
 END
 GO
+
+
+
+
+CREATE PROCEDURE uspRemoveFacility
+	@FacilityID Int
+AS
+BEGIN
+	DELETE FROM OVERFLOW WHERE [OVERFLOW].FacilityID=@FacilityID;
+	DELETE FROM INCIDENT WHERE [INCIDENT].FacilityID=@FacilityID;
+	DELETE FROM PERMIT WHERE [PERMIT].FacilityID=@FacilityID;
+	DELETE FROM FACILITY WHERE FacilityID=@FacilityID;
+	
+END
+GO
+CREATE PROCEDURE uspRemovePermit
+	@PermitID Int
+AS
+BEGIN
+	DELETE FROM PERMIT WHERE PermitID=@PermitID;
+END

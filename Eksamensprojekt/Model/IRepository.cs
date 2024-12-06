@@ -21,7 +21,7 @@ namespace Eksamensprojekt.Model
 
         int Add(T entity);
 
-        void Remove(T entity);
+        bool Remove(T entity);
 
         void Update(T entity);
 

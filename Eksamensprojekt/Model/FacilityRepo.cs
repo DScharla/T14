@@ -113,22 +113,37 @@ namespace Eksamensprojekt.Model
             return facility.ID;
         }
 
-        public void Remove(T entity)
+        public bool Remove(T entity)
         {
             Facility facility = (Facility)entity;
+            bool isRemoved = false;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (var executeCommand = new SqlCommand("uspRemoveFacility", connection))
+                using (var transaction = connection.BeginTransaction())
                 {
-                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    try
+                    {
+                        using (var executeCommand = new SqlCommand("uspRemoveFacility", connection))
+                        {
+                            executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.ID);
-                    connection.Open();
-
-                    executeCommand.ExecuteNonQuery();
+                            executeCommand.Parameters.AddWithValue("@FacilityID", entity.ID);
+                            connection.Open();
+                            SqlParameter IsRemovedParam = new SqlParameter("@IsRemoved", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                            executeCommand.Parameters.Add(IsRemovedParam);
+                            executeCommand.ExecuteNonQuery();
+                            isRemoved = true;
+                        }
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        isRemoved = true;
+                    }
                 }
             }
+            return isRemoved;
         }
 
 
