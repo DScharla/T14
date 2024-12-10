@@ -15,18 +15,47 @@ namespace Eksamensprojekt.Model
         public OverflowRepo(string db)
         {
             connectionString = new ConnectionStringDataReader(db).connectionString;
+            absolutePath = GetPathOfCsv();
+            FromCsvToOverflow(@"/Vejen_OB208 - Overløbsregistrering.txt");
         }
 
-        public void FromCsvToOverflow(string absolutePath)
+        private readonly static string directoryCurrentPath = Directory.GetCurrentDirectory();
+        private readonly string absolutePath;
+
+        public string GetPathOfCsv()
         {
-            List <string> data = new List<string>();
-            string line;
-            using (StreamReader sr = new StreamReader(absolutePath))
+            string tempDirectory = directoryCurrentPath;
+            for (int i = 0; i < 3; i++)
             {
+                tempDirectory = Directory.GetParent(tempDirectory).ToString();
+            }
+            return tempDirectory;
+        }
+
+        public void FromCsvToOverflow(string fileName)
+        {
+            List <string> dateTime = new List<string>();
+            List<string> overflow = new List<string>();
+            string line;
+            using (StreamReader sr = new StreamReader(absolutePath + fileName))
+            {
+                sr.ReadLine();
                 sr.ReadLine();
                 while ((line = sr.ReadLine()) != null)
                 {
-                        data.Add(line);                        
+                    string[] commaSplits;
+                    /*commaSplits = line.Split(',');
+                    foreach (string str in commaSplits)
+                    {*/
+                        commaSplits = line.Split("\"");
+                        string date = commaSplits[3];
+                        string[] tSplit;
+                        tSplit = date.Split("T");
+                        dateTime.Add(tSplit[0] + " " + tSplit[1]);
+                        string sub1 = commaSplits[6].Substring(2);
+                        overflow.Add(sub1.Split("]")[0]);
+                    //}
+                    //data.Add(line);                        
                 }
                 
             }
