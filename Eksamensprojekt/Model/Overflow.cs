@@ -12,6 +12,12 @@ namespace Eksamensprojekt.Model
 		{
 			
 		}
+		public Overflow(string startTime, string endTime, string overflowVolume)
+		{
+			StartTime = DateTime.ParseExact(startTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            EndTime = DateTime.ParseExact(endTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+			OverflowVolume = double.Parse(overflowVolume);
+        }
 		
 		private DateTime _startTime;
 
@@ -45,9 +51,9 @@ namespace Eksamensprojekt.Model
 		}
 
 
-		private int _overflowVolume;
+		private double _overflowVolume;
 
-		public int OverflowVolume
+		public double OverflowVolume
 		{
 			get { return _overflowVolume; }
 			set { _overflowVolume = value; }

@@ -35,7 +35,7 @@ namespace Eksamensprojekt.Model
         public void FromCsvToOverflow(string fileName)
         {
             List <string> dateTime = new List<string>();
-            List<string> overflow = new List<string>();
+            List<string> overflows = new List<string>();
             string line;
             using (StreamReader sr = new StreamReader(absolutePath + fileName))
             {
@@ -44,21 +44,28 @@ namespace Eksamensprojekt.Model
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] commaSplits;
-                    /*commaSplits = line.Split(',');
-                    foreach (string str in commaSplits)
-                    {*/
-                        commaSplits = line.Split("\"");
-                        string date = commaSplits[3];
-                        string[] tSplit;
-                        tSplit = date.Split("T");
-                        dateTime.Add(tSplit[0] + " " + tSplit[1]);
-                        string sub1 = commaSplits[6].Substring(2);
-                        overflow.Add(sub1.Split("]")[0]);
-                    //}
-                    //data.Add(line);                        
+                    commaSplits = line.Split("\"");
+                    string date = commaSplits[3];
+                    string[] tSplit;
+                    tSplit = date.Split("T");
+                    dateTime.Add(tSplit[0] + " " + tSplit[1]);
+                    string sub1 = commaSplits[6].Substring(2);
+                    overflows.Add(sub1.Split("]")[0]);                     
                 }
                 
             }
+            int i = 0;
+            foreach (string s in dateTime)
+            {
+                if (double.Parse(overflows[i]) > 0.0)
+                {
+
+                    Overflow overflow = new Overflow(dateTime[i], dateTime[i + 1], overflows[i]);
+                    
+                }
+                i++;
+            }
+
         }
 
         public ObservableCollection<T> GetAll()
