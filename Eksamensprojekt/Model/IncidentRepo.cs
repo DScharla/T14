@@ -37,7 +37,28 @@ namespace Eksamensprojekt.Model
 
         public int Add(T entity)
         {
-            throw new NotImplementedException();
+            Incident incident = (Incident)entity;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+
+                using (var executeCommand = new SqlCommand("uspAddIncident", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    executeCommand.Parameters.AddWithValue("@OverflowVolume", entity.OverflowVolume);
+                    executeCommand.Parameters.AddWithValue("@StartTime", entity.StartTime);
+                    executeCommand.Parameters.AddWithValue("@EndTime", entity.EndTime);
+                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID); 
+
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+
+                    return 1;
+                }
+            }
         }
 
         public void Remove(T entity)
@@ -47,7 +68,25 @@ namespace Eksamensprojekt.Model
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            Incident incident = (Incident)entity;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+
+                using (var executeCommand = new SqlCommand("uspUpdateIncident", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    executeCommand.Parameters.AddWithValue("@OverflowVolume", entity.OverflowVolume);
+                    executeCommand.Parameters.AddWithValue("@EndTime", entity.EndTime);
+                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID);
+
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

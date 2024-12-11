@@ -16,7 +16,7 @@ namespace Eksamensprojekt.Model
         {
             connectionString = new ConnectionStringDataReader(db).connectionString;
             absolutePath = GetPathOfCsv();
-            FromCsvToOverflow(@"/Vejen_OB208 - Overløbsregistrering.txt");
+            //FromCsvToOverflow(@"/Vejen_OB208 - Overløbsregistrering.txt");
         }
 
         private readonly static string directoryCurrentPath = Directory.GetCurrentDirectory();
@@ -32,7 +32,7 @@ namespace Eksamensprojekt.Model
             return tempDirectory;
         }
 
-        public void FromCsvToOverflow(string fileName)
+        public void FromCsvToOverflow(string fileName, int facilityID)
         {
             List <string> dateTime = new List<string>();
             List<string> overflows = new List<string>();
@@ -60,8 +60,8 @@ namespace Eksamensprojekt.Model
                 if (double.Parse(overflows[i]) > 0.0)
                 {
 
-                    Overflow overflow = new Overflow(dateTime[i], dateTime[i + 1], overflows[i]);
-                    
+                    Overflow overflow = new Overflow(dateTime[i], dateTime[i + 1], overflows[i]) { FacilityID = facilityID};
+                    Add((T)overflow);
                 }
                 i++;
             }

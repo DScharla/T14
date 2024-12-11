@@ -16,7 +16,7 @@ namespace Eksamensprojekt.Model
 		{
 			StartTime = DateTime.ParseExact(startTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
             EndTime = DateTime.ParseExact(endTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-			OverflowVolume = double.Parse(overflowVolume);
+			OverflowVolume = Convert.ToDouble(overflowVolume, System.Globalization.CultureInfo.InvariantCulture);
         }
 		
 		private DateTime _startTime;
