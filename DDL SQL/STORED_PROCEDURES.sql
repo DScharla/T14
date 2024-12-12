@@ -7,6 +7,7 @@ DROP PROCEDURE uspAddOverflow;
 DROP PROCEDURE uspAddPermit;
 DROP PROCEDURE uspAddSystem;
 DROP PROCEDURE uspUpdateFacility;
+DROP PROCEDURE uspUpdateIncident;
 
 GO
 
@@ -147,7 +148,8 @@ CREATE PROCEDURE uspAddIncident
 	@OverflowVolume Int,
 	@StartTime DateTime,
 	@EndTime DateTime,
-	@FacilityID Int
+	@FacilityID Int,
+	@IncidentID Int OUTPUT
 AS
 BEGIN
 	INSERT INTO INCIDENT (
@@ -162,6 +164,7 @@ BEGIN
 		@EndTime,
 		@FacilityID
 	);
+	Set @IncidentID = SCOPE_IDENTITY();
 
 DECLARE @NumberOfIncidents Int;
 
@@ -204,13 +207,14 @@ GO
 CREATE PROCEDURE uspUpdateIncident
 	@OverflowVolume Int,
 	@EndTime DateTime,
-	@FacilityID Int
+	@FacilityID Int,
+	@IncidentID Int
 AS
 BEGIN
 	UPDATE INCIDENT
 	SET
 		OverflowVolume = @OverflowVolume,
 		EndTime = @EndTime
-WHERE FacilityID=@FacilityID
+WHERE IncidentId=@IncidentID
 END
 GO

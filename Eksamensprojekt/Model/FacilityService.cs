@@ -113,7 +113,8 @@ namespace Eksamensprojekt.Model
                                 FacilityID = overflow.FacilityID
                             };
                             incidents.Add(tempIncident);
-                            incidentRepo.Add(tempIncident);
+                            incidents[incidents.Count - 1].IncidentID = incidentRepo.Add(tempIncident);
+                            
                         }
                     }
                 }
@@ -134,9 +135,9 @@ namespace Eksamensprojekt.Model
         public bool IsOverflowOver5hoursOfIncident(ObservableCollection<Incident> incidents, Overflow overflow) 
         {
             bool isOverflowWithin5hours = false;
-            foreach (Incident inc in incidents)
+            if (incidents.Count > 0)
             {
-                if (incidents.Count > 0 && inc.EndTime-overflow.StartTime > new TimeSpan(5,0,0)) // Hvis der er gået mere end 5 timer mellem Incidents EndTime og overflowets Start Time 
+                if (overflow.StartTime- incidents[incidents.Count-1].EndTime > new TimeSpan(5,0,0)) // Hvis der er gået mere end 5 timer mellem Incidents EndTime og overflowets Start Time 
                 {
                     isOverflowWithin5hours = true;
                 }

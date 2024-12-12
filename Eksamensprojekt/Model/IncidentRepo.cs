@@ -50,15 +50,21 @@ namespace Eksamensprojekt.Model
                     executeCommand.Parameters.AddWithValue("@OverflowVolume", entity.OverflowVolume);
                     executeCommand.Parameters.AddWithValue("@StartTime", entity.StartTime);
                     executeCommand.Parameters.AddWithValue("@EndTime", entity.EndTime);
-                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID); 
+                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID);
+
+                    SqlParameter incidentIDParam = new SqlParameter("@IncidentID", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
+                    executeCommand.Parameters.Add(incidentIDParam);
 
                     connection.Open();
 
                     executeCommand.ExecuteNonQuery();
+                    incident.IncidentID = (int)incidentIDParam.Value;
 
-                    return 1;
+
+
                 }
             }
+            return incident.IncidentID;
         }
 
         public void Remove(T entity)
@@ -81,6 +87,7 @@ namespace Eksamensprojekt.Model
                     executeCommand.Parameters.AddWithValue("@OverflowVolume", entity.OverflowVolume);
                     executeCommand.Parameters.AddWithValue("@EndTime", entity.EndTime);
                     executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID);
+                    executeCommand.Parameters.AddWithValue("@IncidentID", entity.IncidentID);
 
                     connection.Open();
 
