@@ -18,7 +18,7 @@ CREATE TABLE FACILITY(
 	FacilityID Int IDENTITY(1,1) CONSTRAINT PK_Facility PRIMARY KEY,
 	Name NVarChar(50) NOT NULL UNIQUE,
 	NumberOfIncidents Int,
-	TotalOverflow Decimal(15, 7),
+	TotalOverflow Int,
 	UDLNumber NVarChar(20) NOT NULL,
 	OBNumber NVarChar(20) UNIQUE NOT NULL,
 	MinimumPoolSize NVarChar(500),
@@ -65,7 +65,7 @@ CREATE TABLE PERMIT(
 
 CREATE TABLE INCIDENT(
 	IncidentId Int IDENTITY(1,1) CONSTRAINT PK_Incident PRIMARY KEY,
-	OverflowVolume Decimal(15, 7) NOT NULL,
+	OverflowVolume Int NOT NULL,
 	StartTime DateTime NOT NULL,
 	EndTime DateTime NOT NULL,
 	FacilityID Int NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE INCIDENT(
 
 CREATE TABLE OVERFLOW(
 	OverflowID Int IDENTITY(1,1) CONSTRAINT PK_Overflow PRIMARY KEY,
-	OverflowVolume Decimal(15, 7) NOT NULL,
+	OverflowVolume Int NOT NULL,
 	StartTime DateTime NOT NULL,
 	EndTime DateTime NOT NULL,
 	FacilityID Int NOT NULL,

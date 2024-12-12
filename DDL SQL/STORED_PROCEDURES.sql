@@ -7,10 +7,12 @@ DROP PROCEDURE uspAddOverflow;
 DROP PROCEDURE uspAddPermit;
 DROP PROCEDURE uspAddSystem;
 DROP PROCEDURE uspUpdateFacility;
+<<<<<<< HEAD
 DROP PROCEDURE uspRemoveFacility;
 DROP PROCEDURE uspRemovePermit;
+=======
 DROP PROCEDURE uspUpdateIncident;
-
+>>>>>>> Cla2
 
 GO
 
@@ -122,7 +124,7 @@ END;
 GO
 
 CREATE PROCEDURE uspAddOverflow  
-	@OverflowVolume Decimal(15, 7),
+	@OverflowVolume Int,
 	@StartTime DateTime,
 	@EndTime DateTime,
 	@FacilityID Int
@@ -148,7 +150,7 @@ GO
 
 
 CREATE PROCEDURE uspAddIncident  
-	@OverflowVolume Decimal(15, 7),
+	@OverflowVolume Int,
 	@StartTime DateTime,
 	@EndTime DateTime,
 	@FacilityID Int,
@@ -208,7 +210,7 @@ END
 
 GO
 
-
+<<<<<<< HEAD
 CREATE PROCEDURE uspRemoveFacility
 	@FacilityID Int
 AS
@@ -228,10 +230,9 @@ AS
 BEGIN
 	DELETE FROM PERMIT WHERE PermitID=@PermitID;
 END
-GO
-
+=======
 CREATE PROCEDURE uspUpdateIncident
-	@OverflowVolume Decimal(15, 7),
+	@OverflowVolume Int,
 	@EndTime DateTime,
 	@FacilityID Int,
 	@IncidentID Int
@@ -244,4 +245,4 @@ BEGIN
 WHERE IncidentId=@IncidentID
 END
 GO
-
+>>>>>>> Cla2

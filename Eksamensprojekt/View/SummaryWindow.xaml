@@ -151,7 +151,7 @@
                                 <TextBlock
                                     Background="{Binding OverflowCompliance}"
                                     Foreground="White"
-                                    Text="{Binding TotalOverflow, StringFormat={}{0:F0}}"
+                                    Text="{Binding TotalOverflow}"
                                     Width="200"
                                     TextAlignment="Center"
                                     TextTrimming="CharacterEllipsis"
