@@ -255,6 +255,11 @@ namespace Eksamensprojekt.ViewModel
             canExecute => { return IsSelectedNull(Facility); }
             );
 
+        public RelayCommand AddCsvCommand => new RelayCommand(
+           execute => AddCsvFacility(1),
+           canExecute => { return true; }
+           );
+
         //DCD: +1
         public SummaryVM()
         {
@@ -265,9 +270,14 @@ namespace Eksamensprojekt.ViewModel
             _measurementRestrictionCollection = GetRestrictionOptions("MEASUREMENTRESTRICTION");
             _maintenanceRestrictionCollection = GetRestrictionOptions("MAINTENANCERESTRICTION");*/
             _systemOptions = GetRestrictionOptions("SYSTEM");// - skal der være en getOptions metode for systems - skal de 3 metodekald herover samles i én metode?
+
+            //*:*:*:*:*:*:*:*:**:*:*::*:*:::**:**:
+            //TEST
+            //AddCsvFacility(1);
+            //*:*:*:*:*:*:*:*:**:*:*::*:*:::**:**:
         }
 
-        
+
         public SummaryVM(Facility facility)
         {
             _facilityService = new FacilityService();
@@ -397,6 +407,11 @@ namespace Eksamensprojekt.ViewModel
             CloseAction();
             editFacilityWindow.Show();
 
+        }
+
+        public void AddCsvFacility(int facilityID)
+        {
+            _facilityService.AddCsvToFacility(facilityID);
         }
 
         public void SaveEditFacility()

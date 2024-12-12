@@ -59,8 +59,8 @@ namespace Eksamensprojekt.Model
             set { _numberOfIncidents = value; }
         }
 
-        private int? _totalOverflow;
-        public int? TotalOverflow
+        private double? _totalOverflow;
+        public double? TotalOverflow
         {
             get { return _totalOverflow; }
             set { _totalOverflow = value; }
@@ -118,9 +118,9 @@ namespace Eksamensprojekt.Model
             Permits = new ObservableCollection<Permit>();
             Incidents = new ObservableCollection<Incident>();
         }
-        public int CalculateTotalOverflow(ObservableCollection<Incident> incidents)
+        public double CalculateTotalOverflow(ObservableCollection<Incident> incidents)
         {
-            int totalOverflow = 0;
+            double totalOverflow = 0;
             foreach (Incident incident in Incidents)
             {
                 totalOverflow += incident.OverflowVolume; 

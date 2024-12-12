@@ -32,7 +32,7 @@ namespace Eksamensprojekt.Model
                     while (reader.Read())
                     {
                         all.Add(
-                            FromStringToType(reader)
+                            FromDBToType(reader)
                             );
                     }
                 }
@@ -45,7 +45,7 @@ namespace Eksamensprojekt.Model
             return "1";
         }
 
-        public T FromStringToType(SqlDataReader reader)
+        public T FromDBToType(SqlDataReader reader)
         {
             Permit entity = new Permit();
             entity.StartDate = (DateTime)reader["StartDate"];

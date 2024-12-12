@@ -7,8 +7,12 @@ DROP PROCEDURE uspAddOverflow;
 DROP PROCEDURE uspAddPermit;
 DROP PROCEDURE uspAddSystem;
 DROP PROCEDURE uspUpdateFacility;
+<<<<<<< HEAD
 DROP PROCEDURE uspRemoveFacility;
 DROP PROCEDURE uspRemovePermit;
+=======
+DROP PROCEDURE uspUpdateIncident;
+>>>>>>> Cla2
 
 GO
 
@@ -149,7 +153,8 @@ CREATE PROCEDURE uspAddIncident
 	@OverflowVolume Int,
 	@StartTime DateTime,
 	@EndTime DateTime,
-	@FacilityID Int
+	@FacilityID Int,
+	@IncidentID Int OUTPUT
 AS
 BEGIN
 	INSERT INTO INCIDENT (
@@ -164,6 +169,7 @@ BEGIN
 		@EndTime,
 		@FacilityID
 	);
+	Set @IncidentID = SCOPE_IDENTITY();
 
 DECLARE @NumberOfIncidents Int;
 
@@ -184,7 +190,7 @@ CREATE PROCEDURE uspUpdateFacility
 	@Name NVarChar(50),
 	@UDLNumber NVarChar(20),
 	@OBNumber NVarChar(20),
-	@MinimumPoolSize NVarChar(500),
+	@MinimumPoolSize NVarChar(500) = NULL,
 	@NumberOfIncidents Int = NULL,
 	@TotalOverflow Int = NULL,
 	@SystemID Int
@@ -204,6 +210,7 @@ END
 
 GO
 
+<<<<<<< HEAD
 CREATE PROCEDURE uspRemoveFacility
 	@FacilityID Int
 AS
@@ -223,3 +230,19 @@ AS
 BEGIN
 	DELETE FROM PERMIT WHERE PermitID=@PermitID;
 END
+=======
+CREATE PROCEDURE uspUpdateIncident
+	@OverflowVolume Int,
+	@EndTime DateTime,
+	@FacilityID Int,
+	@IncidentID Int
+AS
+BEGIN
+	UPDATE INCIDENT
+	SET
+		OverflowVolume = @OverflowVolume,
+		EndTime = @EndTime
+WHERE IncidentId=@IncidentID
+END
+GO
+>>>>>>> Cla2
