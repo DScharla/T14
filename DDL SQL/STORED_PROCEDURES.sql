@@ -10,6 +10,7 @@ DROP PROCEDURE uspUpdateFacility;
 DROP PROCEDURE uspRemoveFacility;
 DROP PROCEDURE uspRemovePermit;
 DROP PROCEDURE uspUpdateIncident;
+DROP PROCEDURE uspUpdateOverflowWithIncidentID;
 
 
 GO
@@ -242,6 +243,18 @@ BEGIN
 		OverflowVolume = @OverflowVolume,
 		EndTime = @EndTime
 WHERE IncidentId=@IncidentID
+END
+GO
+
+CREATE PROCEDURE uspUpdateOverflowWithIncidentID
+	@OverflowID Int,
+	@IncidentID Int
+AS
+BEGIN
+	UPDATE OVERFLOW
+	SET
+		IncidentID = @IncidentID
+WHERE OverflowID = @OverflowID
 END
 GO
 

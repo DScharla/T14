@@ -150,7 +150,25 @@ namespace Eksamensprojekt.Model
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            Overflow overflow = (Overflow)entity;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+
+                using (var executeCommand = new SqlCommand("uspUpdateOverflowWithIncidentID", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    executeCommand.Parameters.AddWithValue("@OverflowID", entity.OverflowID);
+                    executeCommand.Parameters.AddWithValue("@IncidentID", entity.IncidentID);
+
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+                }
+            }
+
         }
     }
 }

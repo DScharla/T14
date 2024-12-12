@@ -116,7 +116,10 @@ namespace Eksamensprojekt.Model
                             incidents[incidents.Count - 1].IncidentID = incidentRepo.Add(tempIncident);
                             
                         }
+
                     }
+                overflow.IncidentID = incidents[incidents.Count - 1].IncidentID;
+                overflowRepo.Update(overflow);
                 }
                 facility.Incidents = incidents;
         }
