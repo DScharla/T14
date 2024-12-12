@@ -200,3 +200,17 @@ BEGIN
 WHERE FacilityID=@FacilityID
 END
 GO
+
+CREATE PROCEDURE uspUpdateIncident
+	@OverflowVolume Int,
+	@EndTime DateTime,
+	@FacilityID Int
+AS
+BEGIN
+	UPDATE INCIDENT
+	SET
+		OverflowVolume = @OverflowVolume,
+		EndTime = @EndTime
+WHERE FacilityID=@FacilityID
+END
+GO
