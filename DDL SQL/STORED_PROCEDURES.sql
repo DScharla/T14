@@ -185,7 +185,7 @@ CREATE PROCEDURE uspUpdateFacility
 	@Name NVarChar(50),
 	@UDLNumber NVarChar(20),
 	@OBNumber NVarChar(20),
-	@MinimumPoolSize NVarChar(500),
+	@MinimumPoolSize NVarChar(500) = NULL,
 	@NumberOfIncidents Int = NULL,
 	@TotalOverflow Int = NULL,
 	@SystemID Int
