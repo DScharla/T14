@@ -99,7 +99,7 @@ namespace Eksamensprojekt.Model
                         if (incidents.Count!= 0)
                         {
                             // Dette overflow er idnenfor 5 timer af et tidligere incident, derfor skal den lægge dette overflow volumen oveni det incident, og sætte endTime i incident til at være slut tidpunktet for overflowet. overflow.StartTime + overflow.Duration
-                            incidents[incidents.Count - 1].EndTime += new TimeSpan(0,5,0);
+                            incidents[incidents.Count - 1].EndTime = overflow.EndTime;
                             incidents[incidents.Count - 1].OverflowVolume += overflow.OverflowVolume;
                             incidentRepo.Update(incidents[incidents.Count - 1]);
                         }
