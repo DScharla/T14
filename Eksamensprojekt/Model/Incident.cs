@@ -22,13 +22,20 @@ namespace Eksamensprojekt.Model
             get { return _endTime; }
             set { _endTime = value; }
         }
-        private int _overflowVolume;
+        private double _overflowVolume;
 
-		public int OverflowVolume
+		public double OverflowVolume
 		{
 			get { return _overflowVolume; }
 			set { _overflowVolume = value; }
 		}
+        private int _facilityID;
+        public int FacilityID
+        {
+            get { return _facilityID; }
+            set { _facilityID = value; }
+        }
+
         private int _incidentID;
         public int IncidentID
         {
@@ -36,17 +43,24 @@ namespace Eksamensprojekt.Model
             set { _incidentID = value; }
         }
 
-        public Incident(DateTime startTime, DateTime EndTime, int OverflowVolume)
+        public Incident()
         {
-            this._startTime = startTime;
-            this._endTime = EndTime;
-            this._overflowVolume = OverflowVolume;
+
         }
-        public Incident(DateTime startTime, DateTime EndTime, int OverflowVolume, int incidentID) 
+
+        public Incident(DateTime startTime, DateTime EndTime, double OverflowVolume, int facilityID)
         {
             this._startTime = startTime;
             this._endTime = EndTime;
             this._overflowVolume = OverflowVolume;
+            this._facilityID = facilityID;
+        }
+        public Incident(DateTime startTime, DateTime EndTime, double OverflowVolume, int facilityID, int incidentID) 
+        {
+            this._startTime = startTime;
+            this._endTime = EndTime;
+            this._overflowVolume = OverflowVolume;
+            this._facilityID = facilityID;
             this._incidentID = IncidentID;
         }
 

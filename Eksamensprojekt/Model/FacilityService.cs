@@ -15,6 +15,11 @@ namespace Eksamensprojekt.Model
         private IncidentRepo<Incident> incidentRepo = new IncidentRepo<Incident>(connectionString);
         private OverflowRepo<Overflow> overflowRepo = new OverflowRepo<Overflow>(connectionString);
 
+
+        public FacilityService() 
+        {
+            List<string> facilitIDs = new List<string>();
+        }
         public ObservableCollection<Facility> GetAllData()
         {
             ObservableCollection<Facility> tempFacilities = facilityRepo.GetAll();
@@ -23,7 +28,10 @@ namespace Eksamensprojekt.Model
             return tempFacilities;
         }
 
-        
+        public void AddCsvToFacility(int facilityID)
+        {
+            overflowRepo.FromCsvToOverflow(@"/Vejen_OB208 - Overløbsregistrering.txt", facilityID);
+        }
 
         public ObservableCollection<Permit> AddPermitsToFacility(ObservableCollection<Facility> facilities)
         {
@@ -73,6 +81,7 @@ namespace Eksamensprojekt.Model
         }
         public void EvaluateOverflowForFacility(Facility facility, ObservableCollection<Incident> incidents, ObservableCollection<Overflow> overflows)
         {
+            Incident tempIncident = new Incident(); //Lav tom constructor
                 foreach (Overflow overflow in overflows) //Iterere gennem alle overflows der varer mere end 5 minutter og er for samme facility
                 {
                     if (IsOverflowOver5hoursOfIncident(incidents, overflow)) //Hvis Overflow IKKE er sket indenfor 5 timer af EndDate på Sidste Incident
@@ -80,16 +89,33 @@ namespace Eksamensprojekt.Model
                         incidents.Add(new Incident(
                         overflow.StartTime,
                         overflow.StartTime + overflow.Duration,
-                        overflow.OverflowVolume)
+                        overflow.OverflowVolume,
+                        overflow.FacilityID)
                         ); //Tilføjer alle overflows der varer mere end 5 minutter og er fra samme facility
                         incidents[incidents.Count - 1].IncidentID = incidentRepo.Add(incidents[incidents.Count - 1]);
-                    }
-                    else if (IsOverflowOver5hoursOfIncident(incidents, overflow) == false ) 
+                        }
+                    else if (IsOverflowOver5hoursOfIncident(incidents, overflow)==false) 
                     {
-                        // Dette overflow er idnenfor 5 timer af et tidligere incident, derfor skal den lægge dette overflow volumen oveni det incident, og sætte endTime i incident til at være slut tidpunktet for overflowet. overflow.StartTime + overflow.Duration
-                        incidents[incidents.Count - 1].EndTime += overflow.Duration;
-                        incidents[incidents.Count - 1].OverflowVolume += overflow.OverflowVolume;
-                        incidentRepo.Update(incidents[incidents.Count - 1]);
+                        if (incidents.Count!= 0)
+                        {
+                            // Dette overflow er idnenfor 5 timer af et tidligere incident, derfor skal den lægge dette overflow volumen oveni det incident, og sætte endTime i incident til at være slut tidpunktet for overflowet. overflow.StartTime + overflow.Duration
+                            incidents[incidents.Count - 1].EndTime = overflow.EndTime;
+                            incidents[incidents.Count - 1].OverflowVolume += overflow.OverflowVolume;
+                            incidentRepo.Update(incidents[incidents.Count - 1]);
+                        }
+                        else
+                        {
+                            tempIncident = new Incident()
+                            {
+                                StartTime = overflow.StartTime,
+                                EndTime = overflow.EndTime,
+                                OverflowVolume = overflow.OverflowVolume,
+                                FacilityID = overflow.FacilityID
+                            };
+                            incidents.Add(tempIncident);
+                            incidents[incidents.Count - 1].IncidentID = incidentRepo.Add(tempIncident);
+                            
+                        }
                     }
                 }
                 facility.Incidents = incidents;
@@ -99,7 +125,7 @@ namespace Eksamensprojekt.Model
             ObservableCollection<Overflow> overflows = new ObservableCollection<Overflow>(); 
             foreach (Overflow overflow in overflowRepo.GetAll())
             {
-                if (overflow.Duration > new TimeSpan(0, 5, 0) && overflow.FacilityID == facility.ID)
+                if (overflow.Duration >= new TimeSpan(0, 5, 0) && overflow.FacilityID == facility.ID)
                 {
                     overflows.Add(overflow);
                 }
@@ -109,9 +135,9 @@ namespace Eksamensprojekt.Model
         public bool IsOverflowOver5hoursOfIncident(ObservableCollection<Incident> incidents, Overflow overflow) 
         {
             bool isOverflowWithin5hours = false;
-            foreach (Incident inc in incidents)
+            if (incidents.Count > 0)
             {
-                if (incidents.Count > 0 && inc.EndTime-overflow.StartTime > new TimeSpan(5,0,0)) // Hvis der er gået mere end 5 timer mellem Incidents EndTime og overflowets Start Time 
+                if (overflow.StartTime- incidents[incidents.Count-1].EndTime > new TimeSpan(5,0,0)) // Hvis der er gået mere end 5 timer mellem Incidents EndTime og overflowets Start Time 
                 {
                     isOverflowWithin5hours = true;
                 }

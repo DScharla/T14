@@ -8,6 +8,17 @@ namespace Eksamensprojekt.Model
 {
     public class Overflow 
     {
+		public Overflow()
+		{
+			
+		}
+		public Overflow(string startTime, string endTime, string overflowVolume)
+		{
+			StartTime = DateTime.ParseExact(startTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            EndTime = DateTime.ParseExact(endTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+			OverflowVolume = Convert.ToDouble(overflowVolume, System.Globalization.CultureInfo.InvariantCulture);
+        }
+		
 		private DateTime _startTime;
 
 		public DateTime StartTime
@@ -19,12 +30,30 @@ namespace Eksamensprojekt.Model
 
 		public TimeSpan Duration
 		{
-			get { return _duration; }
-			set { _duration = value; }
+			get { return EndTime - StartTime; }
+			//set { _duration = EndTime-StartTime; }
 		}
-		private int _overflowVolume;
 
-		public int OverflowVolume
+		private DateTime _endTime;
+
+		public  DateTime EndTime
+		{
+			get { return _endTime; }
+			set { _endTime = value; }
+		}
+
+		private int _incidentID;
+
+		public int IncidentID
+		{
+			get { return _incidentID; }
+			set { _incidentID = value; }
+		}
+
+
+		private double _overflowVolume;
+
+		public double OverflowVolume
 		{
 			get { return _overflowVolume; }
 			set { _overflowVolume = value; }

@@ -25,7 +25,7 @@ namespace Eksamensprojekt.Model
             throw new NotImplementedException();
         }
 
-        public T FromStringToType(SqlDataReader reader)
+        public T FromDBToType(SqlDataReader reader)
         {
             throw new NotImplementedException();
         }
@@ -37,7 +37,34 @@ namespace Eksamensprojekt.Model
 
         public int Add(T entity)
         {
-            throw new NotImplementedException();
+            Incident incident = (Incident)entity;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+
+                using (var executeCommand = new SqlCommand("uspAddIncident", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    executeCommand.Parameters.AddWithValue("@OverflowVolume", entity.OverflowVolume);
+                    executeCommand.Parameters.AddWithValue("@StartTime", entity.StartTime);
+                    executeCommand.Parameters.AddWithValue("@EndTime", entity.EndTime);
+                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID);
+
+                    SqlParameter incidentIDParam = new SqlParameter("@IncidentID", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
+                    executeCommand.Parameters.Add(incidentIDParam);
+
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+                    incident.IncidentID = (int)incidentIDParam.Value;
+
+
+
+                }
+            }
+            return incident.IncidentID;
         }
 
         public bool Remove(T entity)
@@ -47,7 +74,26 @@ namespace Eksamensprojekt.Model
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            Incident incident = (Incident)entity;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+
+                using (var executeCommand = new SqlCommand("uspUpdateIncident", connection))
+                {
+                    executeCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    executeCommand.Parameters.AddWithValue("@OverflowVolume", entity.OverflowVolume);
+                    executeCommand.Parameters.AddWithValue("@EndTime", entity.EndTime);
+                    executeCommand.Parameters.AddWithValue("@FacilityID", entity.FacilityID);
+                    executeCommand.Parameters.AddWithValue("@IncidentID", entity.IncidentID);
+
+                    connection.Open();
+
+                    executeCommand.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

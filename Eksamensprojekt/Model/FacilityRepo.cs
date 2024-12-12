@@ -35,7 +35,7 @@ namespace Eksamensprojekt.Model
                     while (reader.Read())
                     {
                         all.Add(
-                            FromStringToType(reader)
+                            FromDBToType(reader)
                             );
                     }
                 }
@@ -50,7 +50,7 @@ namespace Eksamensprojekt.Model
         }
 
 
-        public T FromStringToType(SqlDataReader reader)
+        public T FromDBToType(SqlDataReader reader)
         {
             Facility entity = new Facility();
             entity.ID = (int)reader["FacilityID"];

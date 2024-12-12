@@ -15,7 +15,7 @@ namespace Eksamensprojekt.Model
 
         string GetStringFromDB();
 
-        T FromStringToType(SqlDataReader reader);
+        T FromDBToType(SqlDataReader reader);
         
         T GetById(int id);
 
