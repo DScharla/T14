@@ -102,7 +102,7 @@ namespace Eksamensprojekt.Model
         {
             Overflow entity = new Overflow();
             entity.OverflowID = (int)reader["OverflowID"];
-            entity.OverflowVolume = (int)reader["OverflowVolume"];
+            entity.OverflowVolume = Convert.ToDouble(reader["OverflowVolume"]);
             entity.StartTime = (DateTime)reader["StartTime"];
             entity.EndTime = (DateTime)reader["EndTime"];
             entity.FacilityID = (int)reader["FacilityID"];
