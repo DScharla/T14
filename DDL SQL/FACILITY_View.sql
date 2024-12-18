@@ -31,11 +31,7 @@ SELECT
 	dbo.MEASUREMENTRESTRICTION.Text AS MeasurementRestriction,
 	dbo.PERMIT.PermitID, dbo.PERMIT.StartDate,
 	dbo.PERMIT.EndDate,
-	dbo.PERMIT.AllowedAverageOverflowVolume, 
-	dbo.PERMIT.AllowedAverageOverflowPeriod, 
 	dbo.PERMIT.AllowedYearlyOverflowVolume, 
-	dbo.PERMIT.AllowedAverageIncidents, 
-	dbo.PERMIT.AllowedAverageIncidentsPeriod, 
 	dbo.PERMIT.AllowedYearlyIncidents, 
     dbo.PERMIT.AdditionalRestriction
 FROM            dbo.EQUIPMENTRESTRICTION INNER JOIN
