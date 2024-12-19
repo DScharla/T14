@@ -34,35 +34,36 @@ EXEC uspAddMeasurementRestriction @NewRestriction = 'Nej'
 EXEC uspAddMeasurementRestriction @NewRestriction = 'Måske'
 
 -- PERMITS
-EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedYearlyOverflowVolume = 3250, @AllowedYearlyIncidents = 7, @EquipmentRestrictionID = 1, @MaintenanceRestrictionID = 1, @MeasurementRestrictionID = 4, @FacilityID = 1
-EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedYearlyOverflowVolume = 7100, @AllowedYearlyIncidents = 45, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027',@FacilityID = 2
-EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 35, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityID = 2
-EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 20, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret senest den 15 februar 2027', @FacilityID = 3
-EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedYearlyOverflowVolume = 13500, @AllowedYearlyIncidents = 60, @EquipmentRestrictionID = 2, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityID = 4
-EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedYearlyOverflowVolume = 600, @AllowedYearlyIncidents = 5, @EquipmentRestrictionID = 2, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityID = 4
-EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2024/12/31', @AllowedYearlyOverflowVolume = 3000, @AllowedYearlyIncidents = 37, @EquipmentRestrictionID = 1, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Den 15. februar 2030 skal Vejen Forsyning indsende ny beregnet overløbsmængde samt antal for normalåret (900 mm) baseret på en opdateret afløbsmodel for oplandet', @FacilityID = 5
-EXEC uspAddPermit @StartDate = '2025/01/01', @AllowedYearlyOverflowVolume = 3000, @AllowedYearlyIncidents = 37, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Den 15. februar 2030 skal Vejen Forsyning indsende ny beregnet overløbsmængde samt antal for normalåret (900 mm) baseret på en opdateret afløbsmodel for oplandet', @FacilityID = 5
-EXEC uspAddPermit @StartDate = '2025/01/01', @EndDate = null, @AllowedYearlyOverflowVolume = 3000, @AllowedYearlyIncidents = 37, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Den 15. februar 2030 skal Vejen Forsyning indsende ny beregnet overløbsmængde samt antal for normalåret (900 mm) baseret på en opdateret afløbsmodel for oplandet', @FacilityID = 6
-EXEC uspAddPermit @StartDate = '2025-01-01', @EndDate = null, @AllowedYearlyOverflowVolume = 3000, @AllowedYearlyIncidents = 37, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Den 15. februar 2030 skal Vejen Forsyning indsende ny beregnet overløbsmængde samt antal for normalåret (900 mm) baseret på en opdateret afløbsmodel for oplandet', @FacilityID = 10
+Declare @newPermitID Int;
+EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedYearlyOverflowVolume = 3250, @AllowedYearlyIncidents = 7, @EquipmentRestrictionID = 1, @MaintenanceRestrictionID = 1, @MeasurementRestrictionID = 4, @FacilityID = 1, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedYearlyOverflowVolume = 7100, @AllowedYearlyIncidents = 45, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027',@FacilityID = 2, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 35, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityID = 2, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2024/01/01', @AllowedYearlyOverflowVolume = 3500, @AllowedYearlyIncidents = 20, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret senest den 15 februar 2027', @FacilityID = 3, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2026/12/31', @AllowedYearlyOverflowVolume = 13500, @AllowedYearlyIncidents = 60, @EquipmentRestrictionID = 2, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityID = 4, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2027/01/01', @AllowedYearlyOverflowVolume = 600, @AllowedYearlyIncidents = 5, @EquipmentRestrictionID = 2, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Indselse af ny beregnet overløbsmængde, samt antal for normalåret (900mm) senest den 15 februar 2027', @FacilityID = 4, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2024/01/01', @EndDate = '2024/12/31', @AllowedYearlyOverflowVolume = 3000, @AllowedYearlyIncidents = 37, @EquipmentRestrictionID = 1, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Den 15. februar 2030 skal Vejen Forsyning indsende ny beregnet overløbsmængde samt antal for normalåret (900 mm) baseret på en opdateret afløbsmodel for oplandet', @FacilityID = 5, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2025/01/01', @AllowedYearlyOverflowVolume = 3000, @AllowedYearlyIncidents = 37, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Den 15. februar 2030 skal Vejen Forsyning indsende ny beregnet overløbsmængde samt antal for normalåret (900 mm) baseret på en opdateret afløbsmodel for oplandet', @FacilityID = 5, @PermitID = @newPermitID OUTPUT;
+EXEC uspAddPermit @StartDate = '2025/01/01', @EndDate = null, @AllowedYearlyOverflowVolume = 3000, @AllowedYearlyIncidents = 37, @EquipmentRestrictionID = 3, @MeasurementRestrictionID = 2, @MaintenanceRestrictionID = 3, @AdditionalRestriction = 'Den 15. februar 2030 skal Vejen Forsyning indsende ny beregnet overløbsmængde samt antal for normalåret (900 mm) baseret på en opdateret afløbsmodel for oplandet', @FacilityID = 6, @PermitID = @newPermitID OUTPUT;
+
 -- OVERFLOW
 -- Stadionvej: Volume og antal incidents passer med facility
-EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 1
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 1
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 1
-EXEC uspAddOverflow @OverflowVolume=200, @StartTime ='2024/11/17 05:31:00', @EndTime ='2024/11/17 05:40:00', @FacilityID = 1
-EXEC uspAddOverflow @OverflowVolume=200, @StartTime ='2024/11/16 05:31:00', @EndTime ='2024/11/16 05:40:00', @FacilityID = 1
-EXEC uspAddOverflow @OverflowVolume=200, @StartTime ='2024/11/15 05:31:00', @EndTime ='2024/11/15 05:32:00', @FacilityID = 1
+-- EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 1
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 1
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 1
+-- EXEC uspAddOverflow @OverflowVolume=200, @StartTime ='2024/11/17 05:31:00', @EndTime ='2024/11/17 05:40:00', @FacilityID = 1
+-- EXEC uspAddOverflow @OverflowVolume=200, @StartTime ='2024/11/16 05:31:00', @EndTime ='2024/11/16 05:40:00', @FacilityID = 1
+-- EXEC uspAddOverflow @OverflowVolume=200, @StartTime ='2024/11/15 05:31:00', @EndTime ='2024/11/15 05:32:00', @FacilityID = 1
 -- Glejbjergvej: Disse kommer "oveni" det der står der i forvejen fra uspAddFacility 
-EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 2
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 2
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 2
+-- EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 2
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 2
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 2
 -- Borgergade: Disse kommer "oveni" det der står der i forvejen fra uspAddFacility 
-EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 3
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 3
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 3
+-- EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 3
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 3
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 3
 -- Grenevej: Disse kommer "oveni" det der står der i forvejen fra uspAddFacility 
-EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 4
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 4
-EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 4
+-- EXEC uspAddOverflow @OverflowVolume=1000, @StartTime ='2024/11/18 00:00:00', @EndTime ='2024/11/18 00:30:00', @FacilityID = 4
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/18 01:00:00', @EndTime ='2024/11/18 01:30:00', @FacilityID = 4
+-- EXEC uspAddOverflow @OverflowVolume=800, @StartTime ='2024/11/17 00:00:00', @EndTime ='2024/11/17 00:30:00', @FacilityID = 4
 
 

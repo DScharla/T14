@@ -182,17 +182,9 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="150" Header="Knap">
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button
-                                    x:Name="btnMore"
-                                    Width="100"
-                                    Height="30"
-                                    Margin="0,0,0,0"
-                                    Background="MediumAquamarine"
-                                    Command="{Binding SeeMoreWindowCommand}"
-                                    Content="Se mere" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -249,18 +241,7 @@
             BorderThickness="3"
             Command="{Binding OpenCreatePermitWindowWithSelectedFacilityCommand}"
             Content="Tilknyt udledningstilladelse" />
-        <Button
-            x:Name="btnLogOut"
-            Grid.Row="2"
-            Width="100"
-            Height="30"
-            Margin="1056,24,44,24"
-            Background="White"
-            BorderBrush="Black"
-            BorderThickness="3"
-            Command="{Binding CancelAndCloseCurrentCommand}"
-            Content="Refresh / Log ud" />
-        <!-- logud-knap, før Width="50"-->
+        
         
         <Button x:Name="btnRemoveFacility" 
         Content="Slet overløbsbygværk"

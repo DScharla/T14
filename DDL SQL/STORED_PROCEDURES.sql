@@ -29,7 +29,7 @@ CREATE PROCEDURE uspAddFacility
 	@UDLNumber NVarChar(20),
 	@OBNumber NVarChar(20),
 	@MinimumPoolSize NVarChar(500) = NULL,
-	@SystemID Int = NULL,
+	@SystemID Int,
 	@FacilityID Int OUTPUT
 AS
 BEGIN
@@ -58,11 +58,7 @@ GO
 CREATE PROCEDURE uspAddPermit
 	@StartDate Date,
 	@EndDate Date = NULL,
-	@AllowedAverageOverflowVolume Int = NULL,
-	@AllowedAverageOverflowPeriod Date = NULL,
 	@AllowedYearlyOverflowVolume Int = NULL,
-	@AllowedAverageIncidents Int = NULL,
-	@AllowedAverageIncidentsPeriod Date = NULL,
 	@AllowedYearlyIncidents Int = NULL,
 	@AdditionalRestriction NVarChar(500) = NULL,
 	@EquipmentRestrictionID Int,
@@ -76,11 +72,7 @@ BEGIN
 	VALUES (
 		@StartDate,
 		@EndDate,
-		@AllowedAverageOverflowVolume,
-		@AllowedAverageOverflowPeriod,
 		@AllowedYearlyOverflowVolume,
-		@AllowedAverageIncidents,
-		@AllowedAverageIncidentsPeriod,
 		@AllowedYearlyIncidents,
 		@AdditionalRestriction,
 		@EquipmentRestrictionID,
