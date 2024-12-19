@@ -353,7 +353,6 @@ namespace Eksamensprojekt.ViewModel
         {
             Facility facility = FromStringToFacility();
             facility.ID = _facilityService.AddToFacilityRepo(facility);
-            ShowFacilities();
             CreatePermitWindow permitWindow = new CreatePermitWindow(facility);
             CloseAction();
             permitWindow.Show();

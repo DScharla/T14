@@ -19,7 +19,6 @@ namespace Eksamensprojekt.Model
         {
             absolutePath = GetPathOfConnectionString() + @"\" + fileName + ".txt";
             connectionString=ReadConnectionString(absolutePath);
-            //connectionstring = "Server=DESKTOP-TO8KUCB\\SQLEXPRESS;Database=VF;Integrated Security=True;TrustServerCertificate=True;";
         }
         public string ReadConnectionString(string absolutePath)
         {
